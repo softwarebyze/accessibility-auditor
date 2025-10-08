@@ -1,0 +1,38 @@
+{
+  "name": "accessibility-auditor",
+  "version": "1.0.0",
+  "description": "A lightweight, modular accessibility testing tool for websites",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "a11y-audit": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "bun build index.ts --outdir dist --target bun",
+    "dev": "bun run index.ts",
+    "test": "bun run index.ts --url https://example.com",
+    "install-browsers": "bunx playwright install"
+  },
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "wcag",
+    "ada",
+    "testing",
+    "axe-core"
+  ],
+  "author": "Zack Ebenfeld",
+  "license": "MIT",
+  "dependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "chalk": "^5.6.2",
+    "commander": "^14.0.1",
+    "ora": "^9.0.0",
+    "playwright": "^1.56.0",
+    "puppeteer-core": "^24.23.0"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.23",
+    "typescript": "^5.9.3"
+  }
+}
