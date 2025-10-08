@@ -1,15 +1,31 @@
 import AxeBuilder from "@axe-core/playwright";
-import { type Browser, chromium } from "playwright";
+import { type Browser, type Page, chromium } from "playwright";
 import type {
   AuditResult,
   AxeNode,
   AxeViolation,
   Violation,
   WCAGLevel,
-} from "./types.js";
+} from "../../src/core/types.js";
+import { NetworkCache } from "./network-cache.js";
 
-export class AccessibilityAuditor {
+export interface TestAuditOptions {
+  timeout?: number;
+  waitForSelector?: string;
+  includePasses?: boolean;
+  networkCache?: NetworkCache;
+}
+
+/**
+ * Testable AccessibilityAuditor that can use cached HTML instead of network requests
+ */
+export class TestableAccessibilityAuditor {
   private browser: Browser | null = null;
+  private networkCache?: NetworkCache;
+
+  constructor(networkCache?: NetworkCache) {
+    this.networkCache = networkCache;
+  }
 
   async initialize(): Promise<void> {
     this.browser = await chromium.launch({
@@ -18,7 +34,10 @@ export class AccessibilityAuditor {
     });
   }
 
-  async audit(url: string, _options: AuditOptions = {}): Promise<AuditResult> {
+  async audit(
+    url: string,
+    options: TestAuditOptions = {}
+  ): Promise<AuditResult> {
     if (!this.browser) {
       await this.initialize();
     }
@@ -28,16 +47,29 @@ export class AccessibilityAuditor {
     const page = await context.newPage();
 
     try {
-      // Navigate to the page
-      await page.goto(url, { waitUntil: "domcontentloaded" });
+      // Use cached HTML if available, otherwise load from network
+      const cache = options.networkCache || this.networkCache;
+      if (cache?.hasCachedPage(url)) {
+        const html = cache.getPage(url);
+        if (html) {
+          await this.setPageContent(page, html, url);
+        } else {
+          throw new Error(`Failed to get cached content for ${url}`);
+        }
+      } else {
+        // Normal network request
+        await page.goto(url, { waitUntil: "domcontentloaded" });
+      }
 
-      // Run axe-core analysis
+      // Run axe-core analysis (same as original)
       const axeResults = await new AxeBuilder({ page })
         .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
         .analyze();
 
-      // Process results
-      const violations = this.processViolations(axeResults.violations);
+      // Process results (same as original)
+      const violations = this.processViolations(
+        axeResults.violations as AxeViolation[]
+      );
       const passes = axeResults.passes.length;
       const incomplete = axeResults.incomplete.length;
 
@@ -58,7 +90,8 @@ export class AccessibilityAuditor {
           incomplete: incomplete,
         },
         violations,
-        rawAxeResults: axeResults as unknown as AxeResults,
+        rawAxeResults:
+          axeResults as unknown as import("../../src/core/types.js").AxeResults,
       };
     } finally {
       await page.close();
@@ -66,10 +99,24 @@ export class AccessibilityAuditor {
     }
   }
 
+  /**
+   * Set page content directly instead of loading from URL
+   */
+  private async setPageContent(
+    page: Page,
+    html: string,
+    _baseUrl: string
+  ): Promise<void> {
+    // Set content for testing
+    await page.setContent(html, {
+      waitUntil: "domcontentloaded",
+    });
+  }
+
   private processViolations(axeViolations: AxeViolation[]): Violation[] {
     return axeViolations.map((violation) => ({
       id: violation.id,
-      impact: violation.impact,
+      impact: violation.impact || "minor",
       description: violation.description,
       help: violation.help,
       helpUrl: violation.helpUrl,
@@ -99,8 +146,10 @@ export class AccessibilityAuditor {
   }
 }
 
-export interface AuditOptions {
-  timeout?: number;
-  waitForSelector?: string;
-  includePasses?: boolean;
+/**
+ * Create a testable auditor with pre-cached test pages
+ */
+export function createTestAuditor(): TestableAccessibilityAuditor {
+  const cache = NetworkCache.createWithDefaults();
+  return new TestableAccessibilityAuditor(cache);
 }

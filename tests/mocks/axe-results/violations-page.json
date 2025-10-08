@@ -1,0 +1,134 @@
+{
+  "violations": [
+    {
+      "id": "html-has-lang",
+      "impact": "serious",
+      "description": "Ensures every HTML document has a lang attribute",
+      "help": "The <html> element must have a lang attribute",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=playwright",
+      "tags": ["cat.language", "wcag2a", "wcag311"],
+      "nodes": [
+        {
+          "target": ["html"],
+          "html": "<html>",
+          "impact": "serious",
+          "failureSummary": "Fix any of the following:\n  The <html> element does not have a lang attribute"
+        }
+      ]
+    },
+    {
+      "id": "image-alt",
+      "impact": "critical",
+      "description": "Ensures <img> elements have alternate text or a role of none or presentation",
+      "help": "Images must have alternate text",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/image-alt?application=playwright",
+      "tags": ["cat.text-alternatives", "wcag2a", "wcag111"],
+      "nodes": [
+        {
+          "target": ["img"],
+          "html": "<img src=\"image.jpg\">",
+          "impact": "critical",
+          "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+        }
+      ]
+    },
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=playwright",
+      "tags": ["cat.color", "wcag2aa", "wcag143"],
+      "nodes": [
+        {
+          "target": ["p"],
+          "html": "<p style=\"color: #999; background-color: #fff;\">This text has poor contrast</p>",
+          "impact": "serious",
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.85 (foreground color: #999999, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+        }
+      ]
+    },
+    {
+      "id": "label",
+      "impact": "critical",
+      "description": "Ensures every form element has a label",
+      "help": "Form elements must have labels",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/label?application=playwright",
+      "tags": ["cat.forms", "wcag2a", "wcag412"],
+      "nodes": [
+        {
+          "target": ["input[type=\"text\"]"],
+          "html": "<input type=\"text\" placeholder=\"Enter your name\">",
+          "impact": "critical",
+          "failureSummary": "Fix any of the following:\n  Form element does not have an implicit (wrapped) <label>\n  Form element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+        },
+        {
+          "target": ["input[type=\"email\"]"],
+          "html": "<input type=\"email\" placeholder=\"Enter your email\">",
+          "impact": "critical",
+          "failureSummary": "Fix any of the following:\n  Form element does not have an implicit (wrapped) <label>\n  Form element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+        }
+      ]
+    },
+    {
+      "id": "link-name",
+      "impact": "serious",
+      "description": "Ensures links have discernible text",
+      "help": "Links must have discernible text",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/link-name?application=playwright",
+      "tags": ["cat.name-role-value", "wcag2a", "wcag412"],
+      "nodes": [
+        {
+          "target": ["a[href=\"page.html\"]"],
+          "html": "<a href=\"page.html\"></a>",
+          "impact": "serious",
+          "failureSummary": "Fix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+        }
+      ]
+    },
+    {
+      "id": "button-name",
+      "impact": "critical",
+      "description": "Ensures buttons have discernible text",
+      "help": "Buttons must have discernible text",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/button-name?application=playwright",
+      "tags": ["cat.name-role-value", "wcag2a", "wcag412"],
+      "nodes": [
+        {
+          "target": ["button:nth-child(2)"],
+          "html": "<button><span aria-hidden=\"true\">×</span></button>",
+          "impact": "critical",
+          "failureSummary": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+        }
+      ]
+    },
+    {
+      "id": "bypass",
+      "impact": "serious",
+      "description": "Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content",
+      "help": "Page must have means to bypass repeated blocks",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/bypass?application=playwright",
+      "tags": ["cat.keyboard", "wcag2a", "wcag241"],
+      "nodes": [
+        {
+          "target": ["html"],
+          "html": "<html>",
+          "impact": "serious",
+          "failureSummary": "Fix any of the following:\n  No valid skip link found\n  Page does not have a heading\n  Page does not have any landmarks"
+        }
+      ]
+    }
+  ],
+  "passes": [
+    {
+      "id": "area-alt",
+      "impact": null,
+      "description": "Ensures <area> elements of image maps have alternate text",
+      "help": "Active <area> elements must have alternate text",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/area-alt?application=playwright",
+      "tags": ["cat.text-alternatives", "wcag2a", "wcag111"],
+      "nodes": []
+    }
+  ],
+  "incomplete": []
+}

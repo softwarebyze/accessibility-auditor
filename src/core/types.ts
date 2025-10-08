@@ -3,7 +3,40 @@ export interface AuditResult {
   timestamp: string;
   summary: AuditSummary;
   violations: Violation[];
-  rawAxeResults?: any;
+  rawAxeResults?: AxeResults;
+}
+
+export interface AxeResults {
+  violations: AxeViolation[];
+  passes: AxeRule[];
+  incomplete: AxeRule[];
+}
+
+export interface AxeViolation {
+  id: string;
+  impact: 'critical' | 'serious' | 'moderate' | 'minor' | undefined;
+  description: string;
+  help: string;
+  helpUrl: string;
+  tags: string[];
+  nodes: AxeNode[];
+}
+
+export interface AxeNode {
+  target: string[];
+  html: string;
+  failureSummary: string;
+  impact: string;
+}
+
+export interface AxeRule {
+  id: string;
+  impact: string;
+  description: string;
+  help: string;
+  helpUrl: string;
+  tags: string[];
+  nodes: AxeNode[];
 }
 
 export interface AuditSummary {
@@ -18,7 +51,7 @@ export interface AuditSummary {
 
 export interface Violation {
   id: string;
-  impact: "critical" | "serious" | "moderate" | "minor";
+  impact: 'critical' | 'serious' | 'moderate' | 'minor';
   description: string;
   help: string;
   helpUrl: string;
@@ -33,12 +66,7 @@ export interface ViolationNode {
   impact: string;
 }
 
-export type WCAGLevel =
-  | "WCAG 2.0 A"
-  | "WCAG 2.0 AA"
-  | "WCAG 2.1 A"
-  | "WCAG 2.1 AA"
-  | "Other";
+export type WCAGLevel = 'WCAG 2.0 A' | 'WCAG 2.0 AA' | 'WCAG 2.1 A' | 'WCAG 2.1 AA' | 'Other';
 
 export interface Plugin {
   name: string;
@@ -50,5 +78,5 @@ export interface PluginResult {
   pluginName: string;
   additionalViolations?: Violation[];
   recommendations?: string[];
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }

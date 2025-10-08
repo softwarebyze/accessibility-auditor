@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessible Test Page</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#main" class="skip-link">Skip to main content</a></li>
+            </ul>
+        </nav>
+        <h1>Accessible Test Page</h1>
+    </header>
+
+    <main id="main">
+        <section>
+            <h2>Content Section</h2>
+            <p>This is a well-structured, accessible page with proper headings and landmarks.</p>
+
+            <img src="test.jpg" alt="A descriptive alternative text for this test image">
+
+            <form>
+                <fieldset>
+                    <legend>Contact Form</legend>
+
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" cols="50"></textarea>
+
+                    <button type="submit">Send Message</button>
+                </fieldset>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Test Page. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

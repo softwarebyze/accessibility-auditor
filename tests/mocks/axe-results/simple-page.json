@@ -1,0 +1,39 @@
+{
+  "violations": [
+    {
+      "id": "html-has-lang",
+      "impact": "serious",
+      "description": "Ensures every HTML document has a lang attribute",
+      "help": "The <html> element must have a lang attribute",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=playwright",
+      "tags": ["cat.language", "wcag2a", "wcag311"],
+      "nodes": [
+        {
+          "target": ["html"],
+          "html": "<html>",
+          "impact": "serious",
+          "failureSummary": "Fix any of the following:\n  The <html> element does not have a lang attribute"
+        }
+      ]
+    }
+  ],
+  "passes": [
+    {
+      "id": "bypass",
+      "impact": null,
+      "description": "Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content",
+      "help": "Page must have means to bypass repeated blocks",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/bypass?application=playwright",
+      "tags": ["cat.keyboard", "wcag2a", "wcag241"],
+      "nodes": [
+        {
+          "target": ["h1"],
+          "html": "<h1>Simple Page</h1>",
+          "impact": null,
+          "failureSummary": null
+        }
+      ]
+    }
+  ],
+  "incomplete": []
+}

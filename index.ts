@@ -4,8 +4,13 @@ import chalk from "chalk";
 import { Command } from "commander";
 import ora from "ora";
 import { AccessibilityAuditor } from "./src/core/auditor.js";
-import { ConsoleReporter } from "./src/reporters/console.js";
-import { JsonReporter } from "./src/reporters/json.js";
+import {
+  clearHistory,
+  generateReport,
+  saveAuditResult,
+} from "./src/core/history.js";
+import { report as consoleReport } from "./src/reporters/console.js";
+import { report as jsonReport, saveToFile } from "./src/reporters/json.js";
 
 const program = new Command();
 
@@ -21,6 +26,7 @@ program
   .option("-o, --output <format>", "Output format (console, json)", "console")
   .option("-f, --file <filename>", "Save results to file")
   .option("-t, --timeout <ms>", "Timeout in milliseconds", "30000")
+  .option("-v, --verbose", "Show detailed coverage report")
   .action(async (url: string, options) => {
     const spinner = ora("Initializing accessibility audit...").start();
 
@@ -29,23 +35,26 @@ program
 
       spinner.text = "Loading page and running accessibility tests...";
       const result = await auditor.audit(url, {
-        timeout: parseInt(options.timeout),
+        timeout: Number.parseInt(options.timeout),
       });
 
       spinner.succeed("Audit completed!");
 
       // Output results
       if (options.output === "json") {
-        const jsonOutput = JsonReporter.report(result);
+        const jsonOutput = jsonReport(result);
         if (options.file) {
-          JsonReporter.saveToFile(result, options.file);
+          await saveToFile(result, options.file);
           console.log(chalk.green(`Results saved to ${options.file}`));
         } else {
           console.log(jsonOutput);
         }
       } else {
-        ConsoleReporter.report(result);
+        consoleReport(result, { verbose: options.verbose });
       }
+
+      // Save to history
+      await saveAuditResult(result);
 
       await auditor.close();
     } catch (error) {
@@ -84,9 +93,36 @@ program
         );
       }
 
+      // Save to history
+      await saveAuditResult(result);
+
       await auditor.close();
     } catch (error) {
       spinner.fail("Quick check failed");
+      console.error(
+        chalk.red("Error:"),
+        error instanceof Error ? error.message : String(error)
+      );
+      process.exit(1);
+    }
+  });
+
+program
+  .command("history")
+  .description("View audit history and statistics")
+  .option("-l, --limit <number>", "Limit number of entries to show", "10")
+  .option("-c, --clear", "Clear audit history")
+  .action(async (options) => {
+    try {
+      if (options.clear) {
+        await clearHistory();
+        console.log(chalk.green("✅ Audit history cleared"));
+        return;
+      }
+
+      const report = await generateReport();
+      console.log(report);
+    } catch (error) {
       console.error(
         chalk.red("Error:"),
         error instanceof Error ? error.message : String(error)
