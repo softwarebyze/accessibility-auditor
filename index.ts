@@ -9,8 +9,15 @@ import {
   generateReport,
   saveAuditResult,
 } from "./src/core/history.js";
+import { SiteAuditRunner } from "./src/core/site-audit.js";
 import { report as consoleReport } from "./src/reporters/console.js";
-import { report as jsonReport, saveToFile } from "./src/reporters/json.js";
+import { reportCrawlConsole } from "./src/reporters/crawl.js";
+import {
+  report as jsonReport,
+  reportCrawl as jsonReportCrawl,
+  saveCrawlToFile,
+  saveToFile,
+} from "./src/reporters/json.js";
 
 const program = new Command();
 
@@ -108,6 +115,72 @@ program
   });
 
 program
+  .command("crawl")
+  .description("Crawl a site and audit each discovered page")
+  .argument("<url>", "Starting URL to crawl")
+  .option("--max-pages <number>", "Maximum number of pages to audit", "20")
+  .option("--max-depth <number>", "Maximum crawl depth", "2")
+  .option("--delay <ms>", "Delay between crawl requests in milliseconds", "0")
+  .option("--allow-external", "Follow links to other domains", false)
+  .option("-t, --timeout <ms>", "Per-page audit timeout", "30000")
+  .option("-o, --output <format>", "Output format (console, json)", "console")
+  .option("-f, --file <filename>", "Save results to file")
+  .option("-v, --verbose", "Show detailed per-page reports")
+  .action(async (url: string, options) => {
+    const spinner = ora(
+      "Crawling site and running accessibility audits..."
+    ).start();
+
+    try {
+      const runner = new SiteAuditRunner();
+      const maxPages = parseIntegerOption(options.maxPages, "--max-pages", 20);
+      const maxDepth = parseIntegerOption(options.maxDepth, "--max-depth", 2);
+      const delayMs = parseIntegerOption(options.delay, "--delay", 0);
+      const timeout = parseIntegerOption(options.timeout, "--timeout", 30000);
+      const sameOrigin = !options.allowExternal;
+
+      const result = await runner.run(url, {
+        maxPages,
+        maxDepth,
+        delayMs,
+        sameOrigin,
+        timeout,
+      });
+
+      spinner.succeed(
+        `Audited ${result.summary.totalPages} page${
+          result.summary.totalPages === 1 ? "" : "s"
+        }`
+      );
+
+      if (options.output === "json") {
+        const output = jsonReportCrawl(result);
+        if (options.file) {
+          await saveCrawlToFile(result, options.file);
+          console.log(chalk.green(`Results saved to ${options.file}`));
+        } else {
+          console.log(output);
+        }
+      } else {
+        reportCrawlConsole(result, { verbose: options.verbose });
+      }
+
+      for (const record of result.audits) {
+        if (record.status === "success") {
+          await saveAuditResult(record.result);
+        }
+      }
+    } catch (error) {
+      spinner.fail("Crawl audit failed");
+      console.error(
+        chalk.red("Error:"),
+        error instanceof Error ? error.message : String(error)
+      );
+      process.exit(1);
+    }
+  });
+
+program
   .command("history")
   .description("View audit history and statistics")
   .option("-l, --limit <number>", "Limit number of entries to show", "10")
@@ -141,5 +214,22 @@ process.on("unhandledRejection", (reason, promise) => {
   );
   process.exit(1);
 });
+
+function parseIntegerOption(
+  value: unknown,
+  name: string,
+  defaultValue: number
+): number {
+  if (value === undefined || value === null || value === "") {
+    return defaultValue;
+  }
+
+  const parsed = Number.parseInt(String(value), 10);
+  if (Number.isNaN(parsed)) {
+    throw new Error(`Invalid value for ${name}: ${value}`);
+  }
+
+  return parsed;
+}
 
 program.parse();

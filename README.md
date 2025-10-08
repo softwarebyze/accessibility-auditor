@@ -20,12 +20,23 @@ bun run dev audit https://example.com
 # Save results to JSON file
 bun run dev audit https://example.com --output json --file results.json
 
+# Crawl and audit an entire site
+bun run dev crawl https://example.com --max-pages 25
+
 # View audit history
 bun run dev history
 
 # Clear audit history
 bun run dev history --clear
 ```
+
+## 🤝 Working with Clients
+
+1. **Run a crawl-based audit** – `bun run dev crawl https://client-site.com --max-pages 40 --max-depth 2` collects the key pages your client cares about.
+2. **Export a shareable report** – Add `--output json --file client-report.json` to generate a deliverable you can email or drop into project tooling.
+3. **Review highlights together** – Use the console output (or rerun with `--verbose`) to walk stakeholders through critical violations and quick wins.
+4. **Track follow-up progress** – Re-run the crawl after fixes land; compare the new JSON against history and include the trendlines from `bun run dev history` in your status updates.
+5. **Bundle recommendations** – Pair automated findings with manual testing notes so clients understand where human review is still required.
 
 ## 📋 Commands
 
@@ -181,7 +192,8 @@ src/
 │   └── axe-coverage.ts     # Coverage analysis
 ├── reporters/
 │   ├── console.ts          # Enhanced console reporting
-│   └── json.ts             # JSON output
+│   ├── json.ts             # JSON output
+│   └── crawl.ts            # Multi-page crawl reporting
 ├── mcp/
 │   ├── server.ts           # MCP server implementation
 │   └── index.ts            # MCP entry point
@@ -272,9 +284,6 @@ Timestamp: 10/7/2025, 8:25:00 PM
 1. 🟡 Ensure every HTML document has a lang attribute
    Impact: SERIOUS
    WCAG Level: WCAG 2.0 A
-   Help: https://dequeuniversity.com/rules/axe/4.10/html-has-lang
-   Affected elements: 1
-     1. html
 
 🔍 Coverage & Confidence Report:
 
@@ -301,14 +310,6 @@ Timestamp: 10/7/2025, 8:25:00 PM
    Results are reliable for the issues it detects.
 
 ⚠️  IMPORTANT LIMITATIONS:
-   • Automated testing catches ~30-50% of accessibility issues
-   • Manual testing with screen readers is still essential
-   • Some issues require human judgment (e.g., meaningful alt text)
-   • Dynamic content and complex interactions need manual testing
-
-⚖️  Legal Compliance Note:
-   This automated scan catches ~30-50% of accessibility issues.
-   For full ADA compliance protection, consider:
    • Professional accessibility audit
    • Manual testing with screen readers
    • User testing with people with disabilities
