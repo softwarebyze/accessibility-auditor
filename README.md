@@ -67,6 +67,8 @@ bun run dev audit https://ebenfeld.tech
 - `--output <format>`: Output format (`console` or `json`)
 - `--file <filename>`: Save results to file
 - `--timeout <ms>`: Timeout in milliseconds (default: 30000)
+- `--verbose`: Add legal context and compliance guidance to the summary
+- `--show-checks`: Display the catalog of verified axe-core rules
 
 ### `history`
 
@@ -285,35 +287,24 @@ Timestamp: 10/7/2025, 8:25:00 PM
    Impact: SERIOUS
    WCAG Level: WCAG 2.0 A
 
-🔍 Coverage & Confidence Report:
+� Coverage Summary:
+   🛠️ Engine: axe-core 4.x.x via @axe-core/playwright 4.x.x
+   ✅ Verified Checks: 10/25
+   � Estimated Coverage: 85%
+   🎯 WCAG Level: WCAG 2.1 AA
+   💡 Automated testing catches ~30-50% of accessibility issues
 
-🔍 Axe-Core Accessibility Coverage Report
-══════════════════════════════════════════════════
+Add --verbose to include legal context and guidance.
+Need the verified rule catalog? Re-run with --show-checks.
+```
 
-✅ Verified Checks: 10/25
-📊 Estimated Coverage: 85%
-🎯 WCAG Level: WCAG 2.1 AA
+To include the verified rule catalog in the output, rerun with `--show-checks`:
 
-✅ VERIFIED CHECKS (Tested & Working):
-------------------------------
-🔴 image-alt: Images must have alternative text
-   WCAG: 1.1.1
-   Note: Detects missing alt attributes on img elements
-
-🔴 label: Form elements must have labels
-   WCAG: 1.3.1, 2.4.6, 3.3.2
-   Note: Detects form controls without proper labels
-
-💡 CONFIDENCE LEVEL: HIGH
-   Axe-core is a mature, widely-used accessibility testing engine
-   that covers the most critical WCAG 2.1 AA requirements.
-   Results are reliable for the issues it detects.
-
-⚠️  IMPORTANT LIMITATIONS:
-   • Professional accessibility audit
-   • Manual testing with screen readers
-   • User testing with people with disabilities
-   • Legal consultation for your jurisdiction
+```
+✅ Verified axe-core checks in this release:
+  🔴 image-alt — Images must have alternative text (WCAG 1.1.1) – Detects missing alt attributes on img elements
+  🔴 label — Form elements must have labels (WCAG 1.3.1, 2.4.6, 3.3.2) – Detects form controls without proper labels
+  …
 ```
 
 ## 🛠️ Built With

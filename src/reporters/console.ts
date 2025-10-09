@@ -1,5 +1,8 @@
 import chalk from "chalk";
-import { getCoverageReport, getCoverageSummary } from "../core/axe-coverage.js";
+import {
+  getCoverageOverview,
+  getCoverageSummary,
+} from "../core/axe-coverage.js";
 import type { AuditResult, AuditSummary, Violation } from "../core/types.js";
 
 export interface ConsoleReporterOptions {
@@ -139,23 +142,37 @@ function printCoverageReport(): void {
   console.log(chalk.blue.bold("🔍 Coverage & Confidence Report:"));
   console.log("");
 
-  const coverageReport = getCoverageReport();
-  const lines = coverageReport.split("\n");
+  const overview = getCoverageOverview();
+  const lines = overview.split("\n");
 
   for (const line of lines) {
-    if (line.includes("✅") || line.includes("VERIFIED CHECKS")) {
-      console.log(chalk.green(line));
-    } else if (line.includes("⚠️") || line.includes("LIMITATIONS")) {
-      console.log(chalk.yellow(line));
-    } else if (line.includes("💡")) {
-      console.log(chalk.blue(line));
-    } else if (line.startsWith("   •")) {
+    if (!line) continue;
+    if (line.includes("🔍")) {
+      console.log(chalk.blue.bold(line));
+    } else if (line.startsWith("═")) {
       console.log(chalk.gray(line));
+    } else if (line.includes("🛠️")) {
+      console.log(chalk.gray(line));
+    } else if (line.includes("✅")) {
+      console.log(chalk.green(line));
+    } else if (line.includes("�") || line.includes("🎯")) {
+      console.log(chalk.cyan(line));
+    } else if (line.includes("💡")) {
+      console.log(chalk.yellow(line));
     } else {
       console.log(line);
     }
   }
 
+  console.log("");
+  console.log(
+    chalk.gray(
+      "Detailed verification catalog: run `a11y-audit coverage --details`."
+    )
+  );
+  console.log(
+    chalk.gray("Need machine-readable data? Try `a11y-audit coverage --json`.")
+  );
   console.log("");
 }
 
@@ -167,6 +184,8 @@ function printCoverageSummary(): void {
   for (const line of lines) {
     if (line.includes("📊")) {
       console.log(chalk.blue.bold(line));
+    } else if (line.includes("🛠️")) {
+      console.log(chalk.gray(line));
     } else if (line.includes("✅")) {
       console.log(chalk.green(line));
     } else if (line.includes("📈") || line.includes("🎯")) {
@@ -178,7 +197,14 @@ function printCoverageSummary(): void {
     }
   }
   console.log("");
-  console.log(chalk.gray("Use --verbose flag for detailed coverage report"));
+  console.log(
+    chalk.gray("Use --verbose for the legal context and coverage snapshot.")
+  );
+  console.log(
+    chalk.gray(
+      "Need the full verified check list? a11y-audit coverage --details"
+    )
+  );
   console.log("");
 }
 

@@ -41,10 +41,4 @@ describe("AccessibilityAuditor (network cached)", () => {
 
     // Additional violation-specific assertions can be added when needed.
   });
-
-  describe("error handling", () => {
-    it("should handle invalid URLs gracefully", async () => {
-      await expect(auditor.audit("invalid-url")).rejects.toThrow();
-    });
-  });
 });

@@ -162,4 +162,35 @@ describe("SiteCrawler", () => {
     ]);
     expect(result.errors).toHaveLength(0);
   });
+
+  it("should treat trailing slash variants as the same page", async () => {
+    const responses: Record<string, MockResponse> = {
+      "https://example.com/": {
+        status: 200,
+        statusText: "OK",
+        body: `
+          <html>
+            <body>
+              <a href="/profile">Profile</a>
+              <a href="/profile/">Profile trailing slash</a>
+            </body>
+          </html>
+        `,
+      },
+      "https://example.com/profile": {
+        status: 200,
+        statusText: "OK",
+        body: "<html><body>Profile</body></html>",
+      },
+    };
+
+    const crawler = new SiteCrawler(createMockFetch(responses));
+    const result = await crawler.crawl("https://example.com");
+
+    expect(result.pages).toEqual([
+      "https://example.com/",
+      "https://example.com/profile",
+    ]);
+    expect(result.skipped).toBeGreaterThan(0);
+  });
 });

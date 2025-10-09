@@ -5,6 +5,10 @@
  * Based on testing with known accessibility issues.
  */
 
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
+
 export interface AxeCoverageAnalysis {
   wcagLevel: string;
   checks: AxeCheck[];
@@ -19,6 +23,11 @@ export interface AxeCheck {
   impact: "critical" | "serious" | "moderate" | "minor";
   verified: boolean;
   notes?: string;
+}
+
+export interface AxeEngineVersions {
+  axeCore: string;
+  axePlaywright: string;
 }
 
 // Based on actual testing and WAVE documentation comparison
@@ -255,13 +264,44 @@ export const WAVE_SPECIFIC_CHECKS = [
   "aria_hidden", // ARIA hidden content
 ];
 
-export function getCoverageSummary(): string {
+function loadPackageVersion(packageName: string): string | undefined {
+  try {
+    const pkg = require(`${packageName}/package.json`);
+    if (pkg && typeof pkg.version === "string") {
+      return pkg.version;
+    }
+  } catch {
+    // ignore missing package information
+  }
+  return undefined;
+}
+
+export function getAxeEngineVersions(): AxeEngineVersions {
+  const axePlaywright = loadPackageVersion("@axe-core/playwright") ?? "unknown";
+  const axeCore = loadPackageVersion("axe-core") ?? "unknown";
+
+  return { axeCore, axePlaywright };
+}
+
+function getCoverageStats() {
   const verified = AXE_COVERAGE_ANALYSIS.checks.filter(
     (c) => c.verified
   ).length;
   const total = AXE_COVERAGE_ANALYSIS.checks.length;
 
+  return { verified, total };
+}
+
+export function getCoverageSummary(): string {
+  const { verified, total } = getCoverageStats();
+  const versions = getAxeEngineVersions();
+
   let summary = "📊 Coverage Summary:\n";
+  summary += `   🛠️ Engine: axe-core ${versions.axeCore}`;
+  summary +=
+    versions.axePlaywright !== "unknown"
+      ? ` via @axe-core/playwright ${versions.axePlaywright}\n`
+      : "\n";
   summary += `   ✅ Verified Checks: ${verified}/${total}\n`;
   summary += `   📈 Estimated Coverage: ${AXE_COVERAGE_ANALYSIS.coveragePercentage}%\n`;
   summary += `   🎯 WCAG Level: ${AXE_COVERAGE_ANALYSIS.wcagLevel}\n`;
@@ -271,14 +311,40 @@ export function getCoverageSummary(): string {
   return summary;
 }
 
+export function getCoverageOverview(): string {
+  const { verified, total } = getCoverageStats();
+  const versions = getAxeEngineVersions();
+
+  let overview = "🔍 Axe-Core Coverage Overview\n";
+  overview += `${"═".repeat(50)}\n\n`;
+  overview += `🛠️ Engine: axe-core ${versions.axeCore}`;
+  overview +=
+    versions.axePlaywright !== "unknown"
+      ? ` (via @axe-core/playwright ${versions.axePlaywright})\n`
+      : "\n";
+  overview += `✅ Verified Checks: ${verified}/${total}\n`;
+  overview += `📊 Estimated Coverage: ${AXE_COVERAGE_ANALYSIS.coveragePercentage}%\n`;
+  overview += `🎯 WCAG Level: ${AXE_COVERAGE_ANALYSIS.wcagLevel}\n`;
+  overview +=
+    "💡 Automated testing typically covers ~30-50% of accessibility issues\n";
+
+  return overview;
+}
+
 export function getCoverageReport(): string {
-  const verified = AXE_COVERAGE_ANALYSIS.checks.filter(
-    (c) => c.verified
-  ).length;
-  const total = AXE_COVERAGE_ANALYSIS.checks.length;
+  const { verified, total } = getCoverageStats();
+  const versions = getAxeEngineVersions();
 
   let report = "🔍 Axe-Core Accessibility Coverage Report\n";
   report += `${"═".repeat(50)}\n\n`;
+
+  if (versions.axeCore !== "unknown" || versions.axePlaywright !== "unknown") {
+    report += `🛠️ Engine: axe-core ${versions.axeCore}`;
+    report +=
+      versions.axePlaywright !== "unknown"
+        ? ` (via @axe-core/playwright ${versions.axePlaywright})\n`
+        : "\n";
+  }
 
   report += `✅ Verified Checks: ${verified}/${total}\n`;
   report += `📊 Estimated Coverage: ${AXE_COVERAGE_ANALYSIS.coveragePercentage}%\n`;

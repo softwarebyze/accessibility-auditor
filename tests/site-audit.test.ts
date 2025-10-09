@@ -1,6 +1,10 @@
 import { describe, expect, it } from "bun:test";
 import { SiteCrawler } from "../src/core/crawler.js";
-import { SiteAuditRunner } from "../src/core/site-audit.js";
+import {
+  type PageAuditRecord,
+  SiteAuditRunner,
+  aggregateViolations,
+} from "../src/core/site-audit.js";
 import { type MockResponse, createMockFetch } from "./helpers/mock-fetch.js";
 import { MockAccessibilityAuditor } from "./mocks/mock-auditor.js";
 
@@ -97,5 +101,144 @@ describe("SiteAuditRunner", () => {
     const failure = result.audits.find((item) => item.status === "error");
     expect(failure).toBeDefined();
     expect(failure?.url).toBe("https://example.com/missing");
+  });
+});
+
+describe("aggregateViolations", () => {
+  it("should summarize occurrences per page and totals", () => {
+    const audits: PageAuditRecord[] = [
+      {
+        url: "https://example.com/",
+        status: "success",
+        result: {
+          url: "https://example.com/",
+          timestamp: new Date().toISOString(),
+          summary: {
+            totalViolations: 2,
+            criticalViolations: 1,
+            seriousViolations: 1,
+            moderateViolations: 0,
+            minorViolations: 0,
+            totalPasses: 10,
+            incomplete: 0,
+          },
+          violations: [
+            {
+              id: "color-contrast",
+              impact: "serious",
+              description: "Elements must have sufficient color contrast",
+              help: "Adjust colors to meet contrast requirements",
+              helpUrl: "https://dequeuniversity.com/rules/axe/color-contrast",
+              wcagLevel: "WCAG 2.1 AA",
+              nodes: [
+                {
+                  target: [".header"],
+                  html: '<div class="header">Header</div>',
+                  failureSummary: "Insufficient contrast",
+                  impact: "serious",
+                },
+                {
+                  target: [".footer"],
+                  html: '<div class="footer">Footer</div>',
+                  failureSummary: "Insufficient contrast",
+                  impact: "serious",
+                },
+              ],
+            },
+            {
+              id: "image-alt",
+              impact: "moderate",
+              description: "Images must have alternate text",
+              help: "Provide descriptive alt text for meaningful images",
+              helpUrl: "https://dequeuniversity.com/rules/axe/image-alt",
+              wcagLevel: "WCAG 2.1 A",
+              nodes: [
+                {
+                  target: ["img.hero"],
+                  html: '<img class="hero">',
+                  failureSummary: "Missing alt attribute",
+                  impact: "moderate",
+                },
+              ],
+            },
+          ],
+        },
+      },
+      {
+        url: "https://example.com/about",
+        status: "success",
+        result: {
+          url: "https://example.com/about",
+          timestamp: new Date().toISOString(),
+          summary: {
+            totalViolations: 1,
+            criticalViolations: 0,
+            seriousViolations: 1,
+            moderateViolations: 0,
+            minorViolations: 0,
+            totalPasses: 12,
+            incomplete: 0,
+          },
+          violations: [
+            {
+              id: "color-contrast",
+              impact: "serious",
+              description: "Elements must have sufficient color contrast",
+              help: "Adjust colors to meet contrast requirements",
+              helpUrl: "https://dequeuniversity.com/rules/axe/color-contrast",
+              wcagLevel: "WCAG 2.1 AA",
+              nodes: [
+                {
+                  target: [".cta"],
+                  html: '<a class="cta">Call to action</a>',
+                  failureSummary: "Insufficient contrast",
+                  impact: "serious",
+                },
+              ],
+            },
+          ],
+        },
+      },
+      {
+        url: "https://example.com/contact",
+        status: "error",
+        error: "Network failure",
+      },
+    ];
+
+    const overview = aggregateViolations(audits);
+
+    expect(overview).toHaveLength(2);
+
+    const first = overview[0];
+    const second = overview[1];
+
+    expect(first).toBeDefined();
+    expect(second).toBeDefined();
+    if (!first || !second) {
+      throw new Error("Expected violation summaries");
+    }
+
+    expect(first.id).toBe("color-contrast");
+    expect(first.totalOccurrences).toBe(3);
+    expect(first.pages).toEqual([
+      {
+        url: "https://example.com/",
+        occurrences: 2,
+      },
+      {
+        url: "https://example.com/about",
+        occurrences: 1,
+      },
+    ]);
+
+    expect(second.id).toBe("image-alt");
+    expect(second.totalOccurrences).toBe(1);
+    expect(second.pages).toEqual([
+      {
+        url: "https://example.com/",
+        occurrences: 1,
+      },
+    ]);
   });
 });

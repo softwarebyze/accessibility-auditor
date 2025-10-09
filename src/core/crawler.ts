@@ -154,6 +154,12 @@ export class SiteCrawler {
     try {
       const resolved = baseUrl ? new URL(url, baseUrl) : new URL(url);
       resolved.hash = "";
+      if (resolved.pathname !== "/") {
+        resolved.pathname = resolved.pathname.replace(/\/+$/, "");
+        if (resolved.pathname === "") {
+          resolved.pathname = "/";
+        }
+      }
       return resolved.href;
     } catch {
       return null;
