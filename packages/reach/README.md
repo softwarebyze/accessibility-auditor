@@ -7,15 +7,16 @@ Check your site for accessibility—one page or a whole site. Quick checks, full
 **Run without installing:**
 
 ```bash
-bunx reach install-browsers   # one-time: download browsers
-bunx reach quick https://example.com
-bunx reach audit https://example.com
+npx reach-a11y install-browsers   # one-time: download browsers
+npx reach-a11y quick https://example.com
+npx reach-a11y audit https://example.com
 ```
 
 **Install globally:**
 
 ```bash
-bun add -g reach
+npm install -g reach-a11y
+# or: bun add -g reach-a11y
 
 reach install-browsers   # one-time
 reach quick https://example.com

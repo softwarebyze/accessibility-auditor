@@ -1,11 +1,11 @@
 {
-  "name": "reach",
+  "name": "reach-a11y",
   "version": "1.0.0",
   "description": "Check your site for accessibility. One URL or whole site—quick checks, full reports, and history. Lightweight CLI.",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "reach": "./dist/index.js"
+    "reach": "dist/index.js"
   },
   "scripts": {
     "build": "bun run lint && bun build index.ts --outdir dist --target bun --packages external && bun build src/mcp/index.ts --outdir dist/mcp --target bun --packages external",
@@ -44,6 +44,9 @@
   },
   "author": "Zack Ebenfeld",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@axe-core/playwright": "^4.10.2",
     "@modelcontextprotocol/sdk": "^0.5.0",

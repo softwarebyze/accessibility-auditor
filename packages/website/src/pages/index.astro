@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 ---
-<Layout title="Reach — Check your site for accessibility" description="Reach: quick checks, full reports, simple history. Built for Bun. bunx reach or bun add reach.">
+<Layout title="Reach — Check your site for accessibility" description="Reach: quick checks, full reports, simple history. npx reach-a11y or npm install -g reach-a11y.">
   <article>
     <section class="hero" aria-labelledby="hero-heading">
       <div class="container">
@@ -63,12 +63,12 @@ import Layout from "../layouts/Layout.astro";
     <section id="get-started" class="section" aria-labelledby="get-started-heading">
       <div class="container">
         <h2 id="get-started-heading">Get started</h2>
-        <p>Run without installing (requires <a href="https://bun.sh" target="_blank" rel="noopener noreferrer">Bun</a>):</p>
-        <pre class="block"><code>bunx reach install-browsers   # one-time
-bunx reach quick https://example.com
-bunx reach audit https://example.com</code></pre>
+        <p>Run without installing:</p>
+        <pre class="block"><code>npx reach-a11y install-browsers   # one-time
+npx reach-a11y quick https://example.com
+npx reach-a11y audit https://example.com</code></pre>
         <p>Or install and use the <code>reach</code> command:</p>
-        <pre class="block"><code>bun add -g reach
+        <pre class="block"><code>npm install -g reach-a11y
 
 reach install-browsers   # one-time
 reach quick https://example.com
@@ -82,7 +82,7 @@ reach history</code></pre>
     <section class="section cta" aria-labelledby="cta-heading">
       <div class="container">
         <h2 id="cta-heading">Ready to audit?</h2>
-        <p>Run <code>bunx reach audit https://yoursite.com</code> or install with <code>bun add -g reach</code>. Use crawl + JSON export and history to track progress.</p>
+        <p>Run <code>npx reach-a11y audit https://yoursite.com</code> or install with <code>npm install -g reach-a11y</code>. Use crawl + JSON export and history to track progress.</p>
         <a href="https://github.com/softwarebyze/accessibility-auditor" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Open on GitHub</a>
       </div>
     </section>

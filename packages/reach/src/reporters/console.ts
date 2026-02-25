@@ -214,8 +214,8 @@ function printCoverageReport(): void {
   }
 
   console.log('');
-  console.log(chalk.gray('Detailed verification catalog: run `reach coverage --details`.'));
-  console.log(chalk.gray('Need machine-readable data? Try `reach coverage --json`.'));
+  console.log(chalk.gray('Detailed verification catalog: run `reach audit <url> --show-checks`.'));
+  console.log(chalk.gray('Need machine-readable data? Try `reach audit <url> --output json`.'));
   console.log('');
 }
 
@@ -241,7 +241,7 @@ function printCoverageSummary(): void {
   }
   console.log('');
   console.log(chalk.gray('Use --verbose for the legal context and coverage snapshot.'));
-  console.log(chalk.gray('Need the full verified check list? reach coverage --details'));
+  console.log(chalk.gray('Need the full verified check list? reach audit <url> --show-checks'));
   console.log('');
 }
 
