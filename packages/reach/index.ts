@@ -1,5 +1,6 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 
+import { execSync, spawnSync } from 'node:child_process';
 import chalk from 'chalk';
 import { Command } from 'commander';
 import ora from 'ora';
@@ -165,8 +166,7 @@ program
   .command('install-browsers')
   .description('Install Playwright browsers (one-time setup)')
   .action(async () => {
-    const { execSync } = await import('node:child_process');
-    execSync('bunx playwright install', { stdio: 'inherit', shell: true });
+    execSync(resolvePlaywrightInstallCommand(), { stdio: 'inherit', shell: true });
   });
 
 program
@@ -207,6 +207,29 @@ function parseIntegerOption(value: unknown, name: string, defaultValue: number):
   }
 
   return parsed;
+}
+
+function resolvePlaywrightInstallCommand(): string {
+  if (process.versions.bun) {
+    return 'bunx playwright install';
+  }
+
+  if (commandExists('npx')) {
+    return 'npx playwright install';
+  }
+
+  if (commandExists('npm')) {
+    return 'npm exec playwright install';
+  }
+
+  return 'playwright install';
+}
+
+function commandExists(command: string): boolean {
+  const result = spawnSync(command, ['--version'], {
+    stdio: 'ignore',
+  });
+  return !result.error && result.status === 0;
 }
 
 program.parse();

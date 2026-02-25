@@ -1,3 +1,5 @@
+import { constants } from 'node:fs';
+import { access, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import type { AuditResult } from './types.js';
 
@@ -29,23 +31,22 @@ export async function saveAuditResult(result: AuditResult): Promise<string> {
   // Keep only last 100 entries
   const trimmedHistory = existingHistory.slice(-100);
 
-  await Bun.write(HISTORY_FILE, JSON.stringify(trimmedHistory, null, 2));
+  await writeFile(HISTORY_FILE, JSON.stringify(trimmedHistory, null, 2), 'utf8');
 
   // Also save individual result
   const resultFile = join(HISTORY_DIR, `${historyEntry.id}.json`);
-  await Bun.write(resultFile, JSON.stringify(result, null, 2));
+  await writeFile(resultFile, JSON.stringify(result, null, 2), 'utf8');
 
   return historyEntry.id;
 }
 
 export async function loadHistory(): Promise<HistoryEntry[]> {
   try {
-    const file = Bun.file(HISTORY_FILE);
-    if (!(await file.exists())) {
+    if (!(await exists(HISTORY_FILE))) {
       return [];
     }
 
-    const content = await file.text();
+    const content = await readFile(HISTORY_FILE, 'utf8');
     return JSON.parse(content);
   } catch {
     return [];
@@ -55,13 +56,11 @@ export async function loadHistory(): Promise<HistoryEntry[]> {
 export async function getAuditResult(id: string): Promise<AuditResult | null> {
   try {
     const resultFile = join(HISTORY_DIR, `${id}.json`);
-    const file = Bun.file(resultFile);
-
-    if (!(await file.exists())) {
+    if (!(await exists(resultFile))) {
       return null;
     }
 
-    const content = await file.text();
+    const content = await readFile(resultFile, 'utf8');
     return JSON.parse(content);
   } catch {
     return null;
@@ -70,7 +69,8 @@ export async function getAuditResult(id: string): Promise<AuditResult | null> {
 
 export async function clearHistory(): Promise<void> {
   try {
-    await Bun.write(HISTORY_FILE, '[]');
+    await ensureHistoryDirectory();
+    await writeFile(HISTORY_FILE, '[]', 'utf8');
   } catch {
     // Ignore errors
   }
@@ -112,15 +112,21 @@ export async function generateReport(): Promise<string> {
 
 async function ensureHistoryDirectory(): Promise<void> {
   try {
-    const dir = Bun.file(HISTORY_DIR);
-    if (!(await dir.exists())) {
-      await Bun.write(join(HISTORY_DIR, '.gitkeep'), '');
-    }
+    await mkdir(HISTORY_DIR, { recursive: true });
   } catch {
     // Ignore errors
   }
 }
 
 function generateId(): string {
-  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+  return Date.now().toString(36) + Math.random().toString(36).slice(2);
+}
+
+async function exists(path: string): Promise<boolean> {
+  try {
+    await access(path, constants.F_OK);
+    return true;
+  } catch {
+    return false;
+  }
 }

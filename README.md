@@ -1,12 +1,12 @@
 # Reach
 
-**Reach** checks your site for accessibility—one page or a whole site. Quick checks, full reports, simple history. Built for [Bun](https://bun.sh).
+**Reach** checks your site for accessibility—one page or a whole site. Quick checks, full reports, simple history. Works with Node.js (npm) and Bun.
 
-This repo is a **monorepo**: the CLI is in `packages/reach`, the marketing site in `packages/website`. Tooling (install, test, build) uses Bun.
+This repo is a **monorepo**: the CLI is in `packages/reach`, the marketing site in `packages/website`. Tooling works with npm or Bun.
 
-## 🚀 Use Reach (Bun)
+## 🚀 Use Reach
 
-Reach is built for [Bun](https://bun.sh). Run without installing:
+Reach is published on npm. Run without installing:
 
 ```bash
 npx reach-a11y install-browsers   # one-time
@@ -27,24 +27,24 @@ reach crawl https://example.com --max-pages 25
 reach history
 ```
 
-Requires Bun ≥1.0.
+Requires Node.js 20+ (Bun 1.0+ is also supported).
 
 ## 🛠 Develop from this repo
 
 ```bash
 # From repo root
-bun install
+npm install
 
 # Install browsers (one-time)
-bun run install-browsers
+npm run install-browsers
 
 # Run CLI from package
-bun run dev quick https://example.com
-bun run dev audit https://example.com
-bun run dev audit https://example.com --output json --file results.json
-bun run dev crawl https://example.com --max-pages 25
-bun run dev history
-bun run dev history --clear
+npm run dev -- quick https://example.com
+npm run dev -- audit https://example.com
+npm run dev -- audit https://example.com --output json --file results.json
+npm run dev -- crawl https://example.com --max-pages 25
+npm run dev -- history
+npm run dev -- history --clear
 ```
 
 ## 🤝 Working with Clients
@@ -57,7 +57,7 @@ bun run dev history --clear
 
 ## 📋 Commands
 
-(Use `reach` when installed; from repo use `bun run dev`.)
+(Use `reach` when installed; from repo use `npm run dev --` or `bun run dev`.)
 
 ### `quick <url>`
 
@@ -331,16 +331,16 @@ From repo root:
 
 ```bash
 # Run all tests (includes slow browser tests)
-bun run test
+npm run test
 
 # Run only fast tests (mocks, unit tests)
-bun run test:fast
+npm run test:fast
 
 # Run integration tests
-bun run test:integration
+npm run test:integration
 ```
 
-Or from `packages/reach`: `bun test`, `bun run test:fast`, etc.
+Or from `packages/reach`: `npm test`, `npm run test:fast`, etc. (Bun equivalents work too).
 
 **Mock Testing System:**
 
@@ -354,13 +354,13 @@ Or from `packages/reach`: `bun test`, `bun run test:fast`, etc.
 From repo root:
 
 ```bash
-bun run check          # lint + test + build (same as CI)
-bun run lint
-bun run lint:fix
-bun run format
-bun run build          # builds packages/reach
-bun run build:site     # builds packages/website
-bun run site           # dev server for website
+npm run check          # lint + test + build (same as CI)
+npm run lint
+npm run lint:fix
+npm run format
+npm run build          # builds packages/reach
+npm run build:site     # builds packages/website
+npm run site           # dev server for website
 ```
 
 **Automated checks:** Pre-commit (Husky + lint-staged) runs Biome on staged files. CI runs lint, tests, build, integration test, and site build on push/PR to `main` and `develop`.
@@ -371,7 +371,7 @@ The tool includes a Model Context Protocol (MCP) server for integration with AI 
 
 ```bash
 # Run MCP server
-bun run mcp
+npm run mcp
 ```
 
 **Available MCP Tools:**
@@ -429,7 +429,7 @@ To include the verified rule catalog in the output, rerun with `--show-checks`:
 
 ## 🛠️ Built With
 
-- **[Bun](https://bun.sh/)** - Fast JavaScript runtime and package manager
+- **[Node.js](https://nodejs.org/)** and **[Bun](https://bun.sh/)** - Supported runtimes/package managers
 - **[Playwright](https://playwright.dev/)** - Browser automation and testing
 - **[axe-core](https://github.com/dequelabs/axe-core)** - Industry-standard accessibility testing engine
 - **[Commander.js](https://github.com/tj/commander.js)** - CLI framework
@@ -447,7 +447,7 @@ To include the verified rule catalog in the output, rerun with `--show-checks`:
 
 ## 📦 NPM Package
 
-The publishable package is **`reach-a11y`** in `packages/reach`. Built for **Bun**; includes binary `reach` and `dist/`, README, LICENSE.
+The publishable package is **`reach-a11y`** in `packages/reach`. It includes binary `reach` plus `dist/`, README, and LICENSE.
 
 ## 🚀 Going live
 
@@ -467,7 +467,7 @@ The publishable package is **`reach-a11y`** in `packages/reach`. Built for **Bun
 
 1. Fork the repository
 2. Create a feature branch
-3. Run checks: `bun run check` (lint + test + build)
+3. Run checks: `npm run check` (lint + test + build)
 4. Submit a pull request
 
 ## 📄 License

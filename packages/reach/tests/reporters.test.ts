@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'bun:test';
+import { describe, expect, it } from 'vitest';
 import type { SiteAuditResult } from '../src/core/site-audit.js';
 import type { AuditResult } from '../src/core/types.js';
 import { report as consoleReport } from '../src/reporters/console.js';

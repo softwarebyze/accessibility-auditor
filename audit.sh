@@ -14,8 +14,8 @@ fi
 
 if [ "$MODE" = "full" ]; then
     echo "Running full accessibility audit for $URL..."
-    bun run index.ts audit "$URL"
+    bash ./scripts/run-workspace.sh packages/reach dev audit "$URL"
 else
     echo "Running quick accessibility check for $URL..."
-    bun run index.ts quick "$URL"
+    bash ./scripts/run-workspace.sh packages/reach dev quick "$URL"
 fi

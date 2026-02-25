@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it } from 'bun:test';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import type { AuditResult } from '../src/core/types.js';
 import type { TestableAccessibilityAuditor } from './mocks/testable-auditor.js';
 import { createTestAuditor } from './mocks/testable-auditor.js';

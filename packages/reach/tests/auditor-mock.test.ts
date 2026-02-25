@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it } from 'bun:test';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import type { AuditResult } from '../src/core/types.js';
 import { MockData, MockScenarios } from './mocks/index.js';
 import { MockAccessibilityAuditor, createMockAuditor } from './mocks/mock-auditor.js';
