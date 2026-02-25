@@ -1,23 +1,13 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "organizeImports": {
-    "enabled": true
-  },
+  "organizeImports": { "enabled": true },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
-      "correctness": {
-        "noUnusedVariables": "error"
-      },
-      "style": {
-        "noNonNullAssertion": "error",
-        "useConst": "error"
-      },
-      "suspicious": {
-        "noExplicitAny": "error",
-        "noArrayIndexKey": "error"
-      }
+      "correctness": { "noUnusedVariables": "error" },
+      "style": { "noNonNullAssertion": "error", "useConst": "error" },
+      "suspicious": { "noExplicitAny": "error", "noArrayIndexKey": "error" }
     }
   },
   "formatter": {
@@ -34,7 +24,11 @@
     }
   },
   "files": {
-    "include": ["src/**/*", "*.ts", "*.js"],
-    "ignore": ["node_modules/**", "dist/**", "*.d.ts"]
+    "include": [
+      "packages/reach/src/**/*",
+      "packages/reach/tests/**/*",
+      "packages/reach/index.ts"
+    ],
+    "ignore": ["node_modules/**", "dist/**", "*.d.ts", "packages/website/**"]
   }
 }

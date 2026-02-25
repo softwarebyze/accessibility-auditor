@@ -1,51 +1,69 @@
-# Accessibility Auditor
+# Reach
 
-A comprehensive, enterprise-grade accessibility testing tool built with Bun and axe-core. Features advanced reporting, audit history tracking, MCP server support, and detailed coverage analysis.
+**Reach** checks your site for accessibility—one page or a whole site. Quick checks, full reports, simple history. Built for [Bun](https://bun.sh).
 
-## 🚀 Quick Start
+This repo is a **monorepo**: the CLI is in `packages/reach`, the marketing site in `packages/website`. Tooling (install, test, build) uses Bun.
+
+## 🚀 Use Reach (Bun)
+
+Reach is built for [Bun](https://bun.sh). Run without installing:
 
 ```bash
-# Install dependencies
+bunx reach install-browsers   # one-time
+bunx reach quick https://example.com
+bunx reach audit https://example.com
+```
+
+**Install globally:**
+
+```bash
+bun add -g reach
+
+reach install-browsers   # one-time
+reach quick https://example.com
+reach audit https://example.com --output json --file results.json
+reach crawl https://example.com --max-pages 25
+reach history
+```
+
+Requires Bun ≥1.0.
+
+## 🛠 Develop from this repo
+
+```bash
+# From repo root
 bun install
 
-# Install browsers (one-time setup)
+# Install browsers (one-time)
 bun run install-browsers
 
-# Quick check (minimal output)
+# Run CLI from package
 bun run dev quick https://example.com
-
-# Full audit report with coverage analysis
 bun run dev audit https://example.com
-
-# Save results to JSON file
 bun run dev audit https://example.com --output json --file results.json
-
-# Crawl and audit an entire site
 bun run dev crawl https://example.com --max-pages 25
-
-# View audit history
 bun run dev history
-
-# Clear audit history
 bun run dev history --clear
 ```
 
 ## 🤝 Working with Clients
 
-1. **Run a crawl-based audit** – `bun run dev crawl https://client-site.com --max-pages 40 --max-depth 2` collects the key pages your client cares about.
+1. **Run a crawl-based audit** – `reach crawl https://client-site.com --max-pages 40 --max-depth 2` collects the key pages your client cares about.
 2. **Export a shareable report** – Add `--output json --file client-report.json` to generate a deliverable you can email or drop into project tooling.
 3. **Review highlights together** – Use the console output (or rerun with `--verbose`) to walk stakeholders through critical violations and quick wins.
-4. **Track follow-up progress** – Re-run the crawl after fixes land; compare the new JSON against history and include the trendlines from `bun run dev history` in your status updates.
+4. **Track follow-up progress** – Re-run the crawl after fixes land; compare the new JSON against history and include the trendlines from `reach history` in your status updates.
 5. **Bundle recommendations** – Pair automated findings with manual testing notes so clients understand where human review is still required.
 
 ## 📋 Commands
+
+(Use `reach` when installed; from repo use `bun run dev`.)
 
 ### `quick <url>`
 
 Fast accessibility check with minimal output - perfect for quick scans.
 
 ```bash
-bun run dev quick https://ebenfeld.tech
+reach quick https://example.com
 ```
 
 **Output:**
@@ -59,7 +77,7 @@ bun run dev quick https://ebenfeld.tech
 Full accessibility audit with comprehensive reporting including coverage analysis.
 
 ```bash
-bun run dev audit https://ebenfeld.tech
+reach audit https://example.com
 ```
 
 **Options:**
@@ -75,14 +93,9 @@ bun run dev audit https://ebenfeld.tech
 View audit history and statistics.
 
 ```bash
-# View recent audits
-bun run dev history
-
-# View more entries
-bun run dev history --limit 20
-
-# Clear history
-bun run dev history --clear
+reach history
+reach history --limit 20
+reach history --clear
 ```
 
 ## 🧠 How It Works
@@ -129,9 +142,9 @@ The tool determines accessibility by running **automated checks** against establ
 - **🔵 Moderate/Minor**: Medium confidence - potential issues that should be reviewed
 - **✅ Passes**: High confidence - requirements are met for automated checks
 
-### Under the Hood (`src/core/auditor.ts`)
+### Under the Hood (`packages/reach/src/core/auditor.ts`)
 
-When you run `bun run dev audit <url>`, the [`AccessibilityAuditor`](./src/core/auditor.ts) class orchestrates the entire flow:
+When you run `reach audit <url>`, the [`AccessibilityAuditor`](./packages/reach/src/core/auditor.ts) class orchestrates the entire flow:
 
 1. **Chromium spin-up** – `chromium.launch` boots a headless browser (reused between audits for speed).
 2. **Isolated page context** – `browser.newContext()` + `context.newPage()` give each audit a clean tab with no leaks between tests.
@@ -273,44 +286,47 @@ The tool provides detailed coverage reports showing:
 
 ## 🏗️ Architecture
 
-The tool features a modern, modular architecture:
+**Monorepo:**
 
 ```
-src/
-├── core/
-│   ├── auditor.ts          # Main testing engine
-│   ├── types.ts            # Type definitions
-│   ├── history.ts          # Audit history tracking
-│   └── axe-coverage.ts     # Coverage analysis
-├── reporters/
-│   ├── console.ts          # Enhanced console reporting
-│   ├── json.ts             # JSON output
-│   └── crawl.ts            # Multi-page crawl reporting
-├── mcp/
-│   ├── server.ts           # MCP server implementation
-│   └── index.ts            # MCP entry point
-└── tests/                  # Comprehensive test suite
+packages/
+├── reach/                 # CLI package (publishable to npm)
+│   ├── index.ts            # Entry point
+│   ├── src/
+│   │   ├── core/           # auditor, types, history, axe-coverage, crawler, site-audit
+│   │   ├── reporters/      # console, json, crawl
+│   │   └── mcp/            # MCP server
+│   └── tests/
+└── website/                # Marketing site (Astro)
+```
+
+**CLI package layout:**
+
+```
+packages/reach/src/
+├── core/         # auditor.ts, types.ts, history.ts, axe-coverage.ts, crawler, site-audit
+├── reporters/    # console, json, crawl
+└── mcp/          # server, index
 ```
 
 ## 🔧 Development
 
 ### Testing
 
-The project includes comprehensive testing with both real browser tests and fast mock-based tests:
+From repo root:
 
 ```bash
 # Run all tests (includes slow browser tests)
-bun test
+bun run test
 
 # Run only fast tests (mocks, unit tests)
 bun run test:fast
 
-# Run specific test file
-bun test tests/auditor-mock.test.ts
-
 # Run integration tests
 bun run test:integration
 ```
+
+Or from `packages/reach`: `bun test`, `bun run test:fast`, etc.
 
 **Mock Testing System:**
 
@@ -321,18 +337,15 @@ bun run test:integration
 
 ### Code Quality
 
+From repo root:
+
 ```bash
-# Run linting
 bun run lint
-
-# Fix linting issues
 bun run lint:fix
-
-# Format code
 bun run format
-
-# Build for production
-bun run build
+bun run build          # builds packages/reach
+bun run build:site     # builds packages/website
+bun run site           # dev server for website
 ```
 
 ## 🌐 MCP Server Support
@@ -352,7 +365,7 @@ bun run mcp
 
 ## 📈 Audit History
 
-All audits are automatically saved to `/tmp/a11y-audit-history/` with:
+All audits are automatically saved to `/tmp/reach-history/` with:
 
 - **Individual audit results** (JSON format)
 - **Aggregate history** with statistics
@@ -417,12 +430,7 @@ To include the verified rule catalog in the output, rerun with `--show-checks`:
 
 ## 📦 NPM Package
 
-Ready for npm publication with:
-
-- **Binary executable** (`a11y-audit`)
-- **TypeScript definitions**
-- **Bun runtime requirement**
-- **Proper file inclusion**
+The publishable package is **`reach`** in `packages/reach`. Publish from that directory (e.g. `npm publish` from `packages/reach` after building). Built for **Bun**; includes binary `reach` and `dist/`, README, LICENSE.
 
 ## ⚖️ Legal Compliance Note
 

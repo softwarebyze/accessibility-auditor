@@ -1,0 +1,62 @@
+{
+  "name": "reach",
+  "version": "1.0.0",
+  "description": "Check your site for accessibility. One URL or whole site—quick checks, full reports, and history. Lightweight CLI.",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "reach": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "bun run lint && bun build index.ts --outdir dist --target bun --packages external && bun build src/mcp/index.ts --outdir dist/mcp --target bun --packages external",
+    "dev": "bun run index.ts",
+    "test": "bun test",
+    "test:fast": "bun test --test-name-pattern=\"(mcp|types|history|axe-coverage|reporters|with mocks|Mock Usage Examples)\"",
+    "test:integration": "bun run index.ts audit https://example.com",
+    "mcp": "bun run dist/mcp/index.js",
+    "lint": "biome check src/ tests/ index.ts",
+    "lint:fix": "biome check --write src/ tests/ index.ts",
+    "format": "biome format --write src/ tests/ index.ts",
+    "install-browsers": "bunx playwright install"
+  },
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "wcag",
+    "testing",
+    "bun",
+    "axe-core",
+    "playwright",
+    "mcp"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/softwarebyze/accessibility-auditor.git",
+    "directory": "packages/reach"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "bun": ">=1.0.0"
+  },
+  "author": "Zack Ebenfeld",
+  "license": "MIT",
+  "dependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "chalk": "^5.6.2",
+    "commander": "^14.0.1",
+    "linkedom": "^0.18.9",
+    "ora": "^9.0.0",
+    "playwright": "^1.56.0",
+    "puppeteer-core": "^24.23.0"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.23",
+    "@biomejs/biome": "^1.9.4",
+    "typescript": "^5.9.3"
+  }
+}
