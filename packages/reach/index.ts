@@ -166,7 +166,7 @@ program
   .command('install-browsers')
   .description('Install Playwright browsers (one-time setup)')
   .action(async () => {
-    execSync(resolvePlaywrightInstallCommand(), { stdio: 'inherit', shell: true });
+    execSync(resolvePlaywrightInstallCommand(), { stdio: 'inherit' });
   });
 
 program
