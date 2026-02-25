@@ -31,7 +31,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/softwarebyze/accessibility-auditor.git",
+    "url": "git+https://github.com/softwarebyze/accessibility-auditor.git",
     "directory": "packages/reach"
   },
   "files": [
