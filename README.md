@@ -174,48 +174,56 @@ You can now pair the automated axe-core engine with a curated checklist that tra
 ### Common Checks
 
 #### Image Alternative Text
+
 - **What it checks:** Confirms images convey meaning through `alt` text or are marked decorative.
 - **Why it matters:** People using screen readers rely on alt text to understand imagery.
 - **What to look for:** Descriptions should communicate intent, not visual detail for its own sake. Decorative images should use empty `alt=""`.
 - **Coverage:** Automated detection via axe rules `image-alt`, `area-alt`, and `input-image-alt`, plus manual reminder to judge description quality.
 
 #### Page Title
+
 - **What it checks:** Ensures each document exposes a unique, descriptive `<title>`.
 - **Why it matters:** Screen readers announce titles first, orienting people to their location.
 - **What to look for:** Titles should summarize page purpose and differ between sections.
 - **Coverage:** Automated with axe rule `page-title`, with guidance to review for clarity.
 
 #### Headings
+
 - **What it checks:** Validates heading structure follows a logical outline.
 - **Why it matters:** Screen reader users skim by heading level to understand content flow.
 - **What to look for:** Make sure there is a single `<h1>` and headings increase sequentially without skipping levels.
 - **Coverage:** Automated heuristics (`heading-order`, `region`, `landmark-one-main`) plus manual prompt to confirm logical hierarchy.
 
 #### Color Contrast
+
 - **What it checks:** Measures contrast ratios between text/interactive elements and their backgrounds.
 - **Why it matters:** Low contrast makes content unreadable for people with low vision or color deficiencies.
 - **What to look for:** Confirm minimum AA ratios (4.5:1 for text, 3:1 for large text) and test focus/hover states.
 - **Coverage:** Automated via axe `color-contrast` and `link-in-text-block`, supplemented with manual review for gradients, images, and custom states.
 
 #### Skip Link
+
 - **What it checks:** Detects mechanisms for bypassing repeated navigation (skip links or landmark regions).
 - **Why it matters:** Keyboard and assistive technology users need quick access to main content.
 - **What to look for:** A visible link or landmark is first in tab order and actually moves focus to main content.
 - **Coverage:** Automated with axe `bypass`, with manual verification of focus movement and visibility.
 
 #### Visible Keyboard Focus
+
 - **What it checks:** Tracks whether focus indicators are perceivable while tabbing through the page.
 - **Why it matters:** Keyboard users must always know which element is active.
 - **What to look for:** Tabbing should reveal a strong focus outline that meets contrast requirements.
 - **Coverage:** Hybrid. Axe surfaces `focus-order-semantics`, `focus-visible`, and `focus-trap` heuristics; manual review confirms visual treatment.
 
 #### Language of Page
+
 - **What it checks:** Requires the root HTML element to define a valid primary language.
 - **Why it matters:** Assistive tech needs correct language metadata to pronounce words correctly.
 - **What to look for:** Ensure `<html lang="en">` (or appropriate code) matches the content language.
 - **Coverage:** Automated via `html-has-lang` and `html-lang-valid` rules.
 
 #### Zoom
+
 - **What it checks:** Reminds you to confirm the experience remains usable at 200–400% zoom without horizontal scrolling or clipped content.
 - **Why it matters:** Many people enlarge content to read comfortably.
 - **What to look for:** Pages should reflow responsively; interactions and fixed elements must remain reachable.
@@ -224,18 +232,21 @@ You can now pair the automated axe-core engine with a curated checklist that tra
 ### Audio / Visual Checks
 
 #### Captions
+
 - **What it checks:** Verifies synchronized captions exist for multimedia with audio.
 - **Why it matters:** Captions make spoken content accessible to Deaf and hard-of-hearing users.
 - **What to look for:** Captions should include speech, speaker identification, and relevant sound effects.
 - **Coverage:** Manual review with contextual guidance; automation cannot guarantee caption presence or accuracy.
 
 #### Transcripts
+
 - **What it checks:** Ensures audio and video content provides full transcripts available outside the media player.
 - **Why it matters:** People who can’t process audio benefit from searchable, scannable alternatives.
 - **What to look for:** Look for downloadable or inline transcripts kept in sync with published media.
 - **Coverage:** Manual only.
 
 #### Audio Description
+
 - **What it checks:** Confirms that visual information in videos is available through audio description or alternative tracks.
 - **Why it matters:** Blind and low-vision users rely on narration of visual context to follow along.
 - **What to look for:** Identify described-video tracks or separate narrated versions covering on-screen text and actions.
@@ -244,12 +255,14 @@ You can now pair the automated axe-core engine with a curated checklist that tra
 ### Form Checks
 
 #### Labels
+
 - **What it checks:** Checks that every form control exposes a programmatic label.
 - **Why it matters:** Labels tell everyone what information to enter; assistive tech reads them aloud.
 - **What to look for:** Ensure `<label for>`, `aria-label`, or `aria-labelledby` point to the input and the visible text is meaningful.
 - **Coverage:** Automated via axe (`label`, `aria-label`, `aria-labelledby`), plus manual reminder to assess descriptive quality.
 
 #### Required Fields
+
 - **What it checks:** Highlights required inputs and their indicators.
 - **Why it matters:** People need to know requirements before submitting forms to avoid errors.
 - **What to look for:** Confirm required hints are conveyed visually and programmatically (`aria-required`, `required`, instructions).
@@ -340,6 +353,7 @@ Or from `packages/reach`: `bun test`, `bun run test:fast`, etc.
 From repo root:
 
 ```bash
+bun run check          # lint + test + build (same as CI)
 bun run lint
 bun run lint:fix
 bun run format
@@ -347,6 +361,8 @@ bun run build          # builds packages/reach
 bun run build:site     # builds packages/website
 bun run site           # dev server for website
 ```
+
+**Automated checks:** Pre-commit (Husky + lint-staged) runs Biome on staged files. CI runs lint, tests, build, integration test, and site build on push/PR to `main` and `develop`.
 
 ## 🌐 MCP Server Support
 
@@ -445,7 +461,7 @@ The publishable package is **`reach`** in `packages/reach`. Publish from that di
 
 1. Fork the repository
 2. Create a feature branch
-3. Run tests and linting: `bun test && bun run lint`
+3. Run checks: `bun run check` (lint + test + build)
 4. Submit a pull request
 
 ## 📄 License
