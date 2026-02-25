@@ -4,6 +4,7 @@ export interface AuditResult {
   summary: AuditSummary;
   violations: Violation[];
   rawAxeResults?: AxeResults;
+  manualChecks: ManualCheckResult[];
 }
 
 export interface AxeResults {
@@ -79,4 +80,27 @@ export interface PluginResult {
   additionalViolations?: Violation[];
   recommendations?: string[];
   metadata?: Record<string, unknown>;
+}
+
+export type ManualCheckCategory = "common" | "audiovisual" | "forms";
+
+export type ManualCheckAutomation = "automated" | "manual" | "hybrid";
+
+export type ManualCheckStatus = "pass" | "fail" | "needs-review" | "manual";
+
+export interface ManualCheckDefinition {
+  id: string;
+  title: string;
+  category: ManualCheckCategory;
+  description: string;
+  whyItMatters: string;
+  whatToLookFor: string[];
+  automation: ManualCheckAutomation;
+  relatedRuleIds?: string[];
+  manualNotes?: string;
+}
+
+export interface ManualCheckResult extends ManualCheckDefinition {
+  status: ManualCheckStatus;
+  notes?: string;
 }

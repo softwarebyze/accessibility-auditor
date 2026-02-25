@@ -3,10 +3,12 @@ import { type Browser, chromium } from "playwright";
 import type {
   AuditResult,
   AxeNode,
+  AxeResults,
   AxeViolation,
   Violation,
   WCAGLevel,
 } from "./types.js";
+import { buildManualCheckResults } from "./manual-checks.js";
 
 export class AccessibilityAuditor {
   private browser: Browser | null = null;
@@ -36,10 +38,13 @@ export class AccessibilityAuditor {
         .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
         .analyze();
 
+      const normalizedAxeResults = axeResults as unknown as AxeResults;
+
       // Process results
-      const violations = this.processViolations(axeResults.violations);
-      const passes = axeResults.passes.length;
-      const incomplete = axeResults.incomplete.length;
+      const violations = this.processViolations(normalizedAxeResults.violations);
+      const manualChecks = buildManualCheckResults(normalizedAxeResults);
+      const passes = normalizedAxeResults.passes.length;
+      const incomplete = normalizedAxeResults.incomplete.length;
 
       return {
         url,
@@ -58,7 +63,8 @@ export class AccessibilityAuditor {
           incomplete: incomplete,
         },
         violations,
-        rawAxeResults: axeResults as unknown as AxeResults,
+        rawAxeResults: normalizedAxeResults,
+        manualChecks,
       };
     } finally {
       await page.close();
@@ -69,7 +75,7 @@ export class AccessibilityAuditor {
   private processViolations(axeViolations: AxeViolation[]): Violation[] {
     return axeViolations.map((violation) => ({
       id: violation.id,
-      impact: violation.impact,
+      impact: (violation.impact ?? "minor") as Violation["impact"],
       description: violation.description,
       help: violation.help,
       helpUrl: violation.helpUrl,

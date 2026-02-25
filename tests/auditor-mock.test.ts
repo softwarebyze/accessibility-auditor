@@ -49,6 +49,8 @@ describe("AccessibilityAuditor (with mocks)", () => {
       expect(result.timestamp).toBeDefined();
       expect(result.summary).toBeDefined();
       expect(result.violations).toBeInstanceOf(Array);
+      expect(Array.isArray(result.manualChecks)).toBe(true);
+      expect(result.manualChecks.length).toBeGreaterThan(0);
       expect(result.summary.totalViolations).toBe(expected.totalViolations);
       expect(result.summary.totalPasses).toBeGreaterThan(0);
     });

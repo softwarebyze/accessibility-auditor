@@ -39,6 +39,7 @@ describe("Audit History", () => {
         ],
       },
     ],
+    manualChecks: [],
   };
 
   beforeEach(async () => {

@@ -53,15 +53,15 @@ const mockAuditResult: AuditResult = {
       ],
     },
   ],
+  manualChecks: [],
 };
 
 describe("ConsoleReporter", () => {
   it("should generate console output", () => {
-    // Capture console output
     const originalLog = console.log;
     let output = "";
     console.log = (...args: unknown[]) => {
-      output += `${args.join(" ")}\n`;
+      output += `${args.join(" ")}`;
     };
 
     consoleReport(mockAuditResult);
@@ -140,6 +140,7 @@ describe("CrawlConsoleReporter", () => {
                 ],
               },
             ],
+            manualChecks: [],
           },
         },
         {
@@ -175,6 +176,7 @@ describe("CrawlConsoleReporter", () => {
                 ],
               },
             ],
+            manualChecks: [],
           },
         },
       ],
@@ -189,7 +191,7 @@ describe("CrawlConsoleReporter", () => {
     const originalLog = console.log;
     let output = "";
     console.log = (...args: unknown[]) => {
-      output += `${args.join(" ")}\n`;
+      output += `${args.join(" ")}`;
     };
 
     reportCrawlConsole(crawlResult);
@@ -213,6 +215,7 @@ describe("JsonReporter", () => {
     expect(parsed.url).toBe("https://example.com");
     expect(parsed.summary.totalViolations).toBe(2);
     expect(parsed.violations).toHaveLength(2);
+    expect(Array.isArray(parsed.manualChecks)).toBe(true);
   });
 
   it("should save to file", async () => {
@@ -224,5 +227,6 @@ describe("JsonReporter", () => {
     const saved = JSON.parse(fs.readFileSync(testFile, "utf8"));
     expect(saved.url).toBe("https://example.com");
     expect(saved.summary.totalViolations).toBe(2);
+    expect(Array.isArray(saved.manualChecks)).toBe(true);
   });
 });

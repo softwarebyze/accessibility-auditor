@@ -75,6 +75,7 @@ describe('Types', () => {
         incomplete: 0,
       },
       violations: [],
+      manualChecks: [],
     };
 
     expect(result.url).toBe('https://example.com');

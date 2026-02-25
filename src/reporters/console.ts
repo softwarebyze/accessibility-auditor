@@ -3,7 +3,12 @@ import {
   getCoverageOverview,
   getCoverageSummary,
 } from "../core/axe-coverage.js";
-import type { AuditResult, AuditSummary, Violation } from "../core/types.js";
+import type {
+  AuditResult,
+  AuditSummary,
+  ManualCheckResult,
+  Violation,
+} from "../core/types.js";
 
 export interface ConsoleReporterOptions {
   verbose?: boolean;
@@ -31,6 +36,10 @@ export function report(
     printViolations(result.violations);
   } else {
     console.log(chalk.green.bold("✅ No accessibility violations found!"));
+  }
+
+  if (result.manualChecks.length > 0) {
+    printManualChecks(result.manualChecks);
   }
 
   // Coverage info - full report only if verbose
@@ -106,6 +115,75 @@ function printViolations(violations: Violation[]): void {
 
     console.log("");
   });
+}
+
+function printManualChecks(checks: ManualCheckResult[]): void {
+  console.log(chalk.bold("📝 Manual & Hybrid Checks:"));
+  console.log("");
+
+  const groups = new Map<string, ManualCheckResult[]>();
+
+  for (const check of checks) {
+    const friendlyCategory = getFriendlyCategoryName(check.category);
+    if (!groups.has(friendlyCategory)) {
+      groups.set(friendlyCategory, []);
+    }
+    groups.get(friendlyCategory)?.push(check);
+  }
+
+  for (const [category, groupChecks] of groups.entries()) {
+    console.log(chalk.cyan.bold(`▶ ${category}`));
+
+    for (const check of groupChecks) {
+      const { icon, color } = getManualCheckBadge(check.status);
+      console.log(color(`  ${icon} ${check.title}`));
+      console.log(
+        chalk.gray(
+          `     • Automation: ${check.automation.toUpperCase()}${
+            check.relatedRuleIds?.length
+              ? ` (rules: ${check.relatedRuleIds.join(", ")})`
+              : ""
+          }`
+        )
+      );
+      console.log(chalk.gray(`     • What to look for: ${check.whatToLookFor[0]}`));
+      if (check.notes) {
+        console.log(chalk.gray(`     • Notes: ${check.notes}`));
+      }
+      console.log("");
+    }
+  }
+}
+
+function getFriendlyCategoryName(category: ManualCheckResult["category"]): string {
+  switch (category) {
+    case "common":
+      return "Common Checks";
+    case "audiovisual":
+      return "Audio / Visual Checks";
+    case "forms":
+      return "Form Checks";
+    default:
+      return category;
+  }
+}
+
+function getManualCheckBadge(status: ManualCheckResult["status"]): {
+  icon: string;
+  color: (text: string) => string;
+} {
+  switch (status) {
+    case "pass":
+      return { icon: "✅", color: chalk.green };
+    case "fail":
+      return { icon: "❌", color: chalk.red };
+    case "manual":
+      return { icon: "📝", color: chalk.blue };
+    case "needs-review":
+      return { icon: "⚠️", color: chalk.yellow };
+    default:
+      return { icon: "⚠️", color: chalk.yellow };
+  }
 }
 
 function getImpactColor(impact: string) {

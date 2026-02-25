@@ -1,4 +1,5 @@
 import type { AuditResult } from "../../src/core/types.js";
+import { buildManualCheckResults } from "../../src/core/manual-checks.js";
 import { type MockScenario, getMockAxeResults } from "./index.js";
 
 /**
@@ -46,6 +47,7 @@ export class MockAccessibilityAuditor {
 
     const passes = axeResults.passes.length;
     const incomplete = axeResults.incomplete.length;
+    const manualChecks = buildManualCheckResults(axeResults);
 
     return {
       url,
@@ -64,6 +66,7 @@ export class MockAccessibilityAuditor {
       },
       violations,
       rawAxeResults: axeResults,
+      manualChecks,
     };
   }
 
