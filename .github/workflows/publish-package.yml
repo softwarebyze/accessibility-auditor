@@ -1,0 +1,34 @@
+# Publish reach CLI to npm when a version tag (v1.0.0) is pushed.
+# Create a release: git tag v1.0.0 && git push origin v1.0.0
+# Requires NPM_TOKEN secret (Settings > Secrets and variables > Actions).
+name: Publish package
+
+on:
+  release:
+    types: [published]
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build reach
+        run: bun run build
+
+      - name: Publish to npm
+        working-directory: packages/reach
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

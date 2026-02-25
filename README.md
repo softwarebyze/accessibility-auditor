@@ -446,7 +446,12 @@ To include the verified rule catalog in the output, rerun with `--show-checks`:
 
 ## 📦 NPM Package
 
-The publishable package is **`reach`** in `packages/reach`. Publish from that directory (e.g. `npm publish` from `packages/reach` after building). Built for **Bun**; includes binary `reach` and `dist/`, README, LICENSE.
+The publishable package is **`reach`** in `packages/reach`. Built for **Bun**; includes binary `reach` and `dist/`, README, LICENSE.
+
+## 🚀 Going live
+
+- **Website:** Pushing to `main` runs the **Deploy site** workflow and deploys the marketing site to GitHub Pages. In the repo: **Settings → Pages → Build and deployment → Source:** choose **GitHub Actions**. The site will be at `https://<owner>.github.io/accessibility-auditor/`.
+- **CLI on npm:** Push a version tag (e.g. `git tag v1.0.0 && git push origin v1.0.0`) or publish a GitHub Release. The **Publish package** workflow will build and publish `reach` to npm. Add **NPM_TOKEN** (Settings → Secrets and variables → Actions) with a token that has publish permission.
 
 ## ⚖️ Legal Compliance Note
 
