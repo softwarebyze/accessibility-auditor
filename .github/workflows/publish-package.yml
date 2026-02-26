@@ -1,5 +1,6 @@
-# Publish reach CLI to npm when a version tag (v1.0.0) is pushed.
+# Publish reach-a11y CLI to npm when a version tag (v1.0.0) is pushed.
 # Create a release: git tag v1.0.0 && git push origin v1.0.0
+# Ensure packages/reach/package.json uses name "reach-a11y" and matching version 1.0.0.
 # Requires NPM_TOKEN secret (Settings > Secrets and variables > Actions).
 name: Publish package
 
@@ -26,7 +27,27 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build reach
+      - name: Validate release and npm package sync
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name || github.ref_name }}
+        run: |
+          EXPECTED_VERSION="${RELEASE_TAG#v}"
+          PACKAGE_NAME="$(node -p "require('./packages/reach/package.json').name")"
+          PACKAGE_VERSION="$(node -p "require('./packages/reach/package.json').version")"
+
+          if [ "$PACKAGE_NAME" != "reach-a11y" ]; then
+            echo "::error::Expected packages/reach/package.json name to be 'reach-a11y', found '$PACKAGE_NAME'."
+            exit 1
+          fi
+
+          if [ "$PACKAGE_VERSION" != "$EXPECTED_VERSION" ]; then
+            echo "::error::Tag '$RELEASE_TAG' does not match packages/reach/package.json version '$PACKAGE_VERSION'."
+            exit 1
+          fi
+
+          echo "Release tag and npm package metadata are in sync."
+
+      - name: Build reach-a11y
         run: npm run build
 
       - name: Publish to npm
