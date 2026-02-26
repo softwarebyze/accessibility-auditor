@@ -1,6 +1,6 @@
 {
-  "name": "reach",
-  "version": "1.0.0",
+  "name": "reach-a11y",
+  "version": "1.0.1",
   "description": "Check your site for accessibility. One URL or whole site—quick checks, full reports, and history. Lightweight CLI.",
   "type": "module",
   "main": "dist/index.js",
