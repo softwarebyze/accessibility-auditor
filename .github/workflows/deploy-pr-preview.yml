@@ -39,7 +39,6 @@ jobs:
           source-dir: packages/website/dist
           preview-branch: gh-pages
           umbrella-dir: pr-preview
-          wait-for-pages-deployment: true
 
       - name: Remove PR preview
         if: github.event.action == 'closed'
@@ -48,4 +47,3 @@ jobs:
           action: remove
           preview-branch: gh-pages
           umbrella-dir: pr-preview
-          wait-for-pages-deployment: true
