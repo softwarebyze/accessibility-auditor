@@ -9,7 +9,9 @@ This repo is a **monorepo**: the CLI is in `packages/reach`, the marketing site 
 Reach is published on npm. Run without installing:
 
 ```bash
-npx reach-a11y quick https://example.com
+bunx reach quick https://example.com
+npx reach audit https://example.com
+# alias:
 npx reach-a11y audit https://example.com
 ```
 
@@ -445,7 +447,7 @@ To include the verified rule catalog in the output, rerun with `--show-checks`:
 
 ## 📦 NPM Package
 
-The publishable package is **`reach-a11y`** in `packages/reach`. It includes binary `reach` plus `dist/`, README, and LICENSE.
+The publishable package is **`reach-a11y`** in `packages/reach`. It installs the binary `reach`; `npx reach-a11y` is kept as an alias path.
 
 ## 🚀 Going live
 

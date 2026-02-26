@@ -7,7 +7,9 @@ Check your site for accessibility—one page or a whole site. Quick checks, full
 **Run without installing:**
 
 ```bash
-npx reach-a11y quick https://example.com
+bunx reach quick https://example.com
+npx reach audit https://example.com
+# alias:
 npx reach-a11y audit https://example.com
 ```
 
