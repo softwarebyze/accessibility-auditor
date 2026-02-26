@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'bun:test';
+import { describe, expect, it } from 'vitest';
 import { SiteCrawler } from '../src/core/crawler.js';
 import {
   type PageAuditRecord,

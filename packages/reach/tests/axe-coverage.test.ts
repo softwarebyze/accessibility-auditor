@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'bun:test';
+import { describe, expect, it } from 'vitest';
 import {
   AXE_COVERAGE_ANALYSIS,
   WAVE_SPECIFIC_CHECKS,

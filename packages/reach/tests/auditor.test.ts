@@ -1,9 +1,13 @@
-import { afterEach, beforeEach, describe, expect, it } from 'bun:test';
+import { existsSync } from 'node:fs';
+import { chromium } from 'playwright';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import type { AuditResult } from '../src/core/types.js';
 import type { TestableAccessibilityAuditor } from './mocks/testable-auditor.js';
 import { createTestAuditor } from './mocks/testable-auditor.js';
 
-describe('AccessibilityAuditor (network cached)', () => {
+const describeWithBrowser = existsSync(chromium.executablePath()) ? describe : describe.skip;
+
+describeWithBrowser('AccessibilityAuditor (network cached)', () => {
   let auditor: TestableAccessibilityAuditor;
 
   beforeEach(() => {
