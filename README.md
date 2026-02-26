@@ -451,7 +451,9 @@ The publishable package is **`reach-a11y`** in `packages/reach`. It includes bin
 
 ## 🚀 Going live
 
-- **Website:** Pushing to `main` runs the **Deploy site** workflow and deploys the marketing site to GitHub Pages. In the repo: **Settings → Pages → Build and deployment → Source:** choose **GitHub Actions**. The site will be at `https://<owner>.github.io/accessibility-auditor/`.
+- **Website:** Pushing to `main` runs the **Deploy site** workflow and deploys the marketing site to GitHub Pages from the `gh-pages` branch.
+- **PR previews:** Opening/updating a PR runs the **Deploy PR previews** workflow and posts a live preview link like `https://<owner>.github.io/accessibility-auditor/pr-preview/pr-<number>/`.
+- **Required repo settings:** In **Settings → Pages → Build and deployment**, choose **Deploy from a branch**, branch `gh-pages`, folder `/(root)`. In **Settings → Actions → General → Workflow permissions**, choose **Read and write permissions** so workflows can update preview files/comments.
 - **CLI on npm:** Push a version tag (e.g. `git tag v1.0.0 && git push origin v1.0.0`) or publish a GitHub Release. The **Publish package** workflow will build and publish `reach-a11y` to npm. Add **NPM_TOKEN** (Settings → Secrets and variables → Actions) with a token that has publish permission.
 
 ## ⚖️ Legal Compliance Note
