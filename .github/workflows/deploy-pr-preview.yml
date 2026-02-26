@@ -16,6 +16,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Validate Pages source configuration
+        if: github.event.action != 'closed'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          response="$(curl -fsSL \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages")"
+
+          source_branch="$(python3 -c 'import json,sys;print((json.load(sys.stdin).get("source") or {}).get("branch",""))' <<<"${response}")"
+          source_path="$(python3 -c 'import json,sys;print((json.load(sys.stdin).get("source") or {}).get("path",""))' <<<"${response}")"
+
+          if [ "${source_branch}" != "gh-pages" ] || [ "${source_path}" != "/" ]; then
+            echo "::error::GitHub Pages source is ${source_branch}:${source_path}. Set Settings > Pages to Deploy from a branch: gh-pages /(root)."
+            exit 1
+          fi
+
       - name: Setup Bun
         if: github.event.action != 'closed'
         uses: oven-sh/setup-bun@v1

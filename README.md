@@ -27,6 +27,12 @@ reach history
 
 Requires Node.js 20+ (Bun 1.0+ is also supported).
 
+### 📸 Terminal usage example
+
+Command shown in this screenshot: `npx --yes reach --help`
+
+![Reach CLI usage in terminal](docs/images/reach_cli_usage_terminal.webp)
+
 ## 🛠 Develop from this repo
 
 ```bash
