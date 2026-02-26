@@ -3,7 +3,7 @@ interface Props {
   title: string;
   description?: string;
 }
-const { title, description = "Reach — Check your site for accessibility. npx reach-a11y or npm install -g reach-a11y." } = Astro.props;
+const { title, description = "Reach — Check your site for accessibility. npx reach or npm install -g reach." } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>

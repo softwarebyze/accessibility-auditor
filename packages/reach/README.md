@@ -7,18 +7,16 @@ Check your site for accessibility—one page or a whole site. Quick checks, full
 **Run without installing:**
 
 ```bash
-npx reach-a11y install-browsers   # one-time: download browsers
-npx reach-a11y quick https://example.com
-npx reach-a11y audit https://example.com
+npx reach quick https://example.com
+npx reach audit https://example.com
 ```
 
 **Install globally:**
 
 ```bash
-npm install -g reach-a11y
-# or: bun add -g reach-a11y
+npm install -g reach
+# or: bun add -g reach
 
-reach install-browsers   # one-time
 reach quick https://example.com
 reach audit https://example.com --output json --file report.json
 reach crawl https://example.com --max-pages 25

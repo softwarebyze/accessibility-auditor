@@ -1,5 +1,6 @@
 {
   "lockfileVersion": 1,
+  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "accessibility-auditor",
@@ -13,7 +14,7 @@
       "name": "reach",
       "version": "1.0.0",
       "bin": {
-        "reach": "./dist/index.js",
+        "reach": "dist/index.js",
       },
       "dependencies": {
         "@axe-core/playwright": "^4.10.2",
