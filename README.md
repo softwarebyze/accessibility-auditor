@@ -9,18 +9,16 @@ This repo is a **monorepo**: the CLI is in `packages/reach`, the marketing site 
 Reach is built for [Bun](https://bun.sh). Run without installing:
 
 ```bash
-npx reach-a11y install-browsers   # one-time
-npx reach-a11y quick https://example.com
-npx reach-a11y audit https://example.com
+npx reach quick https://example.com
+npx reach audit https://example.com
 ```
 
 **Install globally:**
 
 ```bash
-npm install -g reach-a11y
-# or: bun add -g reach-a11y
+npm install -g reach
+# or: bun add -g reach
 
-reach install-browsers   # one-time
 reach quick https://example.com
 reach audit https://example.com --output json --file results.json
 reach crawl https://example.com --max-pages 25
@@ -447,12 +445,12 @@ To include the verified rule catalog in the output, rerun with `--show-checks`:
 
 ## 📦 NPM Package
 
-The publishable package is **`reach-a11y`** in `packages/reach`. Built for **Bun**; includes binary `reach` and `dist/`, README, LICENSE.
+The publishable package is **`reach`** in `packages/reach`. Built for **Bun**; includes binary `reach` and `dist/`, README, LICENSE.
 
 ## 🚀 Going live
 
 - **Website:** Pushing to `main` runs the **Deploy site** workflow and deploys the marketing site to GitHub Pages. In the repo: **Settings → Pages → Build and deployment → Source:** choose **GitHub Actions**. The site will be at `https://<owner>.github.io/accessibility-auditor/`.
-- **CLI on npm:** Push a version tag (e.g. `git tag v1.0.0 && git push origin v1.0.0`) or publish a GitHub Release. The **Publish package** workflow will build and publish `reach-a11y` to npm. Add **NPM_TOKEN** (Settings → Secrets and variables → Actions) with a token that has publish permission.
+- **CLI on npm:** Push a version tag (e.g. `git tag v1.0.0 && git push origin v1.0.0`) or publish a GitHub Release. The **Publish package** workflow will build and publish `reach` to npm. Add **NPM_TOKEN** (Settings → Secrets and variables → Actions) with a token that has publish permission.
 
 ## ⚖️ Legal Compliance Note
 

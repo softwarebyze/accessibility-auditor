@@ -1,4 +1,4 @@
-# Publish reach-a11y CLI to npm when a version tag (v1.0.0) is pushed.
+# Publish reach CLI to npm when a version tag (v1.0.0) is pushed.
 # Create a release: git tag v1.0.0 && git push origin v1.0.0
 # Requires NPM_TOKEN secret (Settings > Secrets and variables > Actions).
 name: Publish package
@@ -26,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: bun install
 
-      - name: Build reach-a11y
+      - name: Build reach
         run: bun run build
 
       - name: Publish to npm
