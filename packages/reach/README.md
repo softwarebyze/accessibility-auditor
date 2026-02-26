@@ -1,6 +1,6 @@
 # Reach
 
-Check your site for accessibility—one page or a whole site. Quick checks, full reports, and simple history. Built for [Bun](https://bun.sh).
+Check your site for accessibility—one page or a whole site. Quick checks, full reports, and simple history. Works with Node.js (npm) or Bun.
 
 ## Install
 
@@ -25,7 +25,7 @@ reach crawl https://example.com --max-pages 25
 reach history
 ```
 
-Requires [Bun](https://bun.sh) (≥1.0).
+Requires Node.js 20+ (Bun 1.0+ is also supported).
 
 ## Commands
 

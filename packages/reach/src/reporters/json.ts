@@ -1,3 +1,4 @@
+import { writeFile } from 'node:fs/promises';
 import type { SiteAuditResult } from '../core/site-audit.js';
 import type { AuditResult } from '../core/types.js';
 
@@ -6,7 +7,7 @@ export function report(result: AuditResult): string {
 }
 
 export async function saveToFile(result: AuditResult, filename: string): Promise<void> {
-  await Bun.write(filename, report(result));
+  await writeFile(filename, report(result), 'utf8');
 }
 
 export function reportCrawl(result: SiteAuditResult): string {
@@ -14,5 +15,5 @@ export function reportCrawl(result: SiteAuditResult): string {
 }
 
 export async function saveCrawlToFile(result: SiteAuditResult, filename: string): Promise<void> {
-  await Bun.write(filename, reportCrawl(result));
+  await writeFile(filename, reportCrawl(result), 'utf8');
 }
