@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * ponytail: blocks accidental publish under the wrong npm name.
+ * Guard: blocks accidental publish under the wrong npm name.
  * The CLI command is `reach`; the npm package must stay `reach-a11y`
  * (`reach` on npm is a different project).
  */
