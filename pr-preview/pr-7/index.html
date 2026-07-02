@@ -33,20 +33,24 @@ Or install the <code data-astro-cid-j7pv25f6>reach-a11y</code> package and use t
 reach quick https://example.com
 reach audit https://example.com --output json --file report.json
 reach crawl https://example.com --max-pages 25
-reach history</code></pre> <p data-astro-cid-j7pv25f6>
+reach history</code></pre> <p data-astro-cid-j7pv25f6> <strong data-astro-cid-j7pv25f6>Names:</strong> product <strong data-astro-cid-j7pv25f6>Reach</strong> · npm package <code data-astro-cid-j7pv25f6>reach-a11y</code> · CLI command <code data-astro-cid-j7pv25f6>reach</code> · GitHub repo <code data-astro-cid-j7pv25f6>accessibility-auditor</code>.
+          Install <code data-astro-cid-j7pv25f6>reach-a11y</code>, then run <code data-astro-cid-j7pv25f6>reach</code> — not <code data-astro-cid-j7pv25f6>npx reach</code>
+(that's a different npm package).
+</p> <p data-astro-cid-j7pv25f6>
 For the full command reference and options (<code data-astro-cid-j7pv25f6>--verbose</code>, <code data-astro-cid-j7pv25f6>--show-checks</code>, <code data-astro-cid-j7pv25f6>--timeout</code>, etc.), see the <a href="https://github.com/softwarebyze/accessibility-auditor#readme" data-astro-cid-j7pv25f6>README</a>.
 </p> </div> </section> <section id="mcp" class="section" aria-labelledby="mcp-heading" data-astro-cid-j7pv25f6> <div class="container" data-astro-cid-j7pv25f6> <h2 id="mcp-heading" data-astro-cid-j7pv25f6>MCP server</h2> <p data-astro-cid-j7pv25f6>
 Reach includes an MCP server so AI assistants (Cursor, Claude Desktop,
           etc.) can run audits, fetch history, or pull a result by ID.
 </p> <p data-astro-cid-j7pv25f6>From the repo, build and run the server:</p> <pre class="block" data-astro-cid-j7pv25f6><code data-astro-cid-j7pv25f6>cd packages/reach
 npm run build
-npm run mcp</code></pre> <p data-astro-cid-j7pv25f6>
-In <strong data-astro-cid-j7pv25f6>Cursor</strong>: Settings → MCP → Add new MCP Server. Use
-          command type with:
-</p> <pre class="block" data-astro-cid-j7pv25f6><code data-astro-cid-j7pv25f6>npm run mcp</code></pre> <p data-astro-cid-j7pv25f6>
-Set the working directory to <code data-astro-cid-j7pv25f6>packages/reach</code> (the folder that
-          contains Reach’s <code data-astro-cid-j7pv25f6>package.json</code>).
-</p> <p data-astro-cid-j7pv25f6> <strong data-astro-cid-j7pv25f6>Tools:</strong> <code data-astro-cid-j7pv25f6>audit_website</code>, <code data-astro-cid-j7pv25f6>get_audit_history</code>, <code data-astro-cid-j7pv25f6>get_audit_result</code> </p> </div> </section> <section class="section cta" aria-labelledby="cta-heading" data-astro-cid-j7pv25f6> <div class="container" data-astro-cid-j7pv25f6> <h2 id="cta-heading" data-astro-cid-j7pv25f6>Ready to audit?</h2> <p data-astro-cid-j7pv25f6>
+npm run mcp</code></pre> <p data-astro-cid-j7pv25f6>In <strong data-astro-cid-j7pv25f6>Cursor</strong>, add to MCP config (working directory <code data-astro-cid-j7pv25f6>packages/reach</code>):</p> <pre class="block" data-astro-cid-j7pv25f6><code data-astro-cid-j7pv25f6>{
+  &quot;mcpServers&quot;: {
+    &quot;reach&quot;: {
+      &quot;command&quot;: &quot;npm&quot;,
+      &quot;args&quot;: [&quot;run&quot;, &quot;mcp&quot;]
+    }
+  }
+}</code></pre> <p data-astro-cid-j7pv25f6> <strong data-astro-cid-j7pv25f6>Tools:</strong> <code data-astro-cid-j7pv25f6>audit_website</code>, <code data-astro-cid-j7pv25f6>get_audit_history</code>, <code data-astro-cid-j7pv25f6>get_audit_result</code> </p> </div> </section> <section class="section cta" aria-labelledby="cta-heading" data-astro-cid-j7pv25f6> <div class="container" data-astro-cid-j7pv25f6> <h2 id="cta-heading" data-astro-cid-j7pv25f6>Ready to audit?</h2> <p data-astro-cid-j7pv25f6>
 Run <code data-astro-cid-j7pv25f6>npx reach-a11y audit https://yoursite.com</code> or install with
 <code data-astro-cid-j7pv25f6>npm install -g reach-a11y</code>. Use crawl + JSON export and
           history to track progress.
