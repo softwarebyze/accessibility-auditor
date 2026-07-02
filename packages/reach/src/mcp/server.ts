@@ -11,8 +11,8 @@ export class AccessibilityAuditorMCPServer {
   constructor() {
     this.server = new Server(
       {
-        name: 'accessibility-auditor',
-        version: '1.0.0',
+        name: 'reach',
+        version: '1.0.2',
       },
       {
         capabilities: {

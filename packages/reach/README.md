@@ -27,6 +27,8 @@ reach history
 
 Requires Node.js 20+ (Bun 1.0+ is also supported).
 
+**Names:** Product is **Reach**. npm package is **`reach-a11y`** (install / `npx`). CLI command is **`reach`**. Repo on GitHub is `accessibility-auditor`.
+
 ## Commands
 
 | Command       | What it does                                              |

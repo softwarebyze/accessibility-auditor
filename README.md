@@ -29,6 +29,17 @@ reach history
 
 Requires Node.js 20+ (Bun 1.0+ is also supported).
 
+### Names (if you're wondering)
+
+| What | Name |
+|------|------|
+| Product | **Reach** |
+| This GitHub repo | `accessibility-auditor` |
+| npm package | `reach-a11y` — use this for `npx` / `npm install` |
+| CLI command | `reach` — what you type after installing |
+
+The npm package isn't called `reach` because [that name is already taken](https://www.npmjs.com/package/reach) by another project. Install **`reach-a11y`**, then run **`reach`**.
+
 ## 🛠 Develop from this repo
 
 ```bash
@@ -367,18 +378,27 @@ npm run site           # dev server for website
 
 ## 🌐 MCP Server Support
 
-The tool includes a Model Context Protocol (MCP) server for integration with AI assistants:
+Reach includes an MCP server (stdio) so AI assistants can run audits and read history.
 
 ```bash
-# Run MCP server
+# From packages/reach after npm run build
 npm run mcp
 ```
 
-**Available MCP Tools:**
+**Cursor** — add to MCP config (working directory: `packages/reach`):
 
-- `audit_website` - Audit a website for accessibility issues
-- `get_audit_history` - Get audit history and statistics
-- `get_audit_result` - Retrieve specific audit results by ID
+```json
+{
+  "mcpServers": {
+    "reach": {
+      "command": "npm",
+      "args": ["run", "mcp"]
+    }
+  }
+}
+```
+
+**Tools:** `audit_website`, `get_audit_history`, `get_audit_result`
 
 ## 📈 Audit History
 
@@ -447,9 +467,7 @@ To include the verified rule catalog in the output, rerun with `--show-checks`:
 
 ## 📦 NPM Package
 
-The publishable npm package is **`reach-a11y`** in `packages/reach`. It exposes the **`reach`** CLI binary plus `dist/`, README, and LICENSE.
-
-> **Note:** The npm package name is `reach-a11y` because `reach` is taken by another project. After install, use the `reach` command.
+See **Names** above. Publishable package: **`reach-a11y`** in `packages/reach` (CLI binary `reach`).
 
 ## 🚀 Going live
 

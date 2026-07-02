@@ -1,5 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const mcpConfig = `{
+  "mcpServers": {
+    "reach": {
+      "command": "npm",
+      "args": ["run", "mcp"]
+    }
+  }
+}`;
 ---
 
 <Layout
@@ -125,6 +134,13 @@ reach audit https://example.com --output json --file report.json
 reach crawl https://example.com --max-pages 25
 reach history</code></pre>
         <p>
+          <strong>Names:</strong> product <strong>Reach</strong> · npm package <code
+            >reach-a11y</code
+          > · CLI command <code>reach</code> · GitHub repo <code>accessibility-auditor</code>.
+          Install <code>reach-a11y</code>, then run <code>reach</code> — not <code>npx reach</code>
+          (that's a different npm package).
+        </p>
+        <p>
           For the full command reference and options (<code>--verbose</code>, <code
             >--show-checks</code
           >, <code>--timeout</code>, etc.), see the <a
@@ -147,15 +163,8 @@ reach history</code></pre>
           class="block"><code>cd packages/reach
 npm run build
 npm run mcp</code></pre>
-        <p>
-          In <strong>Cursor</strong>: Settings → MCP → Add new MCP Server. Use
-          command type with:
-        </p>
-        <pre class="block"><code>npm run mcp</code></pre>
-        <p>
-          Set the working directory to <code>packages/reach</code> (the folder that
-          contains Reach’s <code>package.json</code>).
-        </p>
+        <p>In <strong>Cursor</strong>, add to MCP config (working directory <code>packages/reach</code>):</p>
+        <pre class="block"><code>{mcpConfig}</code></pre>
         <p>
           <strong>Tools:</strong>
           <code>audit_website</code>, <code>get_audit_history</code>, <code
