@@ -6,18 +6,20 @@ This repo is a **monorepo**: the CLI is in `packages/reach`, the marketing site 
 
 ## 🚀 Use Reach
 
-Reach is published on npm. Run without installing:
+Reach is published on npm as **`reach-a11y`**. The CLI command is **`reach`**.
+
+Run without installing:
 
 ```bash
-npx reach quick https://example.com
-npx reach audit https://example.com
+npx reach-a11y quick https://example.com
+npx reach-a11y audit https://example.com
 ```
 
 **Install globally:**
 
 ```bash
-npm install -g reach
-# or: bun add -g reach
+npm install -g reach-a11y
+# or: bun add -g reach-a11y
 
 reach quick https://example.com
 reach audit https://example.com --output json --file results.json
@@ -445,14 +447,16 @@ To include the verified rule catalog in the output, rerun with `--show-checks`:
 
 ## 📦 NPM Package
 
-The publishable package is **`reach`** in `packages/reach`. It includes binary `reach` plus `dist/`, README, and LICENSE.
+The publishable npm package is **`reach-a11y`** in `packages/reach`. It exposes the **`reach`** CLI binary plus `dist/`, README, and LICENSE.
+
+> **Note:** The npm package name is `reach-a11y` because `reach` is taken by another project. After install, use the `reach` command.
 
 ## 🚀 Going live
 
 - **Website:** Pushing to `main` runs the **Deploy site** workflow and deploys the marketing site to GitHub Pages from the `gh-pages` branch.
 - **PR previews:** Opening/updating a PR runs the **Deploy PR previews** workflow and posts a live preview link like `https://<owner>.github.io/accessibility-auditor/pr-preview/pr-<number>/`.
 - **Required repo settings:** In **Settings → Pages → Build and deployment**, choose **Deploy from a branch**, branch `gh-pages`, folder `/(root)`. In **Settings → Actions → General → Workflow permissions**, choose **Read and write permissions** so workflows can update preview files/comments.
-- **CLI on npm:** Push a version tag (e.g. `git tag v1.0.0 && git push origin v1.0.0`) or publish a GitHub Release. The **Publish package** workflow will build and publish `reach` to npm. Add **NPM_TOKEN** (Settings → Secrets and variables → Actions) with a token that has publish permission.
+- **CLI on npm:** Push a version tag (e.g. `git tag v1.0.2 && git push origin v1.0.2`) or publish a GitHub Release. The **Publish package** workflow will build and publish **`reach-a11y`** to npm. Add **NPM_TOKEN** (Settings → Secrets and variables → Actions) with a token that has publish permission.
 
 ## ⚖️ Legal Compliance Note
 
