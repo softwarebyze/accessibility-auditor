@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 # Regenerate terminal captures from a built reach CLI (run from repo root).
 set -euo pipefail
-ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
-REACH="$ROOT/packages/reach"
-OUT="$ROOT/packages/demo-video"
+REACH="$(cd "$(dirname "$0")/../../reach" && pwd)"
 strip_ansi() { sed 's/\x1b\[[0-9;]*m//g'; }
 
 cd "$REACH"

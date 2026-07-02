@@ -1,5 +1,5 @@
-import { interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
-import { theme } from '../theme';
+import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { theme } from "../theme";
 
 type SceneHeaderProps = {
   eyebrow: string;
@@ -20,8 +20,8 @@ export const SceneHeader: React.FC<SceneHeaderProps> = ({ eyebrow, title }) => {
           color: theme.accent,
           fontSize: 14,
           fontWeight: 600,
-          letterSpacing: '0.12em',
-          textTransform: 'uppercase',
+          letterSpacing: "0.12em",
+          textTransform: "uppercase",
           marginBottom: 8,
           fontFamily: theme.font,
         }}
@@ -34,7 +34,7 @@ export const SceneHeader: React.FC<SceneHeaderProps> = ({ eyebrow, title }) => {
           fontSize: 42,
           fontWeight: 700,
           fontFamily: theme.font,
-          letterSpacing: '-0.02em',
+          letterSpacing: "-0.02em",
         }}
       >
         {title}

@@ -1,5 +1,5 @@
-import { interpolate, useCurrentFrame } from 'remotion';
-import { theme } from '../theme';
+import { interpolate, useCurrentFrame } from "remotion";
+import { theme } from "../theme";
 
 type TerminalProps = {
   command: string;
@@ -16,15 +16,20 @@ export const Terminal: React.FC<TerminalProps> = ({
   const commandEnd = 20;
   const outputStart = commandEnd + 8;
   const visibleLines = Math.floor(
-    interpolate(frame, [outputStart, outputStart + lines.length * framesPerLine], [0, lines.length], {
-      extrapolateLeft: 'clamp',
-      extrapolateRight: 'clamp',
-    }),
+    interpolate(
+      frame,
+      [outputStart, outputStart + lines.length * framesPerLine],
+      [0, lines.length],
+      {
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp",
+      },
+    ),
   );
   const commandChars = Math.floor(
     interpolate(frame, [0, commandEnd], [0, command.length], {
-      extrapolateLeft: 'clamp',
-      extrapolateRight: 'clamp',
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
     }),
   );
   const showCursor = frame % 30 < 15 && commandChars < command.length;
@@ -40,8 +45,8 @@ export const Terminal: React.FC<TerminalProps> = ({
         fontSize: 15,
         lineHeight: 1.55,
         color: theme.text,
-        boxShadow: '0 24px 80px rgba(0,0,0,0.45)',
-        width: '100%',
+        boxShadow: "0 24px 80px rgba(0,0,0,0.45)",
+        width: "100%",
         maxWidth: 920,
         minHeight: 340,
       }}
@@ -59,8 +64,8 @@ export const Terminal: React.FC<TerminalProps> = ({
           key={`${i}-${line.slice(0, 20)}`}
           style={{
             color: lineColor(line),
-            whiteSpace: 'pre-wrap',
-            minHeight: line === '' ? 8 : undefined,
+            whiteSpace: "pre-wrap",
+            minHeight: line === "" ? 8 : undefined,
           }}
         >
           {line}
@@ -71,10 +76,16 @@ export const Terminal: React.FC<TerminalProps> = ({
 };
 
 function lineColor(line: string): string {
-  if (line.includes('🔴') || line.includes('CRITICAL')) return theme.critical;
-  if (line.includes('🟡') || line.includes('SERIOUS') || line.includes('⚠️')) return theme.serious;
-  if (line.includes('✅') || line.includes('✔') || line.includes('No violations')) return theme.success;
-  if (line.startsWith('📊') || line.startsWith('🔍')) return theme.accent;
-  if (line.startsWith('═') || line.startsWith('─')) return theme.border;
+  if (line.includes("🔴") || line.includes("CRITICAL")) return theme.critical;
+  if (line.includes("🟡") || line.includes("SERIOUS") || line.includes("⚠️"))
+    return theme.serious;
+  if (
+    line.includes("✅") ||
+    line.includes("✔") ||
+    line.includes("No violations")
+  )
+    return theme.success;
+  if (line.startsWith("📊") || line.startsWith("🔍")) return theme.accent;
+  if (line.startsWith("═") || line.startsWith("─")) return theme.border;
   return theme.text;
 }

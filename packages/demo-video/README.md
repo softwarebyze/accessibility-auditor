@@ -28,6 +28,8 @@ chmod +x scripts/capture-output.sh
 # then trim/update src/data/captures.ts
 ```
 
+**What’s real:** `quick` hits [example.com](https://example.com). Audit and crawl scenes use **bundled demo HTML** from `packages/reach/tests/mocks/html` served on `localhost:8765` — not a fictional “yoursite.com”. The outro shows the command you’d run on your own URL.
+
 ## Scenes
 
 1. Intro — Reach brand
