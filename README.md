@@ -6,18 +6,20 @@ This repo is a **monorepo**: the CLI is in `packages/reach`, the marketing site 
 
 ## 🚀 Use Reach
 
-Reach is published on npm. Run without installing:
+Reach is published on npm as **`reach-a11y`**. The CLI command is **`reach`**.
+
+Run without installing:
 
 ```bash
-npx reach quick https://example.com
-npx reach audit https://example.com
+npx reach-a11y quick https://example.com
+npx reach-a11y audit https://example.com
 ```
 
 **Install globally:**
 
 ```bash
-npm install -g reach
-# or: bun add -g reach
+npm install -g reach-a11y
+# or: bun add -g reach-a11y
 
 reach quick https://example.com
 reach audit https://example.com --output json --file results.json
@@ -26,6 +28,17 @@ reach history
 ```
 
 Requires Node.js 20+ (Bun 1.0+ is also supported).
+
+### Names (if you're wondering)
+
+| What | Name |
+|------|------|
+| Product | **Reach** |
+| This GitHub repo | `accessibility-auditor` |
+| npm package | `reach-a11y` — use this for `npx` / `npm install` |
+| CLI command | `reach` — what you type after installing |
+
+The npm package isn't called `reach` because [that name is already taken](https://www.npmjs.com/package/reach) by another project. Install **`reach-a11y`**, then run **`reach`**.
 
 ## 🛠 Develop from this repo
 
@@ -365,18 +378,27 @@ npm run site           # dev server for website
 
 ## 🌐 MCP Server Support
 
-The tool includes a Model Context Protocol (MCP) server for integration with AI assistants:
+Reach includes an MCP server (stdio) so AI assistants can run audits and read history.
 
 ```bash
-# Run MCP server
+# From packages/reach after npm run build
 npm run mcp
 ```
 
-**Available MCP Tools:**
+**Cursor** — add to MCP config (working directory: `packages/reach`):
 
-- `audit_website` - Audit a website for accessibility issues
-- `get_audit_history` - Get audit history and statistics
-- `get_audit_result` - Retrieve specific audit results by ID
+```json
+{
+  "mcpServers": {
+    "reach": {
+      "command": "npm",
+      "args": ["run", "mcp"]
+    }
+  }
+}
+```
+
+**Tools:** `audit_website`, `get_audit_history`, `get_audit_result`
 
 ## 📈 Audit History
 
@@ -445,14 +467,14 @@ To include the verified rule catalog in the output, rerun with `--show-checks`:
 
 ## 📦 NPM Package
 
-The publishable package is **`reach`** in `packages/reach`. It includes binary `reach` plus `dist/`, README, and LICENSE.
+See **Names** above. Publishable package: **`reach-a11y`** in `packages/reach` (CLI binary `reach`).
 
 ## 🚀 Going live
 
 - **Website:** Pushing to `main` runs the **Deploy site** workflow and deploys the marketing site to GitHub Pages from the `gh-pages` branch.
 - **PR previews:** Opening/updating a PR runs the **Deploy PR previews** workflow and posts a live preview link like `https://<owner>.github.io/accessibility-auditor/pr-preview/pr-<number>/`.
 - **Required repo settings:** In **Settings → Pages → Build and deployment**, choose **Deploy from a branch**, branch `gh-pages`, folder `/(root)`. In **Settings → Actions → General → Workflow permissions**, choose **Read and write permissions** so workflows can update preview files/comments.
-- **CLI on npm:** Push a version tag (e.g. `git tag v1.0.0 && git push origin v1.0.0`) or publish a GitHub Release. The **Publish package** workflow will build and publish `reach` to npm. Add **NPM_TOKEN** (Settings → Secrets and variables → Actions) with a token that has publish permission.
+- **CLI on npm:** Push a version tag (e.g. `git tag v1.0.2 && git push origin v1.0.2`) or publish a GitHub Release. The **Publish package** workflow will build and publish **`reach-a11y`** to npm. Add **NPM_TOKEN** (Settings → Secrets and variables → Actions) with a token that has publish permission.
 
 ## ⚖️ Legal Compliance Note
 

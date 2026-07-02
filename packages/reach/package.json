@@ -1,6 +1,6 @@
 {
-  "name": "reach",
-  "version": "1.0.0",
+  "name": "reach-a11y",
+  "version": "1.0.2",
   "description": "Check your site for accessibility. One URL or whole site—quick checks, full reports, and history. Lightweight CLI.",
   "type": "module",
   "main": "dist/index.js",
@@ -17,7 +17,8 @@
     "lint": "biome check src/ tests/ index.ts",
     "lint:fix": "biome check --write src/ tests/ index.ts",
     "format": "biome format --write src/ tests/ index.ts",
-    "install-browsers": "playwright install"
+    "install-browsers": "playwright install",
+    "prepublishOnly": "node scripts/verify-publish.mjs"
   },
   "keywords": [
     "accessibility",

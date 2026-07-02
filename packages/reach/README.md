@@ -2,20 +2,22 @@
 
 Check your site for accessibility—one page or a whole site. Quick checks, full reports, and simple history. Works with Node.js (npm) or Bun.
 
+**npm package:** `reach-a11y` · **CLI command:** `reach`
+
 ## Install
 
 **Run without installing:**
 
 ```bash
-npx reach quick https://example.com
-npx reach audit https://example.com
+npx reach-a11y quick https://example.com
+npx reach-a11y audit https://example.com
 ```
 
 **Install globally:**
 
 ```bash
-npm install -g reach
-# or: bun add -g reach
+npm install -g reach-a11y
+# or: bun add -g reach-a11y
 
 reach quick https://example.com
 reach audit https://example.com --output json --file report.json
@@ -25,14 +27,16 @@ reach history
 
 Requires Node.js 20+ (Bun 1.0+ is also supported).
 
+**Names:** Product is **Reach**. npm package is **`reach-a11y`** (install / `npx`). CLI command is **`reach`**. Repo on GitHub is `accessibility-auditor`.
+
 ## Commands
 
-| Command | What it does |
-|--------|----------------|
-| `quick <url>` | Fast pass/fail—did the page pass? |
+| Command       | What it does                                              |
+| ------------- | --------------------------------------------------------- |
+| `quick <url>` | Fast pass/fail—did the page pass?                         |
 | `audit <url>` | Full report: what’s wrong, how serious, and how to fix it |
-| `crawl <url>` | Check every page on the site (with limits) |
-| `history` | See past runs and trends |
+| `crawl <url>` | Check every page on the site (with limits)                |
+| `history`     | See past runs and trends                                  |
 
 **Audit:** `--output console|json`, `--file <path>`, `--timeout <ms>`, `--verbose`, `--show-checks`  
 **Crawl:** `--max-pages`, `--max-depth`, `--delay`, `--allow-external`, `--output`, `--file`, `--verbose`

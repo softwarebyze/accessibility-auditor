@@ -1,17 +1,36 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const mcpConfig = `{
+  "mcpServers": {
+    "reach": {
+      "command": "npm",
+      "args": ["run", "mcp"]
+    }
+  }
+}`;
 ---
-<Layout title="Reach — Check your site for accessibility" description="Reach: quick checks, full reports, simple history. npx reach or npm install -g reach.">
+
+<Layout
+  title="Reach — Check your site for accessibility"
+  description="Reach: quick checks, full reports, simple history. npm package reach-a11y; CLI command reach."
+>
   <article>
     <section class="hero" aria-labelledby="hero-heading">
       <div class="container">
         <h1 id="hero-heading">Reach</h1>
         <p class="hero-tagline">
-          Check your site for accessibility—one page or a whole site. Quick checks, full reports, no jargon. Works with Node.js and Bun.
+          Check your site for accessibility—one page or a whole site. Quick
+          checks, full reports, no jargon. Works with Node.js and Bun.
         </p>
         <div class="hero-actions">
           <a href="#get-started" class="btn btn-primary">Get started</a>
-          <a href="https://github.com/softwarebyze/accessibility-auditor" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+          <a
+            href="https://github.com/softwarebyze/accessibility-auditor"
+            class="btn btn-secondary"
+            target="_blank"
+            rel="noopener noreferrer">View on GitHub</a
+          >
         </div>
       </div>
     </section>
@@ -22,27 +41,47 @@ import Layout from "../layouts/Layout.astro";
         <ul class="feature-grid">
           <li>
             <h3>Quick or full check</h3>
-            <p>One URL: <code>quick</code> for a fast pass/fail, <code>audit</code> for a full report—what’s wrong, how serious, and how to fix it.</p>
+            <p>
+              One URL: <code>quick</code> for a fast pass/fail, <code
+                >audit</code
+              > for a full report—what’s wrong, how serious, and how to fix it.
+            </p>
           </li>
           <li>
             <h3>Check a whole site</h3>
-            <p><code>crawl</code> discovers pages and checks each one. Set a page limit and depth; export one JSON for the whole run.</p>
+            <p>
+              <code>crawl</code> discovers pages and checks each one. Set a page limit
+              and depth; export one JSON for the whole run.
+            </p>
           </li>
           <li>
             <h3>See your history</h3>
-            <p>Results are stored locally. View trends with <code>reach history</code>; compare runs over time.</p>
+            <p>
+              Results are stored locally. View trends with <code
+                >reach history</code
+              >; compare runs over time.
+            </p>
           </li>
           <li>
             <h3>MCP server</h3>
-            <p>Run the MCP server so AI assistants can run checks, fetch history, or pull a result by ID.</p>
+            <p>
+              Run the MCP server so AI assistants can run checks, fetch history,
+              or pull a result by ID. <a href="#mcp">Setup instructions</a>.
+            </p>
           </li>
           <li>
             <h3>JSON export</h3>
-            <p>Output to the console or to a JSON file—handy for CI, reports, or sharing with your team.</p>
+            <p>
+              Output to the console or to a JSON file—handy for CI, reports, or
+              sharing with your team.
+            </p>
           </li>
           <li>
             <h3>Honest about limits</h3>
-            <p>Automated checks only catch some issues. We spell out what’s covered and suggest pairing with manual testing when it matters.</p>
+            <p>
+              Automated checks only catch some issues. We spell out what’s
+              covered and suggest pairing with manual testing when it matters.
+            </p>
           </li>
         </ul>
       </div>
@@ -52,36 +91,110 @@ import Layout from "../layouts/Layout.astro";
       <div class="container">
         <h2 id="how-heading">How it works</h2>
         <ol class="steps">
-          <li><strong>Open</strong> — Reach opens your page in a headless browser.</li>
-          <li><strong>Check</strong> — It runs common accessibility rules (WCAG 2.1 AA) on the real page.</li>
-          <li><strong>Report</strong> — You get a list of issues (critical → minor), with guidance on how to fix them, in the console or as JSON.</li>
+          <li>
+            <strong>Open</strong> — Reach opens your page in a headless browser.
+          </li>
+          <li>
+            <strong>Check</strong> — It runs common accessibility rules (WCAG 2.1
+            AA) on the real page.
+          </li>
+          <li>
+            <strong>Report</strong> — You get a list of issues (critical → minor),
+            with guidance on how to fix them, in the console or as JSON.
+          </li>
         </ol>
-        <p>Because it checks the real page your users see, you’re testing what actually ships.</p>
+        <p>
+          Because it checks the real page your users see, you’re testing what
+          actually ships.
+        </p>
       </div>
     </section>
 
-    <section id="get-started" class="section" aria-labelledby="get-started-heading">
+    <section
+      id="get-started"
+      class="section"
+      aria-labelledby="get-started-heading"
+    >
       <div class="container">
         <h2 id="get-started-heading">Get started</h2>
         <p>Run without installing:</p>
-        <pre class="block"><code>npx reach quick https://example.com
-npx reach audit https://example.com</code></pre>
-        <p>Or install and use the <code>reach</code> command:</p>
-        <pre class="block"><code>npm install -g reach
+        <pre
+          class="block"><code>npx reach-a11y quick https://example.com
+npx reach-a11y audit https://example.com</code></pre>
+        <p>
+          Or install the <code>reach-a11y</code> package and use the <code
+            >reach</code
+          > command:
+        </p>
+        <pre
+          class="block"><code>npm install -g reach-a11y
 
 reach quick https://example.com
 reach audit https://example.com --output json --file report.json
 reach crawl https://example.com --max-pages 25
 reach history</code></pre>
-        <p>For the full command reference and options (<code>--verbose</code>, <code>--show-checks</code>, <code>--timeout</code>, etc.), see the <a href="https://github.com/softwarebyze/accessibility-auditor#readme">README</a>.</p>
+        <p>
+          <strong>Names:</strong> product <strong>Reach</strong> · npm package <code
+            >reach-a11y</code
+          > · CLI command <code>reach</code> · GitHub repo <code
+            >accessibility-auditor</code
+          >. Install <code>reach-a11y</code>, then run <code>reach</code> — not <code
+            >npx reach</code
+          >
+          (that's a different npm package).
+        </p>
+        <p>
+          For the full command reference and options (<code>--verbose</code>, <code
+            >--show-checks</code
+          >, <code>--timeout</code>, etc.), see the <a
+            href="https://github.com/softwarebyze/accessibility-auditor#readme"
+            >README</a
+          >.
+        </p>
+      </div>
+    </section>
+
+    <section id="mcp" class="section" aria-labelledby="mcp-heading">
+      <div class="container">
+        <h2 id="mcp-heading">MCP server</h2>
+        <p>
+          Reach includes an MCP server so AI assistants (Cursor, Claude Desktop,
+          etc.) can run audits, fetch history, or pull a result by ID.
+        </p>
+        <p>From the repo, build and run the server:</p>
+        <pre
+          class="block"><code>cd packages/reach
+npm run build
+npm run mcp</code></pre>
+        <p>
+          In <strong>Cursor</strong>, add to MCP config (working directory <code
+            >packages/reach</code
+          >):
+        </p>
+        <pre class="block"><code>{mcpConfig}</code></pre>
+        <p>
+          <strong>Tools:</strong>
+          <code>audit_website</code>, <code>get_audit_history</code>, <code
+            >get_audit_result</code
+          >
+        </p>
       </div>
     </section>
 
     <section class="section cta" aria-labelledby="cta-heading">
       <div class="container">
         <h2 id="cta-heading">Ready to audit?</h2>
-        <p>Run <code>npx reach audit https://yoursite.com</code> or install with <code>npm install -g reach</code>. Use crawl + JSON export and history to track progress.</p>
-        <a href="https://github.com/softwarebyze/accessibility-auditor" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Open on GitHub</a>
+        <p>
+          Run <code>npx reach-a11y audit https://yoursite.com</code> or install with
+          <code>npm install -g reach-a11y</code>. Use crawl + JSON export and
+          history to track progress.
+        </p>
+        <a
+          href="https://github.com/softwarebyze/accessibility-auditor"
+          class="btn btn-primary"
+          target="_blank"
+          rel="noopener noreferrer">Open on GitHub</a
+        >
       </div>
     </section>
   </article>
@@ -118,8 +231,14 @@ reach history</code></pre>
     font-size: 1rem;
     transition: opacity 0.15s;
   }
-  .btn:hover { opacity: 0.9; text-decoration: none; }
-  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn:hover {
+    opacity: 0.9;
+    text-decoration: none;
+  }
+  .btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
   .btn-primary {
     background: var(--accent);
     color: var(--bg);
@@ -149,12 +268,17 @@ reach history</code></pre>
     font-size: 1.1rem;
     margin: 0 0 0.5rem;
   }
-  .feature-grid p { margin: 0; color: var(--text-muted); }
+  .feature-grid p {
+    margin: 0;
+    color: var(--text-muted);
+  }
   .steps {
     padding-left: 1.5rem;
     margin: 0 0 1rem;
   }
-  .steps li { margin: 0.5rem 0; }
+  .steps li {
+    margin: 0.5rem 0;
+  }
   .block {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -174,6 +298,12 @@ reach history</code></pre>
     text-align: center;
     padding: 4rem 0;
   }
-  .cta h2 { margin-bottom: 0.75rem; }
-  .cta p { color: var(--text-muted); max-width: 480px; margin: 0 auto 1.5rem; }
+  .cta h2 {
+    margin-bottom: 0.75rem;
+  }
+  .cta p {
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0 auto 1.5rem;
+  }
 </style>
