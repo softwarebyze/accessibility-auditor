@@ -33,8 +33,7 @@ Or install the <code data-astro-cid-j7pv25f6>reach-a11y</code> package and use t
 reach quick https://example.com
 reach audit https://example.com --output json --file report.json
 reach crawl https://example.com --max-pages 25
-reach history</code></pre> <p data-astro-cid-j7pv25f6> <strong data-astro-cid-j7pv25f6>Names:</strong> product <strong data-astro-cid-j7pv25f6>Reach</strong> · npm package <code data-astro-cid-j7pv25f6>reach-a11y</code> · CLI command <code data-astro-cid-j7pv25f6>reach</code> · GitHub repo <code data-astro-cid-j7pv25f6>accessibility-auditor</code>.
-          Install <code data-astro-cid-j7pv25f6>reach-a11y</code>, then run <code data-astro-cid-j7pv25f6>reach</code> — not <code data-astro-cid-j7pv25f6>npx reach</code>
+reach history</code></pre> <p data-astro-cid-j7pv25f6> <strong data-astro-cid-j7pv25f6>Names:</strong> product <strong data-astro-cid-j7pv25f6>Reach</strong> · npm package <code data-astro-cid-j7pv25f6>reach-a11y</code> · CLI command <code data-astro-cid-j7pv25f6>reach</code> · GitHub repo <code data-astro-cid-j7pv25f6>accessibility-auditor</code>. Install <code data-astro-cid-j7pv25f6>reach-a11y</code>, then run <code data-astro-cid-j7pv25f6>reach</code> — not <code data-astro-cid-j7pv25f6>npx reach</code>
 (that's a different npm package).
 </p> <p data-astro-cid-j7pv25f6>
 For the full command reference and options (<code data-astro-cid-j7pv25f6>--verbose</code>, <code data-astro-cid-j7pv25f6>--show-checks</code>, <code data-astro-cid-j7pv25f6>--timeout</code>, etc.), see the <a href="https://github.com/softwarebyze/accessibility-auditor#readme" data-astro-cid-j7pv25f6>README</a>.
@@ -43,7 +42,9 @@ Reach includes an MCP server so AI assistants (Cursor, Claude Desktop,
           etc.) can run audits, fetch history, or pull a result by ID.
 </p> <p data-astro-cid-j7pv25f6>From the repo, build and run the server:</p> <pre class="block" data-astro-cid-j7pv25f6><code data-astro-cid-j7pv25f6>cd packages/reach
 npm run build
-npm run mcp</code></pre> <p data-astro-cid-j7pv25f6>In <strong data-astro-cid-j7pv25f6>Cursor</strong>, add to MCP config (working directory <code data-astro-cid-j7pv25f6>packages/reach</code>):</p> <pre class="block" data-astro-cid-j7pv25f6><code data-astro-cid-j7pv25f6>{
+npm run mcp</code></pre> <p data-astro-cid-j7pv25f6>
+In <strong data-astro-cid-j7pv25f6>Cursor</strong>, add to MCP config (working directory <code data-astro-cid-j7pv25f6>packages/reach</code>):
+</p> <pre class="block" data-astro-cid-j7pv25f6><code data-astro-cid-j7pv25f6>{
   &quot;mcpServers&quot;: {
     &quot;reach&quot;: {
       &quot;command&quot;: &quot;npm&quot;,
