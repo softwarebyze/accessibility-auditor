@@ -1,0 +1,20 @@
+[2026-08-21T22:22:56.803Z] Starting Reach benchmark (playwright-baseline)
+[2026-08-21T22:22:56.803Z] Collecting environment…
+[2026-08-21T22:22:56.872Z] Measuring disk usage…
+[2026-08-21T22:22:57.009Z] Fresh Playwright Chromium install into /tmp/reach-pw-browsers-playwright-baseline
+[2026-08-21T22:22:57.009Z] $ npx playwright install chromium
+[2026-08-21T22:23:03.385Z] Documented install command: npm run install-browsers (uses existing cache)
+[2026-08-21T22:23:03.385Z] $ npm run install-browsers
+[2026-08-21T22:23:04.757Z] Fixture server at http://127.0.0.1:46829
+[2026-08-21T22:23:04.757Z] CLI: quick-example.com
+[2026-08-21T22:23:04.757Z] $ npm run dev -- quick https://example.com
+[2026-08-21T22:23:06.300Z] CLI: audit-example.com
+[2026-08-21T22:23:06.300Z] $ npm run dev -- audit https://example.com
+[2026-08-21T22:23:07.687Z] CLI: audit-example.com-json
+[2026-08-21T22:23:07.688Z] $ npm run dev -- audit https://example.com --output json
+[2026-08-21T22:23:09.851Z] CLI: audit-local-violations
+[2026-08-21T22:23:09.851Z] $ npm run dev -- audit http://127.0.0.1:46829/violations
+[2026-08-21T22:23:11.845Z] CLI: crawl-example.com-max-3
+[2026-08-21T22:23:11.845Z] $ npm run dev -- crawl https://example.com --max-pages 3
+[2026-08-21T22:23:13.289Z] In-process auditor: cold launch + warm reuse
+[2026-08-21T22:23:13.289Z] $ npx tsx /workspace/scripts/benchmark-auditor-runner.mjs --urls http://127.0.0.1:46829/valid,http://127.0.0.1:46829/violations,https://example.com

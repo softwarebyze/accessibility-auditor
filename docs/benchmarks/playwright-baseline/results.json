@@ -1,0 +1,171 @@
+{
+  "label": "playwright-baseline",
+  "startedAt": "2026-08-21T22:22:56.803Z",
+  "engineNote": "Playwright Chromium via @axe-core/playwright (current main)",
+  "environment": {
+    "node": "v22.14.0",
+    "npm": "10.9.7",
+    "bun": "1.4.0",
+    "nodePath": "/exec-daemon/node",
+    "npmPath": "/home/ubuntu/.nvm/versions/node/v22.22.2/bin/npm",
+    "bunPath": "/home/ubuntu/.bun/bin/bun",
+    "chromePath": "/usr/local/bin/google-chrome",
+    "platform": "linux x64",
+    "cwd": "/workspace"
+  },
+  "disk": {
+    "nodeModules": "645M",
+    "playwrightPackage": "4.2M",
+    "axePlaywrightPackage": "68K",
+    "puppeteerCorePackage": "12M",
+    "playwrightBrowsers": "1.5G",
+    "bunInstall": "787M"
+  },
+  "install": {
+    "playwrightFreshChromium": {
+      "command": "npx playwright install chromium",
+      "code": 0,
+      "durationMs": 6008,
+      "peakTreeRssMb": 329.8,
+      "stdout": "Downloading Chromium 141.0.7390.37 (playwright build v1194) from https://cdn.playwright.dev/dbazure/download/playwright/builds/chromium/1194/chromium-linux.zip\n|                                                                                |   0% of 173.9 MiB\n|■■■■■■■■                                                                        |  10% of 173.9 MiB\n|■■■■■■■■■■■■■■■■                                                                |  20% of 173.9 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 173.9 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 173.9 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 173.9 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 173.9 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 173.9 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 173.9 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 173.9 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 173.9 MiB\nChromium 141.0.7390.37 (playwright build v1194) downloaded to /tmp/reach-pw-browsers-playwright-baseline/chromium-1194\nDownloading FFMPEG playwright build v1011 from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1011/ffmpeg-linux.zip\n|                                                                                |   0% of 2.3 MiB\n|■■■■■■■■                                                                        |  10% of 2.3 MiB\n|■■■■■■■■■■■■■■■■                                                                |  20% of 2.3 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 2.3 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 2.3 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 2.3 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 2.3 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 2.3 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 2.3 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 2.3 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.3 MiB\nFFMPEG playwright build v1011 downloaded to /tmp/reach-pw-browsers-playwright-baseline/ffmpeg-1011\nDownloading Chromium Headless Shell 141.0.7390.37 (playwright build v1194) from https://cdn.playwright.dev/dbazure/download/playwright/builds/chromium/1194/chromium-headless-shell-linux.zip\n|                                                                                |   0% of 104.3 MiB\n|■■■■■■■■                                                                        |  10% of 104.3 MiB\n|■■■■■■■■■■■■■■■■                                                                |  20% of 104.3 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 104.3 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 104.3 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 104.3 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 104.3 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 104.3 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 104.3 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 104.3 MiB\n|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 1\n…[truncated 166 bytes]\n",
+      "stderr": "npm notice\nnpm notice New major version of npm available! 10.9.2 -> 12.0.2\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2\nnpm notice To update run: npm install -g npm@12.0.2\nnpm notice\n",
+      "browserDirSize": "924M",
+      "target": "/tmp/reach-pw-browsers-playwright-baseline"
+    },
+    "npmRunInstallBrowsers": {
+      "command": "npm run install-browsers",
+      "code": 0,
+      "durationMs": 668.3,
+      "peakTreeRssMb": 318.8,
+      "stdout": "\n> accessibility-auditor@1.0.0 install-browsers\n> bash ./scripts/run-workspace.sh packages/reach install-browsers\n\n\n> reach-a11y@1.0.2 install-browsers\n> playwright install\n\n",
+      "stderr": "Playwright Host validation warning: \n╔══════════════════════════════════════════════════════╗\n║ Host system is missing dependencies to run browsers. ║\n║ Please install them with the following command:      ║\n║                                                      ║\n║     sudo npx playwright install-deps                 ║\n║                                                      ║\n║ Alternatively, use apt:                              ║\n║     sudo apt-get install libxslt1.1\\                 ║\n║         libwoff1\\                                    ║\n║         libevent-2.1-7t64\\                           ║\n║         libgstreamer-plugins-base1.0-0\\              ║\n║         libgstreamer-gl1.0-0\\                        ║\n║         libgstreamer-plugins-bad1.0-0\\               ║\n║         libavif16\\                                   ║\n║         libharfbuzz-icu0\\                            ║\n║         libhyphen0\\                                  ║\n║         libwayland-server0\\                          ║\n║         libmanette-0.2-0                             ║\n║                                                      ║\n║ <3 Playwright Team                                   ║\n╚══════════════════════════════════════════════════════╝\n    at validateDependenciesLinux (/workspace/node_modules/playwright-core/lib/server/registry/dependencies.js:269:9)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Registry._validateHostRequirements (/workspace/node_modules/playwright-core/lib/server/registry/index.js:961:14)\n    at async Registry._validateHostRequirementsForExecutableIfNeeded (/workspace/node_modules/playwright-core/lib/server/registry/index.js:1083:7)\n    at async Registry.validateHostRequirementsForExecutablesIfNeeded (/workspace/node_modules/playwright-core/lib/server/registry/index.js:1072:7)\n    at async i.<anonymous> (/workspace/node_modules/playwright-core/lib/cli/program.js:217:7)\n"
+    }
+  },
+  "cli": [
+    {
+      "name": "quick-example.com",
+      "command": "npm run dev -- quick https://example.com",
+      "code": 0,
+      "durationMs": 1428.1,
+      "peakTreeRssMb": 785.5,
+      "stdout": "\n> accessibility-auditor@1.0.0 dev\n> bash ./scripts/run-workspace.sh packages/reach dev quick https://example.com\n\n\n> reach-a11y@1.0.2 dev\n> tsx index.ts quick https://example.com\n\n",
+      "stderr": "- Running quick accessibility check...\n✔ ✅ https://example.com - No violations found\n"
+    },
+    {
+      "name": "audit-example.com",
+      "command": "npm run dev -- audit https://example.com",
+      "code": 0,
+      "durationMs": 1272.9,
+      "peakTreeRssMb": 862.7,
+      "stdout": "\n> accessibility-auditor@1.0.0 dev\n> bash ./scripts/run-workspace.sh packages/reach dev audit https://example.com\n\n\n> reach-a11y@1.0.2 dev\n> tsx index.ts audit https://example.com\n\n\n🔍 Reach — Accessibility Audit Report\n══════════════════════════════════════════════════\nURL: https://example.com\nTimestamp: 8/21/2026, 10:23:07 PM\n\n📊 Summary:\n  ✅ 8 checks passed\n\n✅ No accessibility violations found!\n📝 Manual & Hybrid Checks:\n\n▶ Common Checks\n  ⚠️ Color Contrast\n     • Automation: HYBRID (rules: color-contrast, link-in-text-block)\n     • What to look for: Normal text meets at least 4.5:1 contrast; large text meets 3:1.\n     • Notes: Verify gradients, background images, and focus outlines maintain adequate contrast.\n\n  ⚠️ Headings\n     • Automation: HYBRID (rules: heading-order, landmark-one-main, region)\n     • What to look for: A single first-level heading establishes the page topic.\n     • Notes: Check visually that headings convey a logical outline and that important sections aren't plain paragraphs.\n\n  ⚠️ Image Alternative Text\n     • Automation: HYBRID (rules: image-alt, area-alt, input-image-alt)\n     • What to look for: Meaningful images describe purpose or action, not purely visual detail.\n     • Notes: Review alt text manually to ensure it communicates intent and context.\n\n  ✅ Language of Page\n     • Automation: AUTOMATED (rules: html-has-lang, html-lang-valid)\n     • What to look for: The <html> element includes a valid BCP 47 language code.\n\n  ⚠️ Page Title\n     • Automation: HYBRID (rules: page-title)\n     • What to look for: Titles summarize the page purpose in a concise phrase.\n     • Notes: Verify the copy reflects the page content and is distinguishable from other pages.\n\n  ⚠️ Skip Link\n     • Automation: HYBRID (rules: bypass)\n     • What to look for: The first tabbable element is a functional skip link or landmark.\n     • Notes: Confirm the skip link is visible on focus and targets the correct region.\n\n  ⚠️ Visible Keyboard Focus\n     • Automation: HYBRID (rules: focus-order-semantics, focus-visible, focus-trap)\n     • What to look for: Each tabbable element exposes a clear focus outline.\n     • Notes: Run a manual tab-through to ensure focus indicators are prominent and meet contrast guidelines.\n\n  📝 Zoom\n     • Automation: MANUAL\n     • What to look for: At 200% zoom the page avoids horizontal scrolling for primary content.\n     • Notes: Manually zoom the page and confirm responsive behavior without clipped content.\n\n▶ Audio / Visual Checks\n  📝 Audio Description\n     • Automation: MANUAL\n     • What to look for: Look for a described-video track or narration covering on-screen text, visuals, and actions.\n     • Notes: Watch representative videos while toggling described tracks or confirm alternate versions exist.\n\n  📝 Captions\n     • Automation: MANUAL\n     • What to look for: Captions include dialogue, speaker identification, and essential sound effects.\n     • Notes: Play each media asset and verify captions are present, accurate, and synchronized.\n\n  📝 Transcripts\n     • Automation: MANUAL\n     • What to look for: Transcripts cover spoken words and meaningful non-speech audio cues.\n     • Notes: Inspect media detail pages or documentation for downloadable or inline transcripts.\n\n▶ Form Checks\n  ⚠️ Labels\n     • Automation: HYBRID (rules: label, aria-label, aria-labelledby, form-field-multiple-labels)\n     • What to look for: Inputs use <label for>, aria-label, or aria-labelledby with descriptive copy.\n     • Notes: Review complex fields (date pickers, custom dropdowns) to ensure labels are read correctly.\n\n  ⚠️ Required Fields\n     • Automation: HYBRID (rules: aria-required-attr, aria-required-parent, aria-required-children)\n     • What to look for: Required fields are programmatically marked (required attribute or aria-required).\n     • Notes: Attempt form submission to confirm errors are announced and instructions stay visible.\n\n\n📊 Coverage Summary:\n   🛠️ Engine: axe-core 4.10.3\n   ✅ Verified Checks: 10/25\n   📈 Estimated Coverage: 85%\n   🎯 WCAG Level: WCAG 2.1 AA\n   💡 Automated testing catches ~30-50% of accessibility issues\n\n\nUse --verbose for the legal context and coverage snapshot.\nNeed the full verified check list? reach audit <url> --show-checks\n\n",
+      "stderr": "- Initializing accessibility audit...\n✔ Audit completed!\n"
+    },
+    {
+      "name": "audit-example.com-json",
+      "command": "npm run dev -- audit https://example.com --output json",
+      "code": 0,
+      "durationMs": 1230.8,
+      "peakTreeRssMb": 762.2,
+      "stdout": "\n> accessibility-auditor@1.0.0 dev\n> bash ./scripts/run-workspace.sh packages/reach dev audit https://example.com --output json\n\n\n> reach-a11y@1.0.2 dev\n> tsx index.ts audit https://example.com --output json\n\n{\n  \"url\": \"https://example.com\",\n  \"timestamp\": \"2026-08-21T22:23:08.885Z\",\n  \"summary\": {\n    \"totalViolations\": 0,\n    \"criticalViolations\": 0,\n    \"seriousViolations\": 0,\n    \"moderateViolations\": 0,\n    \"minorViolations\": 0,\n    \"totalPasses\": 8,\n    \"incomplete\": 0\n  },\n  \"violations\": [],\n  \"rawAxeResults\": {\n    \"testEngine\": {\n      \"name\": \"axe-core\",\n      \"version\": \"4.10.3\"\n    },\n    \"testRunner\": {\n      \"name\": \"axe\"\n    },\n    \"testEnvironment\": {\n      \"userAgent\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36\",\n      \"windowWidth\": 1280,\n      \"windowHeight\": 720,\n      \"orientationAngle\": 0,\n      \"orientationType\": \"landscape-primary\"\n    },\n    \"timestamp\": \"2026-08-21T22:23:08.733Z\",\n    \"url\": \"https://example.com/\",\n    \"toolOptions\": {\n      \"runOnly\": {\n        \"type\": \"tag\",\n        \"values\": [\n          \"wcag2a\",\n          \"wcag2aa\",\n          \"wcag21a\",\n          \"wcag21aa\"\n        ]\n      },\n      \"reporter\": \"v1\"\n    },\n    \"inapplicable\": [\n      {\n        \"id\": \"area-alt\",\n        \"impact\": null,\n        \"tags\": [\n          \"cat.text-alternatives\",\n          \"wcag2a\",\n          \"wcag244\",\n          \"wcag412\",\n          \"section508\",\n          \"section508.22.a\",\n          \"TTv5\",\n          \"TT6.a\",\n          \"EN-301-549\",\n          \"EN-9.2.4.4\",\n          \"EN-9.4.1.2\",\n          \"ACT\"\n        ],\n        \"description\": \"Ensure <area> elements of image maps have alternative text\",\n        \"help\": \"Active <area> elements must have alternative text\",\n        \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/area-alt?application=playwright\",\n        \"nodes\": []\n      },\n      {\n        \"id\": \"aria-allowed-attr\",\n        \"impact\": null,\n        \"tags\": [\n          \"cat.aria\",\n          \"wcag2a\",\n          \"wcag412\",\n          \"EN-301-549\",\n          \"EN-9.4.1.2\"\n        ],\n        \"description\": \"Ensure an element's role supports its ARIA attributes\",\n        \"help\": \"Elements must only use supported ARIA attributes\",\n        \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/aria-allowed-attr?application=playwright\",\n        \"nodes\": []\n      },\n      {\n        \"id\": \"aria-braille-equivalent\",\n        \"impact\": null,\n        \"tags\": [\n          \"cat.aria\",\n          \"wcag2a\",\n          \"wcag412\",\n          \"EN-301-549\",\n          \"EN-9.4.1.2\"\n        ],\n        \"description\": \"Ensure aria-braillelabel and aria-brailleroledescription have a non-braille equivalent\",\n        \"help\": \"aria-braille attributes must have a non-braille equivalent\",\n        \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/aria-braille-equivalent?application=playwright\",\n        \"nodes\": []\n      },\n      {\n        \"id\": \"aria-command-name\",\n        \"impact\": null,\n        \"tags\": [\n          \"cat.aria\",\n          \"wcag2a\",\n          \"wcag412\",\n          \"TTv5\",\n          \"TT6.a\",\n          \"EN-301-549\",\n          \"EN-9.4.1.2\",\n          \"ACT\"\n        ],\n        \"description\": \"Ensure every ARIA button, link and menuitem has an accessible name\",\n        \"help\": \"ARIA commands must have an accessible name\",\n        \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/aria-command-name?application=playwright\",\n        \"nodes\": []\n      },\n      {\n        \"id\": \"aria-conditional-attr\",\n        \"impact\": null,\n        \"tags\": [\n          \"cat.aria\",\n          \"wcag2a\",\n          \"wcag412\",\n          \"EN-301-549\",\n          \"EN-9.4.1.2\"\n        ],\n        \"description\": \"Ensure ARIA attributes are used as described in the specification of the element's role\",\n        \"help\": \"ARIA attributes must be used as specified for the element's role\",\n        \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/aria-conditional-attr?application=playwright\",\n        \"nodes\": []\n      },\n      {\n        \"id\": \"aria-deprecated-role\",\n        \"impact\": null,\n        \"tags\": [\n          \"cat.aria\",\n          \"wcag2a\",\n          \"wcag412\",\n          \"EN-301-549\",\n          \"EN-9.4.1.2\"\n        ],\n        \"description\": \"Ensure elements do not use deprecated roles\",\n        \"help\": \"Deprecated ARIA roles must not be used\",\n        \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/aria-deprecated-role?application=playwright\",\n        \"nodes\": []\n      },\n      {\n        \"id\": \"aria-hidden-focus\",\n        \"impact\": null,\n        \"tags\": [\n          \"cat.name-role-value\",\n          \"wcag2a\",\n          \"wcag412\",\n          \"TTv5\",\n          \"TT6.a\",\n          \"EN-301-549\",\n          \"EN-9.4.1.2\"\n        ],\n        \"description\": \"Ensure aria-hidden elements are not focusable nor contain focusable elements\",\n        \"help\": \"ARIA hidden element must not be focusable or contain focusable elements\",\n        \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/aria-hidden-focus?application=playwright\",\n        \"nodes\": []\n      },\n      {\n        \"id\": \"aria-input-field-name\",\n        \"impact\": null,\n        \"tags\": [\n          \"cat.aria\",\n          \"wcag2a\",\n          \"wcag412\",\n          \"TTv5\",\n          \"TT5.c\",\n          \"EN-301-549\",\n          \"EN-9.4.1.2\",\n          \"ACT\"\n        ],\n        \"description\": \"Ensure every ARIA input field has an accessible name\",\n        \"help\": \"ARIA input fields must have an accessible name\",\n        \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/aria-input-field-name?application=playwright\",\n        \"nodes\": []\n      },\n      {\n        \"id\": \"aria-meter-name\",\n        \"impact\": null,\n        \"tags\": [\n          \"cat.aria\",\n          \"wcag2a\",\n          \"wcag111\",\n          \"EN-301-549\",\n          \"EN-9.1.1.1\"\n        ],\n        \"description\": \"Ensure every ARIA meter node has an accessible name\",\n        \"help\": \"ARIA meter nodes must have an accessible name\",\n        \"\n…[truncated 46712 bytes]\n",
+      "stderr": "- Initializing accessibility audit...\n✔ Audit completed!\n"
+    },
+    {
+      "name": "audit-local-violations",
+      "command": "npm run dev -- audit http://127.0.0.1:46829/violations",
+      "code": 0,
+      "durationMs": 1269.7,
+      "peakTreeRssMb": 860.4,
+      "stdout": "\n> accessibility-auditor@1.0.0 dev\n> bash ./scripts/run-workspace.sh packages/reach dev audit http://127.0.0.1:46829/violations\n\n\n> reach-a11y@1.0.2 dev\n> tsx index.ts audit http://127.0.0.1:46829/violations\n\n\n🔍 Reach — Accessibility Audit Report\n══════════════════════════════════════════════════\nURL: http://127.0.0.1:46829/violations\nTimestamp: 8/21/2026, 10:23:11 PM\n\n📊 Summary:\n  ❌ 6 violations found\n    🔴 Critical: 3\n    🟡 Serious: 3\n\n🚨 Violations:\n\n1. 🔴 Ensure all ARIA attributes have valid values\n   Impact: CRITICAL\n   WCAG Level: WCAG 2.0 A\n   Help: https://dequeuniversity.com/rules/axe/4.10/aria-valid-attr-value?application=playwright\n   Affected elements: 1\n     1. div[role=\"button\"]\n\n2. 🔴 Ensure buttons have discernible text\n   Impact: CRITICAL\n   WCAG Level: WCAG 2.0 A\n   Help: https://dequeuniversity.com/rules/axe/4.10/button-name?application=playwright\n   Affected elements: 1\n     1. div > button\n\n3. 🟡 Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds\n   Impact: SERIOUS\n   WCAG Level: WCAG 2.0 AA\n   Help: https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=playwright\n   Affected elements: 1\n     1. p\n\n4. 🟡 Ensure every HTML document has a lang attribute\n   Impact: SERIOUS\n   WCAG Level: WCAG 2.0 A\n   Help: https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=playwright\n   Affected elements: 1\n     1. html\n\n5. 🔴 Ensure <img> elements have alternative text or a role of none or presentation\n   Impact: CRITICAL\n   WCAG Level: WCAG 2.0 A\n   Help: https://dequeuniversity.com/rules/axe/4.10/image-alt?application=playwright\n   Affected elements: 1\n     1. img\n\n6. 🟡 Ensure links have discernible text\n   Impact: SERIOUS\n   WCAG Level: WCAG 2.0 A\n   Help: https://dequeuniversity.com/rules/axe/4.10/link-name?application=playwright\n   Affected elements: 1\n     1. a\n\n📝 Manual & Hybrid Checks:\n\n▶ Common Checks\n  ❌ Color Contrast\n     • Automation: HYBRID (rules: color-contrast, link-in-text-block)\n     • What to look for: Normal text meets at least 4.5:1 contrast; large text meets 3:1.\n     • Notes: Verify gradients, background images, and focus outlines maintain adequate contrast.\n\n  ⚠️ Headings\n     • Automation: HYBRID (rules: heading-order, landmark-one-main, region)\n     • What to look for: A single first-level heading establishes the page topic.\n     • Notes: Check visually that headings convey a logical outline and that important sections aren't plain paragraphs.\n\n  ❌ Image Alternative Text\n     • Automation: HYBRID (rules: image-alt, area-alt, input-image-alt)\n     • What to look for: Meaningful images describe purpose or action, not purely visual detail.\n     • Notes: Review alt text manually to ensure it communicates intent and context.\n\n  ❌ Language of Page\n     • Automation: AUTOMATED (rules: html-has-lang, html-lang-valid)\n     • What to look for: The <html> element includes a valid BCP 47 language code.\n\n  ⚠️ Page Title\n     • Automation: HYBRID (rules: page-title)\n     • What to look for: Titles summarize the page purpose in a concise phrase.\n     • Notes: Verify the copy reflects the page content and is distinguishable from other pages.\n\n  ⚠️ Skip Link\n     • Automation: HYBRID (rules: bypass)\n     • What to look for: The first tabbable element is a functional skip link or landmark.\n     • Notes: Confirm the skip link is visible on focus and targets the correct region.\n\n  ⚠️ Visible Keyboard Focus\n     • Automation: HYBRID (rules: focus-order-semantics, focus-visible, focus-trap)\n     • What to look for: Each tabbable element exposes a clear focus outline.\n     • Notes: Run a manual tab-through to ensure focus indicators are prominent and meet contrast guidelines.\n\n  📝 Zoom\n     • Automation: MANUAL\n     • What to look for: At 200% zoom the page avoids horizontal scrolling for primary content.\n     • Notes: Manually zoom the page and confirm responsive behavior without clipped content.\n\n▶ Audio / Visual Checks\n  📝 Audio Description\n     • Automation: MANUAL\n     • What to look for: Look for a described-video track or narration covering on-screen text, visuals, and actions.\n     • Notes: Watch representative videos while toggling described tracks or confirm alternate versions exist.\n\n  📝 Captions\n     • Automation: MANUAL\n     • What to look for: Captions include dialogue, speaker identification, and essential sound effects.\n     • Notes: Play each media asset and verify captions are present, accurate, and synchronized.\n\n  📝 Transcripts\n     • Automation: MANUAL\n     • What to look for: Transcripts cover spoken words and meaningful non-speech audio cues.\n     • Notes: Inspect media detail pages or documentation for downloadable or inline transcripts.\n\n▶ Form Checks\n  ⚠️ Labels\n     • Automation: HYBRID (rules: label, aria-label, aria-labelledby, form-field-multiple-labels)\n     • What to look for: Inputs use <label for>, aria-label, or aria-labelledby with descriptive copy.\n     • Notes: Review complex fields (date pickers, custom dropdowns) to ensure labels are read correctly.\n\n  ⚠️ Required Fields\n     • Automation: HYBRID (rules: aria-required-attr, aria-required-parent, aria-required-children)\n     • What to look for: Required fields are programmatically marked (required attribute or aria-required).\n     • Notes: Attempt form submission to confirm errors are announced and instructions stay visible.\n\n\n📊 Coverage Summary:\n   🛠️ Engine: axe-core 4.10.3\n   ✅ Verified Checks: 10/25\n   📈 Estimated Coverage: 85%\n   🎯 WCAG Level: WCAG 2.1 AA\n   💡 Automated testing catches ~30-50% of accessibility issues\n\n\nUse --verbose for the legal context and coverage snapshot.\nNeed the full verified check list? reach audit <url> --show-checks\n\n",
+      "stderr": "- Initializing accessibility audit...\n✔ Audit completed!\n"
+    },
+    {
+      "name": "crawl-example.com-max-3",
+      "command": "npm run dev -- crawl https://example.com --max-pages 3",
+      "code": 0,
+      "durationMs": 1321.6,
+      "peakTreeRssMb": 868.2,
+      "stdout": "\n> accessibility-auditor@1.0.0 dev\n> bash ./scripts/run-workspace.sh packages/reach dev crawl https://example.com --max-pages 3\n\n\n> reach-a11y@1.0.2 dev\n> tsx index.ts crawl https://example.com --max-pages 3\n\n\nCrawl summary for https://example.com/\nPages discovered: 1 (skipped: 1, crawl errors: 0)\nAudits run: 1 (success: 1, failed: 0)\nTotal violations found: 0\n\nPer-page results\n✅ https://example.com/ — No violations detected\n",
+      "stderr": "- Crawling site and running accessibility audits...\n✔ Audited 1 page\n"
+    }
+  ],
+  "inProcess": {
+    "runner": {
+      "command": "npx tsx /workspace/scripts/benchmark-auditor-runner.mjs --urls http://127.0.0.1:46829/valid,http://127.0.0.1:46829/violations,https://example.com",
+      "code": 0,
+      "durationMs": 1707,
+      "peakTreeRssMb": 816.6,
+      "stdout": "import-and-construct: 377.4 ms (rss=138.7MB)\nbrowser-launch: 37.3 ms (rss=139.5MB)\ncold-audit:http://127.0.0.1:46829/valid: 354.4 ms (violations=0 passes=16 rss=162.1MB)\nwarm-audit:http://127.0.0.1:46829/violations: 297.6 ms (violations=6 passes=19 rss=164.7MB)\nwarm-audit:https://example.com: 285.7 ms (violations=0 passes=8 rss=165.1MB)\nbrowser-close: 24.3 ms (rss=165.1MB)\nBENCHMARK_JSON:{\"engineHint\":\"playwright-listed\",\"finalRssMb\":165.1,\"steps\":[{\"name\":\"import-and-construct\",\"durationMs\":377.4,\"notes\":\"rss=138.7MB\"},{\"name\":\"browser-launch\",\"durationMs\":37.3,\"notes\":\"rss=139.5MB\"},{\"name\":\"cold-audit:http://127.0.0.1:46829/valid\",\"durationMs\":354.4,\"notes\":\"violations=0 passes=16 rss=162.1MB\",\"url\":\"http://127.0.0.1:46829/valid\",\"summary\":{\"totalViolations\":0,\"criticalViolations\":0,\"seriousViolations\":0,\"moderateViolations\":0,\"minorViolations\":0,\"totalPasses\":16,\"incomplete\":1}},{\"name\":\"warm-audit:http://127.0.0.1:46829/violations\",\"durationMs\":297.6,\"notes\":\"violations=6 passes=19 rss=164.7MB\",\"url\":\"http://127.0.0.1:46829/violations\",\"summary\":{\"totalViolations\":6,\"criticalViolations\":3,\"seriousViolations\":3,\"moderateViolations\":0,\"minorViolations\":0,\"totalPasses\":19,\"incomplete\":0}},{\"name\":\"warm-audit:https://example.com\",\"durationMs\":285.7,\"notes\":\"violations=0 passes=8 rss=165.1MB\",\"url\":\"https://example.com\",\"summary\":{\"totalViolations\":0,\"criticalViolations\":0,\"seriousViolations\":0,\"moderateViolations\":0,\"minorViolations\":0,\"totalPasses\":8,\"incomplete\":0}},{\"name\":\"browser-close\",\"durationMs\":24.3,\"notes\":\"rss=165.1MB\"}]}\n",
+      "stderr": ""
+    },
+    "measurements": {
+      "engineHint": "playwright-listed",
+      "finalRssMb": 165.1,
+      "steps": [
+        {
+          "name": "import-and-construct",
+          "durationMs": 377.4,
+          "notes": "rss=138.7MB"
+        },
+        {
+          "name": "browser-launch",
+          "durationMs": 37.3,
+          "notes": "rss=139.5MB"
+        },
+        {
+          "name": "cold-audit:http://127.0.0.1:46829/valid",
+          "durationMs": 354.4,
+          "notes": "violations=0 passes=16 rss=162.1MB",
+          "url": "http://127.0.0.1:46829/valid",
+          "summary": {
+            "totalViolations": 0,
+            "criticalViolations": 0,
+            "seriousViolations": 0,
+            "moderateViolations": 0,
+            "minorViolations": 0,
+            "totalPasses": 16,
+            "incomplete": 1
+          }
+        },
+        {
+          "name": "warm-audit:http://127.0.0.1:46829/violations",
+          "durationMs": 297.6,
+          "notes": "violations=6 passes=19 rss=164.7MB",
+          "url": "http://127.0.0.1:46829/violations",
+          "summary": {
+            "totalViolations": 6,
+            "criticalViolations": 3,
+            "seriousViolations": 3,
+            "moderateViolations": 0,
+            "minorViolations": 0,
+            "totalPasses": 19,
+            "incomplete": 0
+          }
+        },
+        {
+          "name": "warm-audit:https://example.com",
+          "durationMs": 285.7,
+          "notes": "violations=0 passes=8 rss=165.1MB",
+          "url": "https://example.com",
+          "summary": {
+            "totalViolations": 0,
+            "criticalViolations": 0,
+            "seriousViolations": 0,
+            "moderateViolations": 0,
+            "minorViolations": 0,
+            "totalPasses": 8,
+            "incomplete": 0
+          }
+        },
+        {
+          "name": "browser-close",
+          "durationMs": 24.3,
+          "notes": "rss=165.1MB"
+        }
+      ]
+    }
+  },
+  "localServer": {
+    "baseUrl": "http://127.0.0.1:46829"
+  },
+  "finishedAt": "2026-08-21T22:23:15.122Z"
+}
