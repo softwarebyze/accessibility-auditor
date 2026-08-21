@@ -27,7 +27,7 @@ export interface AxeCheck {
 
 export interface AxeEngineVersions {
   axeCore: string;
-  axePlaywright: string;
+  host: string;
 }
 
 // Based on actual testing and WAVE documentation comparison
@@ -277,10 +277,13 @@ function loadPackageVersion(packageName: string): string | undefined {
 }
 
 export function getAxeEngineVersions(): AxeEngineVersions {
-  const axePlaywright = loadPackageVersion('@axe-core/playwright') ?? 'unknown';
   const axeCore = loadPackageVersion('axe-core') ?? 'unknown';
+  const bunVersion = (globalThis as { Bun?: { version?: string } }).Bun?.version;
+  const host = bunVersion
+    ? `bun.WebView on Bun ${bunVersion}`
+    : `puppeteer-core on Node ${process.versions.node}`;
 
-  return { axeCore, axePlaywright };
+  return { axeCore, host };
 }
 
 function getCoverageStats() {
@@ -295,11 +298,7 @@ export function getCoverageSummary(): string {
   const versions = getAxeEngineVersions();
 
   let summary = '📊 Coverage Summary:\n';
-  summary += `   🛠️ Engine: axe-core ${versions.axeCore}`;
-  summary +=
-    versions.axePlaywright !== 'unknown'
-      ? ` via @axe-core/playwright ${versions.axePlaywright}\n`
-      : '\n';
+  summary += `   🛠️ Engine: axe-core ${versions.axeCore} via ${versions.host}\n`;
   summary += `   ✅ Verified Checks: ${verified}/${total}\n`;
   summary += `   📈 Estimated Coverage: ${AXE_COVERAGE_ANALYSIS.coveragePercentage}%\n`;
   summary += `   🎯 WCAG Level: ${AXE_COVERAGE_ANALYSIS.wcagLevel}\n`;
@@ -314,11 +313,7 @@ export function getCoverageOverview(): string {
 
   let overview = '🔍 Axe-Core Coverage Overview\n';
   overview += `${'═'.repeat(50)}\n\n`;
-  overview += `🛠️ Engine: axe-core ${versions.axeCore}`;
-  overview +=
-    versions.axePlaywright !== 'unknown'
-      ? ` (via @axe-core/playwright ${versions.axePlaywright})\n`
-      : '\n';
+  overview += `🛠️ Engine: axe-core ${versions.axeCore} via ${versions.host}\n`;
   overview += `✅ Verified Checks: ${verified}/${total}\n`;
   overview += `📊 Estimated Coverage: ${AXE_COVERAGE_ANALYSIS.coveragePercentage}%\n`;
   overview += `🎯 WCAG Level: ${AXE_COVERAGE_ANALYSIS.wcagLevel}\n`;
@@ -334,12 +329,8 @@ export function getCoverageReport(): string {
   let report = '🔍 Axe-Core Accessibility Coverage Report\n';
   report += `${'═'.repeat(50)}\n\n`;
 
-  if (versions.axeCore !== 'unknown' || versions.axePlaywright !== 'unknown') {
-    report += `🛠️ Engine: axe-core ${versions.axeCore}`;
-    report +=
-      versions.axePlaywright !== 'unknown'
-        ? ` (via @axe-core/playwright ${versions.axePlaywright})\n`
-        : '\n';
+  if (versions.axeCore !== 'unknown') {
+    report += `🛠️ Engine: axe-core ${versions.axeCore} via ${versions.host}\n`;
   }
 
   report += `✅ Verified Checks: ${verified}/${total}\n`;

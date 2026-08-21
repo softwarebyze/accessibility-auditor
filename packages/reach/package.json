@@ -1,6 +1,6 @@
 {
   "name": "reach-a11y",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Check your site for accessibility. One URL or whole site—quick checks, full reports, and history. Lightweight CLI.",
   "type": "module",
   "main": "dist/index.js",
@@ -9,15 +9,15 @@
   },
   "scripts": {
     "build": "biome check src/ tests/ index.ts && tsc -p tsconfig.build.json",
-    "dev": "tsx index.ts",
+    "dev": "node ./scripts/run-dev.mjs",
     "test": "vitest run",
-    "test:fast": "vitest run --testNamePattern=\"(mcp|types|history|axe-coverage|reporters|with mocks|Mock Usage Examples)\"",
-    "test:integration": "tsx index.ts audit https://example.com",
+    "test:fast": "vitest run --testNamePattern=\"(mcp|types|history|axe-coverage|reporters|with mocks|Mock Usage Examples|browser engine|withTimeout)\"",
+    "test:integration": "node ./scripts/run-dev.mjs audit https://example.com",
     "mcp": "node dist/src/mcp/index.js",
     "lint": "biome check src/ tests/ index.ts",
     "lint:fix": "biome check --write src/ tests/ index.ts",
     "format": "biome format --write src/ tests/ index.ts",
-    "install-browsers": "playwright install",
+    "install-browsers": "node ./scripts/run-dev.mjs doctor",
     "prepublishOnly": "node scripts/verify-publish.mjs"
   },
   "keywords": [
@@ -27,7 +27,7 @@
     "testing",
     "bun",
     "axe-core",
-    "playwright",
+    "webview",
     "mcp"
   ],
   "repository": {
@@ -42,7 +42,7 @@
   ],
   "engines": {
     "node": ">=20.0.0",
-    "bun": ">=1.0.0"
+    "bun": ">=1.4.0"
   },
   "author": "Zack Ebenfeld",
   "license": "MIT",
@@ -50,13 +50,12 @@
     "access": "public"
   },
   "dependencies": {
-    "@axe-core/playwright": "^4.10.2",
     "@modelcontextprotocol/sdk": "^0.5.0",
+    "axe-core": "^4.10.3",
     "chalk": "^5.6.2",
     "commander": "^14.0.1",
     "linkedom": "^0.18.9",
     "ora": "^9.0.0",
-    "playwright": "^1.56.0",
     "puppeteer-core": "^24.23.0"
   },
   "devDependencies": {

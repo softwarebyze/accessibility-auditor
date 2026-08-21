@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import { execSync, spawnSync } from 'node:child_process';
 import chalk from 'chalk';
 import { Command } from 'commander';
 import ora from 'ora';
 import { AccessibilityAuditor } from './src/core/auditor.js';
+import { getBrowserSetupHelp, hasBunWebView, resolveChromePath } from './src/core/browser/index.js';
 import { clearHistory, generateReport, saveAuditResult } from './src/core/history.js';
 import { SiteAuditRunner } from './src/core/site-audit.js';
 import { report as consoleReport } from './src/reporters/console.js';
@@ -21,7 +21,7 @@ const program = new Command();
 program
   .name('reach')
   .description('Check your site for accessibility—quick checks, full reports, simple history')
-  .version('1.0.2');
+  .version('1.1.0');
 
 program
   .command('audit')
@@ -164,9 +164,16 @@ program
 
 program
   .command('install-browsers')
-  .description('Install Playwright browsers (one-time setup)')
-  .action(async () => {
-    execSync(resolvePlaywrightInstallCommand(), { stdio: 'inherit' });
+  .description('Deprecated: Playwright browser downloads are no longer required')
+  .action(() => {
+    printDoctor();
+  });
+
+program
+  .command('doctor')
+  .description('Check whether Reach can find a browser (Bun.WebView or system Chrome)')
+  .action(() => {
+    printDoctor();
   });
 
 program
@@ -209,27 +216,27 @@ function parseIntegerOption(value: unknown, name: string, defaultValue: number):
   return parsed;
 }
 
-function resolvePlaywrightInstallCommand(): string {
-  if (process.versions.bun) {
-    return 'bunx playwright install';
+function printDoctor(): void {
+  const bunVersion = (globalThis as { Bun?: { version?: string } }).Bun?.version;
+  const chromePath = resolveChromePath();
+
+  console.log(chalk.bold('Reach browser setup'));
+  console.log(chalk.gray('═'.repeat(50)));
+  console.log(`Runtime: ${bunVersion ? `Bun ${bunVersion}` : `Node ${process.versions.node}`}`);
+  console.log(
+    `Bun.WebView: ${hasBunWebView() ? chalk.green('available') : chalk.yellow('not available')}`
+  );
+  console.log(
+    `Chrome/Chromium: ${chromePath ? chalk.green(chromePath) : chalk.yellow('not found')}`
+  );
+  console.log('');
+
+  if (hasBunWebView() || chromePath) {
+    console.log(chalk.green('Ready to audit. Playwright browser downloads are not required.'));
+    return;
   }
 
-  if (commandExists('npx')) {
-    return 'npx playwright install';
-  }
-
-  if (commandExists('npm')) {
-    return 'npm exec playwright install';
-  }
-
-  return 'playwright install';
-}
-
-function commandExists(command: string): boolean {
-  const result = spawnSync(command, ['--version'], {
-    stdio: 'ignore',
-  });
-  return !result.error && result.status === 0;
+  console.log(chalk.yellow(getBrowserSetupHelp()));
 }
 
 program.parse();

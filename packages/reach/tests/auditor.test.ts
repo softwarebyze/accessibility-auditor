@@ -1,11 +1,10 @@
-import { existsSync } from 'node:fs';
-import { chromium } from 'playwright';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { hasBunWebView, resolveChromePath } from '../src/core/browser/index.js';
 import type { AuditResult } from '../src/core/types.js';
 import type { TestableAccessibilityAuditor } from './mocks/testable-auditor.js';
 import { createTestAuditor } from './mocks/testable-auditor.js';
 
-const describeWithBrowser = existsSync(chromium.executablePath()) ? describe : describe.skip;
+const describeWithBrowser = hasBunWebView() || resolveChromePath() ? describe : describe.skip;
 
 describeWithBrowser('AccessibilityAuditor (network cached)', () => {
   let auditor: TestableAccessibilityAuditor;
@@ -41,8 +40,7 @@ describeWithBrowser('AccessibilityAuditor (network cached)', () => {
       expect(result.timestamp).toBeDefined();
       expect(result.summary.totalViolations).toBeGreaterThanOrEqual(0);
       expect(result.violations).toBeInstanceOf(Array);
+      expect(result.engine?.name).toMatch(/bun\.WebView|puppeteer-core/);
     });
-
-    // Additional violation-specific assertions can be added when needed.
   });
 });

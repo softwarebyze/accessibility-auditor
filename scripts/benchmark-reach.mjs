@@ -34,6 +34,8 @@ const args = parseArgs(process.argv.slice(2));
 const LABEL = String(args.label || 'run');
 const SKIP_PW_INSTALL = Boolean(args['skip-playwright-install']);
 const ENGINE_NOTE = String(args.engine || '');
+const CLI = args.cli === 'bun' ? 'bun' : 'npm';
+const IN_PROCESS = args.runtime === 'bun' ? 'bun' : 'node';
 
 mkdirSync(DOCS, { recursive: true });
 mkdirSync(ARTIFACTS, { recursive: true });
@@ -241,6 +243,8 @@ async function collectEnvironment() {
     chromePath: await captureWhich('google-chrome') || await captureWhich('google-chrome-stable'),
     platform: `${process.platform} ${process.arch}`,
     cwd: ROOT,
+    cli: CLI,
+    inProcessRuntime: IN_PROCESS,
   };
 }
 
@@ -251,6 +255,7 @@ async function collectDisk() {
     nodeModules: await captureDisk(join(ROOT, 'node_modules')),
     playwrightPackage: await captureDisk(join(ROOT, 'node_modules/playwright')),
     axePlaywrightPackage: await captureDisk(join(ROOT, 'node_modules/@axe-core/playwright')),
+    axeCorePackage: await captureDisk(join(ROOT, 'node_modules/axe-core')),
     puppeteerCorePackage: await captureDisk(join(ROOT, 'node_modules/puppeteer-core')),
     playwrightBrowsers: await captureDisk(join(home, '.cache/ms-playwright')),
     bunInstall: await captureDisk(join(home, '.bun')),
@@ -258,8 +263,9 @@ async function collectDisk() {
 }
 
 async function benchmarkPlaywrightInstall() {
-  if (SKIP_PW_INSTALL) {
-    log('Skipping Playwright install (--skip-playwright-install)');
+  const playwrightCli = join(ROOT, 'node_modules/playwright');
+  if (SKIP_PW_INSTALL || !existsSync(playwrightCli)) {
+    log('Skipping Playwright install (not installed or --skip-playwright-install)');
     results.install.playwrightFreshChromium = { skipped: true };
     return;
   }
@@ -347,7 +353,10 @@ async function benchmarkCli(baseUrl) {
 
   for (const item of commands) {
     log(`CLI: ${item.name}`);
-    const result = await run('npm', item.args, { inherit: true });
+    const result =
+      CLI === 'bun'
+        ? await run('bun', ['run', 'dev', '--', ...item.args.slice(3)], { inherit: true })
+        : await run('npm', item.args, { inherit: true });
     results.cli.push({
       name: item.name,
       command: result.command,
@@ -370,7 +379,10 @@ async function benchmarkInProcess(baseUrl) {
   ];
 
   log('In-process auditor: cold launch + warm reuse');
-  const result = await run('npx', ['tsx', runner, '--urls', urls.join(',')], { inherit: true });
+  const result =
+    IN_PROCESS === 'bun'
+      ? await run('bun', [runner, '--urls', urls.join(',')], { inherit: true })
+      : await run('npx', ['tsx', runner, '--urls', urls.join(',')], { inherit: true });
   saveText('in-process-auditor.log', `${result.stdout}\n${result.stderr}`);
 
   let parsed = null;
@@ -416,6 +428,7 @@ function toMarkdown() {
     `| node_modules | ${disk.nodeModules} |`,
     `| playwright package | ${disk.playwrightPackage} |`,
     `| @axe-core/playwright | ${disk.axePlaywrightPackage} |`,
+    `| axe-core | ${disk.axeCorePackage} |`,
     `| puppeteer-core | ${disk.puppeteerCorePackage} |`,
     `| ~/.cache/ms-playwright | ${disk.playwrightBrowsers} |`,
     `| ~/.bun | ${disk.bunInstall} |`,

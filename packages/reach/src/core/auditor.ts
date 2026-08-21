@@ -1,5 +1,5 @@
-import AxeBuilder from '@axe-core/playwright';
-import { type Browser, chromium } from 'playwright';
+import { runAxeOnPage } from './browser/axe.js';
+import { type BrowserEngine, createBrowserEngine } from './browser/index.js';
 import { buildManualCheckResults } from './manual-checks.js';
 import type {
   AuditResult,
@@ -11,40 +11,36 @@ import type {
 } from './types.js';
 
 export class AccessibilityAuditor {
-  private browser: Browser | null = null;
+  private engine: BrowserEngine | null = null;
 
   async initialize(): Promise<void> {
-    this.browser = await chromium.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    });
+    this.engine = await createBrowserEngine();
+    await this.engine.initialize();
   }
 
-  async audit(url: string, _options: AuditOptions = {}): Promise<AuditResult> {
-    if (!this.browser) {
+  async audit(url: string, options: AuditOptions = {}): Promise<AuditResult> {
+    if (!this.engine) {
       await this.initialize();
     }
+    if (!this.engine) {
+      throw new Error('Failed to start a browser engine');
+    }
 
-    const context = await this.browser?.newContext();
-    if (!context) throw new Error('Failed to create browser context');
-    const page = await context.newPage();
+    const page = await this.engine.newPage();
 
     try {
-      // Navigate to the page
-      await page.goto(url, { waitUntil: 'domcontentloaded' });
+      const timeout = options.timeout ?? 30000;
+      if (options.html) {
+        await page.setContent(options.html, { timeout });
+      } else {
+        await page.goto(url, { timeout });
+      }
 
-      // Run axe-core analysis
-      const axeResults = await new AxeBuilder({ page })
-        .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
-        .analyze();
-
-      const normalizedAxeResults = axeResults as unknown as AxeResults;
-
-      // Process results
-      const violations = this.processViolations(normalizedAxeResults.violations);
-      const manualChecks = buildManualCheckResults(normalizedAxeResults);
-      const passes = normalizedAxeResults.passes.length;
-      const incomplete = normalizedAxeResults.incomplete.length;
+      const axeResults = await runAxeOnPage(page);
+      const violations = this.processViolations(axeResults.violations);
+      const manualChecks = buildManualCheckResults(axeResults);
+      const passes = axeResults.passes.length;
+      const incomplete = axeResults.incomplete.length;
 
       return {
         url,
@@ -59,12 +55,15 @@ export class AccessibilityAuditor {
           incomplete: incomplete,
         },
         violations,
-        rawAxeResults: normalizedAxeResults,
+        rawAxeResults: axeResults,
         manualChecks,
+        engine: {
+          name: this.engine.name,
+          detail: this.engine.detail,
+        },
       };
     } finally {
       await page.close();
-      await context.close();
     }
   }
 
@@ -94,9 +93,9 @@ export class AccessibilityAuditor {
   }
 
   async close(): Promise<void> {
-    if (this.browser) {
-      await this.browser.close();
-      this.browser = null;
+    if (this.engine) {
+      await this.engine.close();
+      this.engine = null;
     }
   }
 }
@@ -105,4 +104,5 @@ export interface AuditOptions {
   timeout?: number;
   waitForSelector?: string;
   includePasses?: boolean;
+  html?: string;
 }
