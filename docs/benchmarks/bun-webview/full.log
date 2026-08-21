@@ -1,0 +1,17 @@
+[2026-08-21T22:30:08.029Z] Starting Reach benchmark (bun-webview)
+[2026-08-21T22:30:08.030Z] Collecting environment…
+[2026-08-21T22:30:08.097Z] Measuring disk usage…
+[2026-08-21T22:30:08.231Z] Skipping Playwright install (not installed or --skip-playwright-install)
+[2026-08-21T22:30:08.235Z] Fixture server at http://127.0.0.1:37949
+[2026-08-21T22:30:08.235Z] CLI: quick-example.com
+[2026-08-21T22:30:08.236Z] $ bun run dev -- quick https://example.com
+[2026-08-21T22:30:08.747Z] CLI: audit-example.com
+[2026-08-21T22:30:08.747Z] $ bun run dev -- audit https://example.com
+[2026-08-21T22:30:09.205Z] CLI: audit-example.com-json
+[2026-08-21T22:30:09.205Z] $ bun run dev -- audit https://example.com --output json
+[2026-08-21T22:30:09.667Z] CLI: audit-local-violations
+[2026-08-21T22:30:09.668Z] $ bun run dev -- audit http://127.0.0.1:37949/violations
+[2026-08-21T22:30:10.477Z] CLI: crawl-example.com-max-3
+[2026-08-21T22:30:10.477Z] $ bun run dev -- crawl https://example.com --max-pages 3
+[2026-08-21T22:30:10.956Z] In-process auditor: cold launch + warm reuse
+[2026-08-21T22:30:10.956Z] $ bun /workspace/scripts/benchmark-auditor-runner.mjs --urls http://127.0.0.1:37949/valid,http://127.0.0.1:37949/violations,https://example.com

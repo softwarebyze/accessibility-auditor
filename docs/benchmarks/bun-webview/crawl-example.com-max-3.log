@@ -1,0 +1,13 @@
+
+Crawl summary for https://example.com/
+Pages discovered: 1 (skipped: 1, crawl errors: 0)
+Audits run: 1 (success: 1, failed: 0)
+Total violations found: 0
+
+Per-page results
+✅ https://example.com/ — No violations detected
+
+$ bash ./scripts/run-workspace.sh packages/reach dev crawl https://example.com --max-pages "3"
+$ node ./scripts/run-dev.mjs crawl https://example.com --max-pages "3"
+- Crawling site and running accessibility audits...
+✔ Audited 1 page

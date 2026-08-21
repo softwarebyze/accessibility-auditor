@@ -1,0 +1,5 @@
+
+$ bash ./scripts/run-workspace.sh packages/reach dev quick https://example.com
+$ node ./scripts/run-dev.mjs quick https://example.com
+- Running quick accessibility check...
+✔ ✅ https://example.com - No violations found

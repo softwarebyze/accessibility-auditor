@@ -1,0 +1,12 @@
+
+> accessibility-auditor@1.0.0 dev
+> bash ./scripts/run-workspace.sh packages/reach dev quick https://example.com
+
+
+> reach-a11y@1.1.0 dev
+> node ./scripts/run-dev.mjs quick https://example.com
+
+
+npm warn config ignoring workspace config at /workspace/packages/reach/.npmrc
+- Running quick accessibility check...
+✔ ✅ https://example.com - No violations found

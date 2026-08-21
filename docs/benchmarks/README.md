@@ -1,6 +1,6 @@
 # Reach engine benchmarks
 
-These reports compare the Playwright-based auditor (before) with bun.WebView (after) on the same machine.
+These reports compare the Playwright-based auditor (before) with bun.WebView and the Node/npm Chrome fallback (after) on the same machine. Start with [`comparison.md`](./comparison.md).
 
 Reproduce:
 

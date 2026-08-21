@@ -1,0 +1,96 @@
+
+🔍 Reach — Accessibility Audit Report
+══════════════════════════════════════════════════
+URL: https://example.com
+Timestamp: 8/21/2026, 10:30:09 PM
+
+📊 Summary:
+  ✅ 8 checks passed
+
+✅ No accessibility violations found!
+📝 Manual & Hybrid Checks:
+
+▶ Common Checks
+  ⚠️ Color Contrast
+     • Automation: HYBRID (rules: color-contrast, link-in-text-block)
+     • What to look for: Normal text meets at least 4.5:1 contrast; large text meets 3:1.
+     • Notes: Verify gradients, background images, and focus outlines maintain adequate contrast.
+
+  ⚠️ Headings
+     • Automation: HYBRID (rules: heading-order, landmark-one-main, region)
+     • What to look for: A single first-level heading establishes the page topic.
+     • Notes: Check visually that headings convey a logical outline and that important sections aren't plain paragraphs.
+
+  ⚠️ Image Alternative Text
+     • Automation: HYBRID (rules: image-alt, area-alt, input-image-alt)
+     • What to look for: Meaningful images describe purpose or action, not purely visual detail.
+     • Notes: Review alt text manually to ensure it communicates intent and context.
+
+  ✅ Language of Page
+     • Automation: AUTOMATED (rules: html-has-lang, html-lang-valid)
+     • What to look for: The <html> element includes a valid BCP 47 language code.
+
+  ⚠️ Page Title
+     • Automation: HYBRID (rules: page-title)
+     • What to look for: Titles summarize the page purpose in a concise phrase.
+     • Notes: Verify the copy reflects the page content and is distinguishable from other pages.
+
+  ⚠️ Skip Link
+     • Automation: HYBRID (rules: bypass)
+     • What to look for: The first tabbable element is a functional skip link or landmark.
+     • Notes: Confirm the skip link is visible on focus and targets the correct region.
+
+  ⚠️ Visible Keyboard Focus
+     • Automation: HYBRID (rules: focus-order-semantics, focus-visible, focus-trap)
+     • What to look for: Each tabbable element exposes a clear focus outline.
+     • Notes: Run a manual tab-through to ensure focus indicators are prominent and meet contrast guidelines.
+
+  📝 Zoom
+     • Automation: MANUAL
+     • What to look for: At 200% zoom the page avoids horizontal scrolling for primary content.
+     • Notes: Manually zoom the page and confirm responsive behavior without clipped content.
+
+▶ Audio / Visual Checks
+  📝 Audio Description
+     • Automation: MANUAL
+     • What to look for: Look for a described-video track or narration covering on-screen text, visuals, and actions.
+     • Notes: Watch representative videos while toggling described tracks or confirm alternate versions exist.
+
+  📝 Captions
+     • Automation: MANUAL
+     • What to look for: Captions include dialogue, speaker identification, and essential sound effects.
+     • Notes: Play each media asset and verify captions are present, accurate, and synchronized.
+
+  📝 Transcripts
+     • Automation: MANUAL
+     • What to look for: Transcripts cover spoken words and meaningful non-speech audio cues.
+     • Notes: Inspect media detail pages or documentation for downloadable or inline transcripts.
+
+▶ Form Checks
+  ⚠️ Labels
+     • Automation: HYBRID (rules: label, aria-label, aria-labelledby, form-field-multiple-labels)
+     • What to look for: Inputs use <label for>, aria-label, or aria-labelledby with descriptive copy.
+     • Notes: Review complex fields (date pickers, custom dropdowns) to ensure labels are read correctly.
+
+  ⚠️ Required Fields
+     • Automation: HYBRID (rules: aria-required-attr, aria-required-parent, aria-required-children)
+     • What to look for: Required fields are programmatically marked (required attribute or aria-required).
+     • Notes: Attempt form submission to confirm errors are announced and instructions stay visible.
+
+
+📊 Coverage Summary:
+   🛠️ Engine: axe-core 4.10.3 via bun.WebView on Bun 1.4.0
+   ✅ Verified Checks: 10/25
+   📈 Estimated Coverage: 85%
+   🎯 WCAG Level: WCAG 2.1 AA
+   💡 Automated testing catches ~30-50% of accessibility issues
+
+
+Use --verbose for the legal context and coverage snapshot.
+Need the full verified check list? reach audit <url> --show-checks
+
+
+$ bash ./scripts/run-workspace.sh packages/reach dev audit https://example.com
+$ node ./scripts/run-dev.mjs audit https://example.com
+- Initializing accessibility audit...
+✔ Audit completed!
