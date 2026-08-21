@@ -1,0 +1,1583 @@
+
+> accessibility-auditor@1.0.0 dev
+> bash ./scripts/run-workspace.sh packages/reach dev audit https://example.com --output json
+
+
+> reach-a11y@1.0.2 dev
+> tsx index.ts audit https://example.com --output json
+
+{
+  "url": "https://example.com",
+  "timestamp": "2026-08-21T22:23:08.885Z",
+  "summary": {
+    "totalViolations": 0,
+    "criticalViolations": 0,
+    "seriousViolations": 0,
+    "moderateViolations": 0,
+    "minorViolations": 0,
+    "totalPasses": 8,
+    "incomplete": 0
+  },
+  "violations": [],
+  "rawAxeResults": {
+    "testEngine": {
+      "name": "axe-core",
+      "version": "4.10.3"
+    },
+    "testRunner": {
+      "name": "axe"
+    },
+    "testEnvironment": {
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
+      "windowWidth": 1280,
+      "windowHeight": 720,
+      "orientationAngle": 0,
+      "orientationType": "landscape-primary"
+    },
+    "timestamp": "2026-08-21T22:23:08.733Z",
+    "url": "https://example.com/",
+    "toolOptions": {
+      "runOnly": {
+        "type": "tag",
+        "values": [
+          "wcag2a",
+          "wcag2aa",
+          "wcag21a",
+          "wcag21aa"
+        ]
+      },
+      "reporter": "v1"
+    },
+    "inapplicable": [
+      {
+        "id": "area-alt",
+        "impact": null,
+        "tags": [
+          "cat.text-alternatives",
+          "wcag2a",
+          "wcag244",
+          "wcag412",
+          "section508",
+          "section508.22.a",
+          "TTv5",
+          "TT6.a",
+          "EN-301-549",
+          "EN-9.2.4.4",
+          "EN-9.4.1.2",
+          "ACT"
+        ],
+        "description": "Ensure <area> elements of image maps have alternative text",
+        "help": "Active <area> elements must have alternative text",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/area-alt?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "aria-allowed-attr",
+        "impact": null,
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag412",
+          "EN-301-549",
+          "EN-9.4.1.2"
+        ],
+        "description": "Ensure an element's role supports its ARIA attributes",
+        "help": "Elements must only use supported ARIA attributes",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-allowed-attr?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "aria-braille-equivalent",
+        "impact": null,
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag412",
+          "EN-301-549",
+          "EN-9.4.1.2"
+        ],
+        "description": "Ensure aria-braillelabel and aria-brailleroledescription have a non-braille equivalent",
+        "help": "aria-braille attributes must have a non-braille equivalent",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-braille-equivalent?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "aria-command-name",
+        "impact": null,
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag412",
+          "TTv5",
+          "TT6.a",
+          "EN-301-549",
+          "EN-9.4.1.2",
+          "ACT"
+        ],
+        "description": "Ensure every ARIA button, link and menuitem has an accessible name",
+        "help": "ARIA commands must have an accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-command-name?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "aria-conditional-attr",
+        "impact": null,
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag412",
+          "EN-301-549",
+          "EN-9.4.1.2"
+        ],
+        "description": "Ensure ARIA attributes are used as described in the specification of the element's role",
+        "help": "ARIA attributes must be used as specified for the element's role",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-conditional-attr?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "aria-deprecated-role",
+        "impact": null,
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag412",
+          "EN-301-549",
+          "EN-9.4.1.2"
+        ],
+        "description": "Ensure elements do not use deprecated roles",
+        "help": "Deprecated ARIA roles must not be used",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-deprecated-role?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "aria-hidden-focus",
+        "impact": null,
+        "tags": [
+          "cat.name-role-value",
+          "wcag2a",
+          "wcag412",
+          "TTv5",
+          "TT6.a",
+          "EN-301-549",
+          "EN-9.4.1.2"
+        ],
+        "description": "Ensure aria-hidden elements are not focusable nor contain focusable elements",
+        "help": "ARIA hidden element must not be focusable or contain focusable elements",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-hidden-focus?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "aria-input-field-name",
+        "impact": null,
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag412",
+          "TTv5",
+          "TT5.c",
+          "EN-301-549",
+          "EN-9.4.1.2",
+          "ACT"
+        ],
+        "description": "Ensure every ARIA input field has an accessible name",
+        "help": "ARIA input fields must have an accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-input-field-name?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "aria-meter-name",
+        "impact": null,
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag111",
+          "EN-301-549",
+          "EN-9.1.1.1"
+        ],
+        "description": "Ensure every ARIA meter node has an accessible name",
+        "help": "ARIA meter nodes must have an accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-meter-name?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "aria-progressbar-name",
+        "impact": null,
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag111",
+          "EN-301-549",
+          "EN-9.1.1.1"
+        ],
+        "description": "Ensure every ARIA progressbar node has an accessible name",
+        "help": "ARIA progressbar nodes must have an accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-progressbar-name?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "aria-prohibited-attr",
+        "impact": null,
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag412",
+          "EN-301-549",
+          "EN-9.4.1.2"
+        ],
+        "description": "Ensure ARIA attributes are not prohibited for an element's role",
+        "help": "Elements must only use permitted ARIA attributes",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "aria-required-attr",
+        "impact": null,
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag412",
+          "EN-301-549",
+          "EN-9.4.1.2"
+        ],
+        "description": "Ensure elements with ARIA roles have all required ARIA attributes",
+        "help": "Required ARIA attributes must be provided",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-required-attr?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "aria-required-children",
+        "impact": null,
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag131",
+          "EN-301-549",
+          "EN-9.1.3.1"
+        ],
+        "description": "Ensure elements with an ARIA role that require child roles contain them",
+        "help": "Certain ARIA roles must contain particular children",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-required-children?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "aria-required-parent",
+        "impact": null,
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag131",
+          "EN-301-549",
+          "EN-9.1.3.1"
+        ],
+        "description": "Ensure elements with an ARIA role that require parent roles are contained by them",
+        "help": "Certain ARIA roles must be contained by particular parents",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-required-parent?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "aria-roles",
+        "impact": null,
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag412",
+          "EN-301-549",
+          "EN-9.4.1.2"
+        ],
+        "description": "Ensure all elements with a role attribute use a valid value",
+        "help": "ARIA roles used must conform to valid values",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-roles?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "aria-toggle-field-name",
+        "impact": null,
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag412",
+          "TTv5",
+          "TT5.c",
+          "EN-301-549",
+          "EN-9.4.1.2",
+          "ACT"
+        ],
+        "description": "Ensure every ARIA toggle field has an accessible name",
+        "help": "ARIA toggle fields must have an accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-toggle-field-name?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "aria-tooltip-name",
+        "impact": null,
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag412",
+          "EN-301-549",
+          "EN-9.4.1.2"
+        ],
+        "description": "Ensure every ARIA tooltip node has an accessible name",
+        "help": "ARIA tooltip nodes must have an accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-tooltip-name?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "aria-valid-attr-value",
+        "impact": null,
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag412",
+          "EN-301-549",
+          "EN-9.4.1.2"
+        ],
+        "description": "Ensure all ARIA attributes have valid values",
+        "help": "ARIA attributes must conform to valid values",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-valid-attr-value?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "aria-valid-attr",
+        "impact": null,
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag412",
+          "EN-301-549",
+          "EN-9.4.1.2"
+        ],
+        "description": "Ensure attributes that begin with aria- are valid ARIA attributes",
+        "help": "ARIA attributes must conform to valid names",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-valid-attr?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "autocomplete-valid",
+        "impact": null,
+        "tags": [
+          "cat.forms",
+          "wcag21aa",
+          "wcag135",
+          "EN-301-549",
+          "EN-9.1.3.5",
+          "ACT"
+        ],
+        "description": "Ensure the autocomplete attribute is correct and suitable for the form field",
+        "help": "autocomplete attribute must be used correctly",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/autocomplete-valid?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "avoid-inline-spacing",
+        "impact": null,
+        "tags": [
+          "cat.structure",
+          "wcag21aa",
+          "wcag1412",
+          "EN-301-549",
+          "EN-9.1.4.12",
+          "ACT"
+        ],
+        "description": "Ensure that text spacing set through style attributes can be adjusted with custom stylesheets",
+        "help": "Inline text spacing must be adjustable with custom stylesheets",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/avoid-inline-spacing?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "blink",
+        "impact": null,
+        "tags": [
+          "cat.time-and-media",
+          "wcag2a",
+          "wcag222",
+          "section508",
+          "section508.22.j",
+          "TTv5",
+          "TT2.b",
+          "EN-301-549",
+          "EN-9.2.2.2"
+        ],
+        "description": "Ensure <blink> elements are not used",
+        "help": "<blink> elements are deprecated and must not be used",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/blink?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "button-name",
+        "impact": null,
+        "tags": [
+          "cat.name-role-value",
+          "wcag2a",
+          "wcag412",
+          "section508",
+          "section508.22.a",
+          "TTv5",
+          "TT6.a",
+          "EN-301-549",
+          "EN-9.4.1.2",
+          "ACT"
+        ],
+        "description": "Ensure buttons have discernible text",
+        "help": "Buttons must have discernible text",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/button-name?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "definition-list",
+        "impact": null,
+        "tags": [
+          "cat.structure",
+          "wcag2a",
+          "wcag131",
+          "EN-301-549",
+          "EN-9.1.3.1"
+        ],
+        "description": "Ensure <dl> elements are structured correctly",
+        "help": "<dl> elements must only directly contain properly-ordered <dt> and <dd> groups, <script>, <template> or <div> elements",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/definition-list?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "dlitem",
+        "impact": null,
+        "tags": [
+          "cat.structure",
+          "wcag2a",
+          "wcag131",
+          "EN-301-549",
+          "EN-9.1.3.1"
+        ],
+        "description": "Ensure <dt> and <dd> elements are contained by a <dl>",
+        "help": "<dt> and <dd> elements must be contained by a <dl>",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/dlitem?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "duplicate-id-aria",
+        "impact": null,
+        "tags": [
+          "cat.parsing",
+          "wcag2a",
+          "wcag412",
+          "EN-301-549",
+          "EN-9.4.1.2"
+        ],
+        "description": "Ensure every id attribute value used in ARIA and in labels is unique",
+        "help": "IDs used in ARIA and labels must be unique",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/duplicate-id-aria?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "form-field-multiple-labels",
+        "impact": null,
+        "tags": [
+          "cat.forms",
+          "wcag2a",
+          "wcag332",
+          "TTv5",
+          "TT5.c",
+          "EN-301-549",
+          "EN-9.3.3.2"
+        ],
+        "description": "Ensure form field does not have multiple label elements",
+        "help": "Form field must not have multiple label elements",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/form-field-multiple-labels?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "frame-focusable-content",
+        "impact": null,
+        "tags": [
+          "cat.keyboard",
+          "wcag2a",
+          "wcag211",
+          "TTv5",
+          "TT4.a",
+          "EN-301-549",
+          "EN-9.2.1.1"
+        ],
+        "description": "Ensure <frame> and <iframe> elements with focusable content do not have tabindex=-1",
+        "help": "Frames with focusable content must not have tabindex=-1",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/frame-focusable-content?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "frame-title-unique",
+        "impact": null,
+        "tags": [
+          "cat.text-alternatives",
+          "wcag2a",
+          "wcag412",
+          "TTv5",
+          "TT12.d",
+          "EN-301-549",
+          "EN-9.4.1.2"
+        ],
+        "description": "Ensure <iframe> and <frame> elements contain a unique title attribute",
+        "help": "Frames must have a unique title attribute",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/frame-title-unique?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "frame-title",
+        "impact": null,
+        "tags": [
+          "cat.text-alternatives",
+          "wcag2a",
+          "wcag412",
+          "section508",
+          "section508.22.i",
+          "TTv5",
+          "TT12.d",
+          "EN-301-549",
+          "EN-9.4.1.2"
+        ],
+        "description": "Ensure <iframe> and <frame> elements have an accessible name",
+        "help": "Frames must have an accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/frame-title?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "html-xml-lang-mismatch",
+        "impact": null,
+        "tags": [
+          "cat.language",
+          "wcag2a",
+          "wcag311",
+          "EN-301-549",
+          "EN-9.3.1.1",
+          "ACT"
+        ],
+        "description": "Ensure that HTML elements with both valid lang and xml:lang attributes agree on the base language of the page",
+        "help": "HTML elements with lang and xml:lang must have the same base language",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-xml-lang-mismatch?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "image-alt",
+        "impact": null,
+        "tags": [
+          "cat.text-alternatives",
+          "wcag2a",
+          "wcag111",
+          "section508",
+          "section508.22.a",
+          "TTv5",
+          "TT7.a",
+          "TT7.b",
+          "EN-301-549",
+          "EN-9.1.1.1",
+          "ACT"
+        ],
+        "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+        "help": "Images must have alternative text",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/image-alt?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "input-button-name",
+        "impact": null,
+        "tags": [
+          "cat.name-role-value",
+          "wcag2a",
+          "wcag412",
+          "section508",
+          "section508.22.a",
+          "TTv5",
+          "TT5.c",
+          "EN-301-549",
+          "EN-9.4.1.2",
+          "ACT"
+        ],
+        "description": "Ensure input buttons have discernible text",
+        "help": "Input buttons must have discernible text",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/input-button-name?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "input-image-alt",
+        "impact": null,
+        "tags": [
+          "cat.text-alternatives",
+          "wcag2a",
+          "wcag111",
+          "wcag412",
+          "section508",
+          "section508.22.a",
+          "TTv5",
+          "TT7.a",
+          "EN-301-549",
+          "EN-9.1.1.1",
+          "EN-9.4.1.2",
+          "ACT"
+        ],
+        "description": "Ensure <input type=\"image\"> elements have alternative text",
+        "help": "Image buttons must have alternative text",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/input-image-alt?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "label",
+        "impact": null,
+        "tags": [
+          "cat.forms",
+          "wcag2a",
+          "wcag412",
+          "section508",
+          "section508.22.n",
+          "TTv5",
+          "TT5.c",
+          "EN-301-549",
+          "EN-9.4.1.2",
+          "ACT"
+        ],
+        "description": "Ensure every form element has a label",
+        "help": "Form elements must have labels",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/label?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "link-in-text-block",
+        "impact": null,
+        "tags": [
+          "cat.color",
+          "wcag2a",
+          "wcag141",
+          "TTv5",
+          "TT13.a",
+          "EN-301-549",
+          "EN-9.1.4.1"
+        ],
+        "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+        "help": "Links must be distinguishable without relying on color",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "list",
+        "impact": null,
+        "tags": [
+          "cat.structure",
+          "wcag2a",
+          "wcag131",
+          "EN-301-549",
+          "EN-9.1.3.1"
+        ],
+        "description": "Ensure that lists are structured correctly",
+        "help": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/list?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "listitem",
+        "impact": null,
+        "tags": [
+          "cat.structure",
+          "wcag2a",
+          "wcag131",
+          "EN-301-549",
+          "EN-9.1.3.1"
+        ],
+        "description": "Ensure <li> elements are used semantically",
+        "help": "<li> elements must be contained in a <ul> or <ol>",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/listitem?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "marquee",
+        "impact": null,
+        "tags": [
+          "cat.parsing",
+          "wcag2a",
+          "wcag222",
+          "TTv5",
+          "TT2.b",
+          "EN-301-549",
+          "EN-9.2.2.2"
+        ],
+        "description": "Ensure <marquee> elements are not used",
+        "help": "<marquee> elements are deprecated and must not be used",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/marquee?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "meta-refresh",
+        "impact": null,
+        "tags": [
+          "cat.time-and-media",
+          "wcag2a",
+          "wcag221",
+          "TTv5",
+          "TT8.a",
+          "EN-301-549",
+          "EN-9.2.2.1"
+        ],
+        "description": "Ensure <meta http-equiv=\"refresh\"> is not used for delayed refresh",
+        "help": "Delayed refresh under 20 hours must not be used",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/meta-refresh?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "nested-interactive",
+        "impact": null,
+        "tags": [
+          "cat.keyboard",
+          "wcag2a",
+          "wcag412",
+          "TTv5",
+          "TT6.a",
+          "EN-301-549",
+          "EN-9.4.1.2"
+        ],
+        "description": "Ensure interactive controls are not nested as they are not always announced by screen readers or can cause focus problems for assistive technologies",
+        "help": "Interactive controls must not be nested",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/nested-interactive?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "object-alt",
+        "impact": null,
+        "tags": [
+          "cat.text-alternatives",
+          "wcag2a",
+          "wcag111",
+          "section508",
+          "section508.22.a",
+          "EN-301-549",
+          "EN-9.1.1.1"
+        ],
+        "description": "Ensure <object> elements have alternative text",
+        "help": "<object> elements must have alternative text",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/object-alt?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "role-img-alt",
+        "impact": null,
+        "tags": [
+          "cat.text-alternatives",
+          "wcag2a",
+          "wcag111",
+          "section508",
+          "section508.22.a",
+          "TTv5",
+          "TT7.a",
+          "EN-301-549",
+          "EN-9.1.1.1",
+          "ACT"
+        ],
+        "description": "Ensure [role=\"img\"] elements have alternative text",
+        "help": "[role=\"img\"] elements must have an alternative text",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/role-img-alt?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "scrollable-region-focusable",
+        "impact": null,
+        "tags": [
+          "cat.keyboard",
+          "wcag2a",
+          "wcag211",
+          "wcag213",
+          "TTv5",
+          "TT4.a",
+          "EN-301-549",
+          "EN-9.2.1.1",
+          "EN-9.2.1.3"
+        ],
+        "description": "Ensure elements that have scrollable content are accessible by keyboard",
+        "help": "Scrollable region must have keyboard access",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/scrollable-region-focusable?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "select-name",
+        "impact": null,
+        "tags": [
+          "cat.forms",
+          "wcag2a",
+          "wcag412",
+          "section508",
+          "section508.22.n",
+          "TTv5",
+          "TT5.c",
+          "EN-301-549",
+          "EN-9.4.1.2",
+          "ACT"
+        ],
+        "description": "Ensure select element has an accessible name",
+        "help": "Select element must have an accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/select-name?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "server-side-image-map",
+        "impact": null,
+        "tags": [
+          "cat.text-alternatives",
+          "wcag2a",
+          "wcag211",
+          "section508",
+          "section508.22.f",
+          "TTv5",
+          "TT4.a",
+          "EN-301-549",
+          "EN-9.2.1.1"
+        ],
+        "description": "Ensure that server-side image maps are not used",
+        "help": "Server-side image maps must not be used",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/server-side-image-map?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "summary-name",
+        "impact": null,
+        "tags": [
+          "cat.name-role-value",
+          "wcag2a",
+          "wcag412",
+          "section508",
+          "section508.22.a",
+          "TTv5",
+          "TT6.a",
+          "EN-301-549",
+          "EN-9.4.1.2"
+        ],
+        "description": "Ensure summary elements have discernible text",
+        "help": "Summary elements must have discernible text",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/summary-name?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "svg-img-alt",
+        "impact": null,
+        "tags": [
+          "cat.text-alternatives",
+          "wcag2a",
+          "wcag111",
+          "section508",
+          "section508.22.a",
+          "TTv5",
+          "TT7.a",
+          "EN-301-549",
+          "EN-9.1.1.1",
+          "ACT"
+        ],
+        "description": "Ensure <svg> elements with an img, graphics-document or graphics-symbol role have an accessible text",
+        "help": "<svg> elements with an img role must have an alternative text",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/svg-img-alt?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "td-headers-attr",
+        "impact": null,
+        "tags": [
+          "cat.tables",
+          "wcag2a",
+          "wcag131",
+          "section508",
+          "section508.22.g",
+          "TTv5",
+          "TT14.b",
+          "EN-301-549",
+          "EN-9.1.3.1"
+        ],
+        "description": "Ensure that each cell in a table that uses the headers attribute refers only to other cells in that table",
+        "help": "Table cells that use the headers attribute must only refer to cells in the same table",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/td-headers-attr?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "th-has-data-cells",
+        "impact": null,
+        "tags": [
+          "cat.tables",
+          "wcag2a",
+          "wcag131",
+          "section508",
+          "section508.22.g",
+          "TTv5",
+          "TT14.b",
+          "EN-301-549",
+          "EN-9.1.3.1"
+        ],
+        "description": "Ensure that <th> elements and elements with role=columnheader/rowheader have data cells they describe",
+        "help": "Table headers in a data table must refer to data cells",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/th-has-data-cells?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "valid-lang",
+        "impact": null,
+        "tags": [
+          "cat.language",
+          "wcag2aa",
+          "wcag312",
+          "TTv5",
+          "TT11.b",
+          "EN-301-549",
+          "EN-9.3.1.2",
+          "ACT"
+        ],
+        "description": "Ensure lang attributes have valid values",
+        "help": "lang attribute must have a valid value",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/valid-lang?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "video-caption",
+        "impact": null,
+        "tags": [
+          "cat.text-alternatives",
+          "wcag2a",
+          "wcag122",
+          "section508",
+          "section508.22.a",
+          "TTv5",
+          "TT17.a",
+          "EN-301-549",
+          "EN-9.1.2.2"
+        ],
+        "description": "Ensure <video> elements have captions",
+        "help": "<video> elements must have captions",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/video-caption?application=playwright",
+        "nodes": []
+      },
+      {
+        "id": "no-autoplay-audio",
+        "impact": null,
+        "tags": [
+          "cat.time-and-media",
+          "wcag2a",
+          "wcag142",
+          "TTv5",
+          "TT2.a",
+          "EN-301-549",
+          "EN-9.1.4.2",
+          "ACT"
+        ],
+        "description": "Ensure <video> or <audio> elements do not autoplay audio for more than 3 seconds without a control mechanism to stop or mute the audio",
+        "help": "<video> or <audio> elements must not play automatically",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/no-autoplay-audio?application=playwright",
+        "nodes": []
+      }
+    ],
+    "passes": [
+      {
+        "id": "aria-hidden-body",
+        "impact": null,
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag131",
+          "wcag412",
+          "EN-301-549",
+          "EN-9.1.3.1",
+          "EN-9.4.1.2"
+        ],
+        "description": "Ensure aria-hidden=\"true\" is not present on the document body.",
+        "help": "aria-hidden=\"true\" must not be present on the document body",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-hidden-body?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "aria-hidden-body",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "No aria-hidden attribute is present on document body"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": null,
+            "html": "<body><div><h1>Example Domain</h1><p>This domain is for use in documentation examples without needing permission. Avoid use in operations.</p><p><a href=\"https://iana.org/domains/example\">Learn more</a></p></div>\n</body>",
+            "target": [
+              "body"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "bypass",
+        "impact": null,
+        "tags": [
+          "cat.keyboard",
+          "wcag2a",
+          "wcag241",
+          "section508",
+          "section508.22.o",
+          "TTv5",
+          "TT9.a",
+          "EN-301-549",
+          "EN-9.2.4.1"
+        ],
+        "description": "Ensure each page has at least one mechanism for a user to bypass navigation and jump straight to the content",
+        "help": "Page must have means to bypass repeated blocks",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/bypass?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "header-present",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<h1>Example Domain</h1>",
+                    "target": [
+                      "h1"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Page has a heading"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": null,
+            "html": "<html lang=\"en\">",
+            "target": [
+              "html"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "color-contrast",
+        "impact": null,
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#303030",
+                  "bgColor": "#eeeeee",
+                  "contrastRatio": 11.37,
+                  "fontSize": "18.0pt (24px)",
+                  "fontWeight": "bold",
+                  "expectedContrastRatio": "3:1"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has sufficient color contrast of 11.37"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": null,
+            "html": "<h1>Example Domain</h1>",
+            "target": [
+              "h1"
+            ]
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#303030",
+                  "bgColor": "#eeeeee",
+                  "contrastRatio": 11.37,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "normal",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has sufficient color contrast of 11.37"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": null,
+            "html": "<p>This domain is for use in documentation examples without needing permission. Avoid use in operations.</p>",
+            "target": [
+              "p:nth-child(2)"
+            ]
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#58669c",
+                  "bgColor": "#eeeeee",
+                  "contrastRatio": 4.76,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "normal",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has sufficient color contrast of 4.76"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": null,
+            "html": "<a href=\"https://iana.org/domains/example\">Learn more</a>",
+            "target": [
+              "a"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "document-title",
+        "impact": null,
+        "tags": [
+          "cat.text-alternatives",
+          "wcag2a",
+          "wcag242",
+          "TTv5",
+          "TT12.a",
+          "EN-301-549",
+          "EN-9.2.4.2",
+          "ACT"
+        ],
+        "description": "Ensure each HTML document contains a non-empty <title> element",
+        "help": "Documents must have <title> element to aid in navigation",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/document-title?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "doc-has-title",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Document has a non-empty <title> element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": null,
+            "html": "<html lang=\"en\">",
+            "target": [
+              "html"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "html-has-lang",
+        "impact": null,
+        "tags": [
+          "cat.language",
+          "wcag2a",
+          "wcag311",
+          "TTv5",
+          "TT11.a",
+          "EN-301-549",
+          "EN-9.3.1.1",
+          "ACT"
+        ],
+        "description": "Ensure every HTML document has a lang attribute",
+        "help": "<html> element must have a lang attribute",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "has-lang",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "The <html> element has a lang attribute"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": null,
+            "html": "<html lang=\"en\">",
+            "target": [
+              "html"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "html-lang-valid",
+        "impact": null,
+        "tags": [
+          "cat.language",
+          "wcag2a",
+          "wcag311",
+          "TTv5",
+          "TT11.a",
+          "EN-301-549",
+          "EN-9.3.1.1",
+          "ACT"
+        ],
+        "description": "Ensure the lang attribute of the <html> element has a valid value",
+        "help": "<html> element must have a valid value for the lang attribute",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/html-lang-valid?application=playwright",
+        "nodes": [
+          {
+            "any": [],
+            "all": [],
+            "none": [
+              {
+                "id": "valid-lang",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Value of lang attribute is included in the list of valid languages"
+              }
+            ],
+            "impact": null,
+            "html": "<html lang=\"en\">",
+            "target": [
+              "html"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "link-name",
+        "impact": null,
+        "tags": [
+          "cat.name-role-value",
+          "wcag2a",
+          "wcag244",
+          "wcag412",
+          "section508",
+          "section508.22.a",
+          "TTv5",
+          "TT6.a",
+          "EN-301-549",
+          "EN-9.2.4.4",
+          "EN-9.4.1.2",
+          "ACT"
+        ],
+        "description": "Ensure links have discernible text",
+        "help": "Links must have discernible text",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/link-name?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "has-visible-text",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has text that is visible to screen readers"
+              }
+            ],
+            "all": [],
+            "none": [
+              {
+                "id": "focusable-no-name",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element is not in tab order or has accessible text"
+              }
+            ],
+            "impact": null,
+            "html": "<a href=\"https://iana.org/domains/example\">Learn more</a>",
+            "target": [
+              "a"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "meta-viewport",
+        "impact": null,
+        "tags": [
+          "cat.sensory-and-visual-cues",
+          "wcag2aa",
+          "wcag144",
+          "EN-301-549",
+          "EN-9.1.4.4",
+          "ACT"
+        ],
+        "description": "Ensure <meta name=\"viewport\"> does not disable text scaling and zooming",
+        "help": "Zooming and scaling must not be disabled",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/meta-viewport?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "meta-viewport",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "<meta> tag does not disable zooming on mobile devices"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": null,
+            "html": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+            "target": [
+              "meta"
+            ]
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "violations": []
+  },
+  "manualChecks": [
+    {
+      "id": "color-contrast",
+      "title": "Color Contrast",
+      "category": "common",
+      "description": "Measures contrast between text or interactive elements and their backgrounds.",
+      "whyItMatters": "Low contrast makes content unreadable for people with low vision or color deficiencies.",
+      "whatToLookFor": [
+        "Normal text meets at least 4.5:1 contrast; large text meets 3:1.",
+        "Interactive states (hover, focus, active) also remain perceivable."
+      ],
+      "automation": "hybrid",
+      "relatedRuleIds": [
+        "color-contrast",
+        "link-in-text-block"
+      ],
+      "manualNotes": "Verify gradients, background images, and focus outlines maintain adequate contrast.",
+      "status": "needs-review",
+      "notes": "Verify gradients, background images, and focus outlines maintain adequate contrast."
+    },
+    {
+      "id": "headings",
+      "title": "Headings",
+      "category": "common",
+      "description": "Validates heading structure and hierarchy so content is navigable by outline.",
+      "whyItMatters": "Screen reader and keyboard users skim by heading level to grasp structure quickly.",
+      "whatToLookFor": [
+        "A single first-level heading establishes the page topic.",
+        "Subsequent headings increase one level at a time without skipping."
+      ],
+      "automation": "hybrid",
+      "relatedRuleIds": [
+        "heading-order",
+        "landmark-one-main",
+        "region"
+      ],
+      "manualNotes": "Check visually that headings convey a logical outline and that important sections aren't plain paragraphs.",
+      "status": "needs-review",
+      "notes": "Check visually that headings convey a logical outline and that important sections aren't plain paragraphs."
+    },
+    {
+      "id": "image-alt",
+      "title": "Image Alternative Text",
+      "category": "common",
+      "description": "Confirms meaningful images include descriptive alternative text and decorative images are marked appropriately.",
+      "whyItMatters": "People who rely on screen readers need alt text to understand the purpose of non-text content.",
+      "whatToLookFor": [
+        "Meaningful images describe purpose or action, not purely visual detail.",
+        "Decorative images use empty alt attributes (alt=\"\")."
+      ],
+      "automation": "hybrid",
+      "relatedRuleIds": [
+        "image-alt",
+        "area-alt",
+        "input-image-alt"
+      ],
+      "manualNotes": "Review alt text manually to ensure it communicates intent and context.",
+      "status": "needs-review",
+      "notes": "Review alt text manually to ensure it communicates intent and context."
+    },
+    {
+      "id": "language",
+      "title": "Language of Page",
+      "category": "common",
+      "description": "Requires the root HTML element to define the primary language.",
+      "whyItMatters": "Assistive technologies pronounce content correctly only when the language is set.",
+      "whatToLookFor": [
+        "The <html> element includes a valid BCP 47 language code.",
+        "Localized pages update the attribute accordingly."
+      ],
+      "automation": "automated",
+      "relatedRuleIds": [
+        "html-has-lang",
+        "html-lang-valid"
+      ],
+      "status": "pass"
+    },
+    {
+      "id": "page-title",
+      "title": "Page Title",
+      "category": "common",
+      "description": "Ensures each page exposes a descriptive, unique <title> element.",
+      "whyItMatters": "Page titles are the first announcement for screen reader users and orient everyone to their location.",
+      "whatToLookFor": [
+        "Titles summarize the page purpose in a concise phrase.",
+        "Different sections expose different titles to avoid confusion."
+      ],
+      "automation": "hybrid",
+      "relatedRuleIds": [
+        "page-title"
+      ],
+      "manualNotes": "Verify the copy reflects the page content and is distinguishable from other pages.",
+      "status": "needs-review",
+      "notes": "Verify the copy reflects the page content and is distinguishable from other pages."
+    },
+    {
+      "id": "skip-link",
+      "title": "Skip Link",
+      "category": "common",
+      "description": "Checks for keyboard-only mechanisms to bypass repeated navigation.",
+      "whyItMatters": "Skip links or landmarks let assistive technology users jump to main content efficiently.",
+      "whatToLookFor": [
+        "The first tabbable element is a functional skip link or landmark.",
+        "Focus moves to the main content container when activated."
+      ],
+      "automation": "hybrid",
+      "relatedRuleIds": [
+        "bypass"
+      ],
+      "manualNotes": "Confirm the skip link is visible on focus and targets the correct region.",
+      "status": "needs-review",
+      "notes": "Confirm the skip link is visible on focus and targets the correct region."
+    },
+    {
+      "id": "visible-focus",
+      "title": "Visible Keyboard Focus",
+      "category": "common",
+      "description": "Evaluates whether focus order and indicators are perceivable as users tab through the page.",
+      "whyItMatters": "Keyboard users must always know which element is active to interact confidently.",
+      "whatToLookFor": [
+        "Each tabbable element exposes a clear focus outline.",
+        "Focus isn't trapped within overlays or hidden containers."
+      ],
+      "automation": "hybrid",
+      "relatedRuleIds": [
+        "focus-order-semantics",
+        "focus-visible",
+        "focus-trap"
+      ],
+      "manualNotes": "Run a manual tab-through to ensure focus indicators are prominent and meet contrast guidelines.",
+      "status": "needs-review",
+      "notes": "Run a manual tab-through to ensure focus indicators are prominent and meet contrast guidelines."
+    },
+    {
+      "id": "zoom",
+      "title": "Zoom",
+      "category": "common",
+      "description": "Prompts verification that layout and interaction remain usable at 200–400% browser zoom.",
+      "whyItMatters": "Many people enlarge content to read; layouts must reflow without breaking functionality.",
+      "whatToLookFor": [
+        "At 200% zoom the page avoids horizontal scrolling for primary content.",
+        "Controls and dialogs remain visible and usable when zoomed."
+      ],
+      "automation": "manual",
+      "manualNotes": "Manually zoom the page and confirm responsive behavior without clipped content.",
+      "relatedRuleIds": [],
+      "status": "manual",
+      "notes": "Manually zoom the page and confirm responsive behavior without clipped content."
+    },
+    {
+      "id": "audio-description",
+      "title": "Audio Description",
+      "category": "audiovisual",
+      "description": "Checks that visual information in video content has an audio-described alternative or secondary track.",
+      "whyItMatters": "Blind and low-vision users depend on narration of visual context to follow video stories.",
+      "whatToLookFor": [
+        "Look for a described-video track or narration covering on-screen text, visuals, and actions.",
+        "Ensure instructions and captions reference the availability of audio description."
+      ],
+      "automation": "manual",
+      "manualNotes": "Watch representative videos while toggling described tracks or confirm alternate versions exist.",
+      "relatedRuleIds": [],
+      "status": "manual",
+      "notes": "Watch representative videos while toggling described tracks or confirm alternate versions exist."
+    },
+    {
+      "id": "captions",
+      "title": "Captions",
+      "category": "audiovisual",
+      "description": "Ensures media with audio includes synchronized captions covering speech and relevant sounds.",
+      "whyItMatters": "Captions make audio content accessible to Deaf and hard-of-hearing audiences.",
+      "whatToLookFor": [
+        "Captions include dialogue, speaker identification, and essential sound effects.",
+        "Caption controls are easy to locate and enable."
+      ],
+      "automation": "manual",
+      "manualNotes": "Play each media asset and verify captions are present, accurate, and synchronized.",
+      "relatedRuleIds": [],
+      "status": "manual",
+      "notes": "Play each media asset and verify captions are present, accurate, and synchronized."
+    },
+    {
+      "id": "transcripts",
+      "title": "Transcripts",
+      "category": "audiovisual",
+      "description": "Confirms audio and video assets provide full text transcripts separate from the player.",
+      "whyItMatters": "Transcripts support Deaf users and anyone who prefers or requires text alternatives.",
+      "whatToLookFor": [
+        "Transcripts cover spoken words and meaningful non-speech audio cues.",
+        "Transcripts are easy to access near the media player."
+      ],
+      "automation": "manual",
+      "manualNotes": "Inspect media detail pages or documentation for downloadable or inline transcripts.",
+      "relatedRuleIds": [],
+      "status": "manual",
+      "notes": "Inspect media detail pages or documentation for downloadable or inline transcripts."
+    },
+    {
+      "id": "labels",
+      "title": "Labels",
+      "category": "forms",
+      "description": "Validates that every form field exposes a programmatic and visible label.",
+      "whyItMatters": "Labels tell everyone what information to enter; assistive tech announces them before inputs.",
+      "whatToLookFor": [
+        "Inputs use <label for>, aria-label, or aria-labelledby with descriptive copy.",
+        "Icons or placeholders alone are not used as the only label."
+      ],
+      "automation": "hybrid",
+      "relatedRuleIds": [
+        "label",
+        "aria-label",
+        "aria-labelledby",
+        "form-field-multiple-labels"
+      ],
+      "manualNotes": "Review complex fields (date pickers, custom dropdowns) to ensure labels are read correctly.",
+      "status": "needs-review",
+      "notes": "Review complex fields (date pickers, custom dropdowns) to ensure labels are read correctly."
+    },
+    {
+      "id": "required-fields",
+      "title": "Required Fields",
+      "category": "forms",
+      "description": "Highlights inputs that must be completed and ensures requirements are communicated.",
+      "whyItMatters": "People need advance notice of required information to avoid validation errors.",
+      "whatToLookFor": [
+        "Required fields are programmatically marked (required attribute or aria-required).",
+        "Visual indicators (asterisks, helper text) are explained and consistent."
+      ],
+      "automation": "hybrid",
+      "relatedRuleIds": [
+        "aria-required-attr",
+        "aria-required-parent",
+        "aria-required-children"
+      ],
+      "manualNotes": "Attempt form submission to confirm errors are announced and instructions stay visible.",
+      "status": "needs-review",
+      "notes": "Attempt form submission to confirm errors are announced and instructions stay visible."
+    }
+  ]
+}
+
+- Initializing accessibility audit...
+✔ Audit completed!

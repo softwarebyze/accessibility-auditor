@@ -7,7 +7,7 @@ This directory contains utilities for testing the accessibility auditor without 
 Instead of fully mocking axe-core results, this system:
 
 1. **Caches HTML content** for specific URLs
-2. **Uses real browsers** (Playwright) to load the cached content
+2. **Uses a real browser** (Bun.WebView or puppeteer-core) to load the cached content
 3. **Runs real axe-core analysis** on the cached HTML
 4. **Generates authentic results** without network dependencies
 

@@ -1,0 +1,159 @@
+{
+  "label": "bun-webview",
+  "startedAt": "2026-08-21T22:30:08.029Z",
+  "engineNote": "Bun.WebView chrome backend (Bun 1.4.0)",
+  "environment": {
+    "node": "v22.14.0",
+    "npm": "10.9.7",
+    "bun": "1.4.0",
+    "nodePath": "/exec-daemon/node",
+    "npmPath": "/home/ubuntu/.nvm/versions/node/v22.22.2/bin/npm",
+    "bunPath": "/home/ubuntu/.bun/bin/bun",
+    "chromePath": "/usr/local/bin/google-chrome",
+    "platform": "linux x64",
+    "cwd": "/workspace",
+    "cli": "bun",
+    "inProcessRuntime": "bun"
+  },
+  "disk": {
+    "nodeModules": "645M",
+    "playwrightPackage": "4.2M",
+    "axePlaywrightPackage": "68K",
+    "axeCorePackage": "2.8M",
+    "puppeteerCorePackage": "12M",
+    "playwrightBrowsers": "1.5G",
+    "bunInstall": "789M"
+  },
+  "install": {
+    "playwrightFreshChromium": {
+      "skipped": true
+    }
+  },
+  "cli": [
+    {
+      "name": "quick-example.com",
+      "command": "bun run dev -- quick https://example.com",
+      "code": 0,
+      "durationMs": 365.8,
+      "peakTreeRssMb": 774.4,
+      "stdout": "",
+      "stderr": "$ bash ./scripts/run-workspace.sh packages/reach dev quick https://example.com\n$ node ./scripts/run-dev.mjs quick https://example.com\n- Running quick accessibility check...\n✔ ✅ https://example.com - No violations found\n"
+    },
+    {
+      "name": "audit-example.com",
+      "command": "bun run dev -- audit https://example.com",
+      "code": 0,
+      "durationMs": 350.8,
+      "peakTreeRssMb": 862.2,
+      "stdout": "\n🔍 Reach — Accessibility Audit Report\n══════════════════════════════════════════════════\nURL: https://example.com\nTimestamp: 8/21/2026, 10:30:09 PM\n\n📊 Summary:\n  ✅ 8 checks passed\n\n✅ No accessibility violations found!\n📝 Manual & Hybrid Checks:\n\n▶ Common Checks\n  ⚠️ Color Contrast\n     • Automation: HYBRID (rules: color-contrast, link-in-text-block)\n     • What to look for: Normal text meets at least 4.5:1 contrast; large text meets 3:1.\n     • Notes: Verify gradients, background images, and focus outlines maintain adequate contrast.\n\n  ⚠️ Headings\n     • Automation: HYBRID (rules: heading-order, landmark-one-main, region)\n     • What to look for: A single first-level heading establishes the page topic.\n     • Notes: Check visually that headings convey a logical outline and that important sections aren't plain paragraphs.\n\n  ⚠️ Image Alternative Text\n     • Automation: HYBRID (rules: image-alt, area-alt, input-image-alt)\n     • What to look for: Meaningful images describe purpose or action, not purely visual detail.\n     • Notes: Review alt text manually to ensure it communicates intent and context.\n\n  ✅ Language of Page\n     • Automation: AUTOMATED (rules: html-has-lang, html-lang-valid)\n     • What to look for: The <html> element includes a valid BCP 47 language code.\n\n  ⚠️ Page Title\n     • Automation: HYBRID (rules: page-title)\n     • What to look for: Titles summarize the page purpose in a concise phrase.\n     • Notes: Verify the copy reflects the page content and is distinguishable from other pages.\n\n  ⚠️ Skip Link\n     • Automation: HYBRID (rules: bypass)\n     • What to look for: The first tabbable element is a functional skip link or landmark.\n     • Notes: Confirm the skip link is visible on focus and targets the correct region.\n\n  ⚠️ Visible Keyboard Focus\n     • Automation: HYBRID (rules: focus-order-semantics, focus-visible, focus-trap)\n     • What to look for: Each tabbable element exposes a clear focus outline.\n     • Notes: Run a manual tab-through to ensure focus indicators are prominent and meet contrast guidelines.\n\n  📝 Zoom\n     • Automation: MANUAL\n     • What to look for: At 200% zoom the page avoids horizontal scrolling for primary content.\n     • Notes: Manually zoom the page and confirm responsive behavior without clipped content.\n\n▶ Audio / Visual Checks\n  📝 Audio Description\n     • Automation: MANUAL\n     • What to look for: Look for a described-video track or narration covering on-screen text, visuals, and actions.\n     • Notes: Watch representative videos while toggling described tracks or confirm alternate versions exist.\n\n  📝 Captions\n     • Automation: MANUAL\n     • What to look for: Captions include dialogue, speaker identification, and essential sound effects.\n     • Notes: Play each media asset and verify captions are present, accurate, and synchronized.\n\n  📝 Transcripts\n     • Automation: MANUAL\n     • What to look for: Transcripts cover spoken words and meaningful non-speech audio cues.\n     • Notes: Inspect media detail pages or documentation for downloadable or inline transcripts.\n\n▶ Form Checks\n  ⚠️ Labels\n     • Automation: HYBRID (rules: label, aria-label, aria-labelledby, form-field-multiple-labels)\n     • What to look for: Inputs use <label for>, aria-label, or aria-labelledby with descriptive copy.\n     • Notes: Review complex fields (date pickers, custom dropdowns) to ensure labels are read correctly.\n\n  ⚠️ Required Fields\n     • Automation: HYBRID (rules: aria-required-attr, aria-required-parent, aria-required-children)\n     • What to look for: Required fields are programmatically marked (required attribute or aria-required).\n     • Notes: Attempt form submission to confirm errors are announced and instructions stay visible.\n\n\n📊 Coverage Summary:\n   🛠️ Engine: axe-core 4.10.3 via bun.WebView on Bun 1.4.0\n   ✅ Verified Checks: 10/25\n   📈 Estimated Coverage: 85%\n   🎯 WCAG Level: WCAG 2.1 AA\n   💡 Automated testing catches ~30-50% of accessibility issues\n\n\nUse --verbose for the legal context and coverage snapshot.\nNeed the full verified check list? reach audit <url> --show-checks\n\n",
+      "stderr": "$ bash ./scripts/run-workspace.sh packages/reach dev audit https://example.com\n$ node ./scripts/run-dev.mjs audit https://example.com\n- Initializing accessibility audit...\n✔ Audit completed!\n"
+    },
+    {
+      "name": "audit-example.com-json",
+      "command": "bun run dev -- audit https://example.com --output json",
+      "code": 0,
+      "durationMs": 344.6,
+      "peakTreeRssMb": 856,
+      "stdout": "{\n  \"url\": \"https://example.com\",\n  \"timestamp\": \"2026-08-21T22:30:09.543Z\",\n  \"summary\": {\n    \"totalViolations\": 0,\n    \"criticalViolations\": 0,\n    \"seriousViolations\": 0,\n    \"moderateViolations\": 0,\n    \"minorViolations\": 0,\n    \"totalPasses\": 8,\n    \"incomplete\": 0\n  },\n  \"violations\": [],\n  \"rawAxeResults\": {\n    \"violations\": [],\n    \"passes\": [\n      {\n        \"id\": \"aria-hidden-body\",\n        \"impact\": null,\n        \"description\": \"Ensure aria-hidden=\\\"true\\\" is not present on the document body.\",\n        \"help\": \"aria-hidden=\\\"true\\\" must not be present on the document body\",\n        \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/aria-hidden-body?application=axeAPI\",\n        \"tags\": [\n          \"cat.aria\",\n          \"wcag2a\",\n          \"wcag131\",\n          \"wcag412\",\n          \"EN-301-549\",\n          \"EN-9.1.3.1\",\n          \"EN-9.4.1.2\"\n        ],\n        \"nodes\": []\n      },\n      {\n        \"id\": \"bypass\",\n        \"impact\": null,\n        \"description\": \"Ensure each page has at least one mechanism for a user to bypass navigation and jump straight to the content\",\n        \"help\": \"Page must have means to bypass repeated blocks\",\n        \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/bypass?application=axeAPI\",\n        \"tags\": [\n          \"cat.keyboard\",\n          \"wcag2a\",\n          \"wcag241\",\n          \"section508\",\n          \"section508.22.o\",\n          \"TTv5\",\n          \"TT9.a\",\n          \"EN-301-549\",\n          \"EN-9.2.4.1\"\n        ],\n        \"nodes\": []\n      },\n      {\n        \"id\": \"color-contrast\",\n        \"impact\": null,\n        \"description\": \"Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds\",\n        \"help\": \"Elements must meet minimum color contrast ratio thresholds\",\n        \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=axeAPI\",\n        \"tags\": [\n          \"cat.color\",\n          \"wcag2aa\",\n          \"wcag143\",\n          \"TTv5\",\n          \"TT13.c\",\n          \"EN-301-549\",\n          \"EN-9.1.4.3\",\n          \"ACT\"\n        ],\n        \"nodes\": []\n      },\n      {\n        \"id\": \"document-title\",\n        \"impact\": null,\n        \"description\": \"Ensure each HTML document contains a non-empty <title> element\",\n        \"help\": \"Documents must have <title> element to aid in navigation\",\n        \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/document-title?application=axeAPI\",\n        \"tags\": [\n          \"cat.text-alternatives\",\n          \"wcag2a\",\n          \"wcag242\",\n          \"TTv5\",\n          \"TT12.a\",\n          \"EN-301-549\",\n          \"EN-9.2.4.2\",\n          \"ACT\"\n        ],\n        \"nodes\": []\n      },\n      {\n        \"id\": \"html-has-lang\",\n        \"impact\": null,\n        \"description\": \"Ensure every HTML document has a lang attribute\",\n        \"help\": \"<html> element must have a lang attribute\",\n        \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI\",\n        \"tags\": [\n          \"cat.language\",\n          \"wcag2a\",\n          \"wcag311\",\n          \"TTv5\",\n          \"TT11.a\",\n          \"EN-301-549\",\n          \"EN-9.3.1.1\",\n          \"ACT\"\n        ],\n        \"nodes\": []\n      },\n      {\n        \"id\": \"html-lang-valid\",\n        \"impact\": null,\n        \"description\": \"Ensure the lang attribute of the <html> element has a valid value\",\n        \"help\": \"<html> element must have a valid value for the lang attribute\",\n        \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/html-lang-valid?application=axeAPI\",\n        \"tags\": [\n          \"cat.language\",\n          \"wcag2a\",\n          \"wcag311\",\n          \"TTv5\",\n          \"TT11.a\",\n          \"EN-301-549\",\n          \"EN-9.3.1.1\",\n          \"ACT\"\n        ],\n        \"nodes\": []\n      },\n      {\n        \"id\": \"link-name\",\n        \"impact\": null,\n        \"description\": \"Ensure links have discernible text\",\n        \"help\": \"Links must have discernible text\",\n        \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/link-name?application=axeAPI\",\n        \"tags\": [\n          \"cat.name-role-value\",\n          \"wcag2a\",\n          \"wcag244\",\n          \"wcag412\",\n          \"section508\",\n          \"section508.22.a\",\n          \"TTv5\",\n          \"TT6.a\",\n          \"EN-301-549\",\n          \"EN-9.2.4.4\",\n          \"EN-9.4.1.2\",\n          \"ACT\"\n        ],\n        \"nodes\": []\n      },\n      {\n        \"id\": \"meta-viewport\",\n        \"impact\": null,\n        \"description\": \"Ensure <meta name=\\\"viewport\\\"> does not disable text scaling and zooming\",\n        \"help\": \"Zooming and scaling must not be disabled\",\n        \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/meta-viewport?application=axeAPI\",\n        \"tags\": [\n          \"cat.sensory-and-visual-cues\",\n          \"wcag2aa\",\n          \"wcag144\",\n          \"EN-301-549\",\n          \"EN-9.1.4.4\",\n          \"ACT\"\n        ],\n        \"nodes\": []\n      }\n    ],\n    \"incomplete\": []\n  },\n  \"manualChecks\": [\n    {\n      \"id\": \"color-contrast\",\n      \"title\": \"Color Contrast\",\n      \"category\": \"common\",\n      \"description\": \"Measures contrast between text or interactive elements and their backgrounds.\",\n      \"whyItMatters\": \"Low contrast makes content unreadable for people with low vision or color deficiencies.\",\n      \"whatToLookFor\": [\n        \"Normal text meets at least 4.5:1 contrast; large text meets 3:1.\",\n        \"Interactive states (hover, focus, active) also remain perceivable.\"\n      ],\n      \"automation\": \"hybrid\",\n      \"relatedRuleIds\": [\n        \"color-contrast\",\n        \"link-in-text-block\"\n      ],\n      \"manualNotes\": \"Verify gradients, background images, and focus outlines maintain adequate contrast.\",\n      \"status\": \"needs-review\",\n      \"notes\": \"Verify gradients, background images, and focus outlines maintain adequate contrast.\"\n    },\n    {\n      \"id\": \"headings\",\n      \"title\": \"Headings\",\n      \"category\": \"common\",\n      \"description\": \"Validates heading structure and hierarchy so content is navigable by outline.\"\n…[truncated 9914 bytes]\n",
+      "stderr": "$ bash ./scripts/run-workspace.sh packages/reach dev audit https://example.com --output json\n$ node ./scripts/run-dev.mjs audit https://example.com --output json\n- Initializing accessibility audit...\n✔ Audit completed!\n"
+    },
+    {
+      "name": "audit-local-violations",
+      "command": "bun run dev -- audit http://127.0.0.1:37949/violations",
+      "code": 0,
+      "durationMs": 364.8,
+      "peakTreeRssMb": 813.5,
+      "stdout": "\n🔍 Reach — Accessibility Audit Report\n══════════════════════════════════════════════════\nURL: http://127.0.0.1:37949/violations\nTimestamp: 8/21/2026, 10:30:10 PM\n\n📊 Summary:\n  ❌ 6 violations found\n    🔴 Critical: 3\n    🟡 Serious: 3\n\n🚨 Violations:\n\n1. 🔴 Ensure all ARIA attributes have valid values\n   Impact: CRITICAL\n   WCAG Level: WCAG 2.0 A\n   Help: https://dequeuniversity.com/rules/axe/4.10/aria-valid-attr-value?application=axeAPI\n   Affected elements: 1\n     1. div[role=\"button\"]\n\n2. 🔴 Ensure buttons have discernible text\n   Impact: CRITICAL\n   WCAG Level: WCAG 2.0 A\n   Help: https://dequeuniversity.com/rules/axe/4.10/button-name?application=axeAPI\n   Affected elements: 1\n     1. div > button\n\n3. 🟡 Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds\n   Impact: SERIOUS\n   WCAG Level: WCAG 2.0 AA\n   Help: https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=axeAPI\n   Affected elements: 1\n     1. p\n\n4. 🟡 Ensure every HTML document has a lang attribute\n   Impact: SERIOUS\n   WCAG Level: WCAG 2.0 A\n   Help: https://dequeuniversity.com/rules/axe/4.10/html-has-lang?application=axeAPI\n   Affected elements: 1\n     1. html\n\n5. 🔴 Ensure <img> elements have alternative text or a role of none or presentation\n   Impact: CRITICAL\n   WCAG Level: WCAG 2.0 A\n   Help: https://dequeuniversity.com/rules/axe/4.10/image-alt?application=axeAPI\n   Affected elements: 1\n     1. img\n\n6. 🟡 Ensure links have discernible text\n   Impact: SERIOUS\n   WCAG Level: WCAG 2.0 A\n   Help: https://dequeuniversity.com/rules/axe/4.10/link-name?application=axeAPI\n   Affected elements: 1\n     1. a\n\n📝 Manual & Hybrid Checks:\n\n▶ Common Checks\n  ❌ Color Contrast\n     • Automation: HYBRID (rules: color-contrast, link-in-text-block)\n     • What to look for: Normal text meets at least 4.5:1 contrast; large text meets 3:1.\n     • Notes: Verify gradients, background images, and focus outlines maintain adequate contrast.\n\n  ⚠️ Headings\n     • Automation: HYBRID (rules: heading-order, landmark-one-main, region)\n     • What to look for: A single first-level heading establishes the page topic.\n     • Notes: Check visually that headings convey a logical outline and that important sections aren't plain paragraphs.\n\n  ❌ Image Alternative Text\n     • Automation: HYBRID (rules: image-alt, area-alt, input-image-alt)\n     • What to look for: Meaningful images describe purpose or action, not purely visual detail.\n     • Notes: Review alt text manually to ensure it communicates intent and context.\n\n  ❌ Language of Page\n     • Automation: AUTOMATED (rules: html-has-lang, html-lang-valid)\n     • What to look for: The <html> element includes a valid BCP 47 language code.\n\n  ⚠️ Page Title\n     • Automation: HYBRID (rules: page-title)\n     • What to look for: Titles summarize the page purpose in a concise phrase.\n     • Notes: Verify the copy reflects the page content and is distinguishable from other pages.\n\n  ⚠️ Skip Link\n     • Automation: HYBRID (rules: bypass)\n     • What to look for: The first tabbable element is a functional skip link or landmark.\n     • Notes: Confirm the skip link is visible on focus and targets the correct region.\n\n  ⚠️ Visible Keyboard Focus\n     • Automation: HYBRID (rules: focus-order-semantics, focus-visible, focus-trap)\n     • What to look for: Each tabbable element exposes a clear focus outline.\n     • Notes: Run a manual tab-through to ensure focus indicators are prominent and meet contrast guidelines.\n\n  📝 Zoom\n     • Automation: MANUAL\n     • What to look for: At 200% zoom the page avoids horizontal scrolling for primary content.\n     • Notes: Manually zoom the page and confirm responsive behavior without clipped content.\n\n▶ Audio / Visual Checks\n  📝 Audio Description\n     • Automation: MANUAL\n     • What to look for: Look for a described-video track or narration covering on-screen text, visuals, and actions.\n     • Notes: Watch representative videos while toggling described tracks or confirm alternate versions exist.\n\n  📝 Captions\n     • Automation: MANUAL\n     • What to look for: Captions include dialogue, speaker identification, and essential sound effects.\n     • Notes: Play each media asset and verify captions are present, accurate, and synchronized.\n\n  📝 Transcripts\n     • Automation: MANUAL\n     • What to look for: Transcripts cover spoken words and meaningful non-speech audio cues.\n     • Notes: Inspect media detail pages or documentation for downloadable or inline transcripts.\n\n▶ Form Checks\n  ⚠️ Labels\n     • Automation: HYBRID (rules: label, aria-label, aria-labelledby, form-field-multiple-labels)\n     • What to look for: Inputs use <label for>, aria-label, or aria-labelledby with descriptive copy.\n     • Notes: Review complex fields (date pickers, custom dropdowns) to ensure labels are read correctly.\n\n  ⚠️ Required Fields\n     • Automation: HYBRID (rules: aria-required-attr, aria-required-parent, aria-required-children)\n     • What to look for: Required fields are programmatically marked (required attribute or aria-required).\n     • Notes: Attempt form submission to confirm errors are announced and instructions stay visible.\n\n\n📊 Coverage Summary:\n   🛠️ Engine: axe-core 4.10.3 via bun.WebView on Bun 1.4.0\n   ✅ Verified Checks: 10/25\n   📈 Estimated Coverage: 85%\n   🎯 WCAG Level: WCAG 2.1 AA\n   💡 Automated testing catches ~30-50% of accessibility issues\n\n\nUse --verbose for the legal context and coverage snapshot.\nNeed the full verified check list? reach audit <url> --show-checks\n\n",
+      "stderr": "$ bash ./scripts/run-workspace.sh packages/reach dev audit \"http://127.0.0.1:37949/violations\"\n$ node ./scripts/run-dev.mjs audit \"http://127.0.0.1:37949/violations\"\n- Initializing accessibility audit...\n✔ Audit completed!\n"
+    },
+    {
+      "name": "crawl-example.com-max-3",
+      "command": "bun run dev -- crawl https://example.com --max-pages 3",
+      "code": 0,
+      "durationMs": 369.3,
+      "peakTreeRssMb": 693.1,
+      "stdout": "\nCrawl summary for https://example.com/\nPages discovered: 1 (skipped: 1, crawl errors: 0)\nAudits run: 1 (success: 1, failed: 0)\nTotal violations found: 0\n\nPer-page results\n✅ https://example.com/ — No violations detected\n",
+      "stderr": "$ bash ./scripts/run-workspace.sh packages/reach dev crawl https://example.com --max-pages \"3\"\n$ node ./scripts/run-dev.mjs crawl https://example.com --max-pages \"3\"\n- Crawling site and running accessibility audits...\n✔ Audited 1 page\n"
+    }
+  ],
+  "inProcess": {
+    "runner": {
+      "command": "bun /workspace/scripts/benchmark-auditor-runner.mjs --urls http://127.0.0.1:37949/valid,http://127.0.0.1:37949/violations,https://example.com",
+      "code": 0,
+      "durationMs": 581.1,
+      "peakTreeRssMb": 986.3,
+      "stdout": "import-and-construct: 8.8 ms (rss=25.9MB)\nbrowser-launch: 1.1 ms (rss=26.4MB)\ncold-audit:http://127.0.0.1:37949/valid: 270 ms (violations=0 passes=16 rss=35.2MB)\nwarm-audit:http://127.0.0.1:37949/violations: 141.4 ms (violations=6 passes=19 rss=38.6MB)\nwarm-audit:https://example.com: 153.3 ms (violations=0 passes=8 rss=42.3MB)\nbrowser-close: 0.1 ms (rss=42.9MB)\nBENCHMARK_JSON:{\"engineHint\":\"axe-core-direct\",\"finalRssMb\":45.5,\"steps\":[{\"name\":\"import-and-construct\",\"durationMs\":8.8,\"notes\":\"rss=25.9MB\"},{\"name\":\"browser-launch\",\"durationMs\":1.1,\"notes\":\"rss=26.4MB\"},{\"name\":\"cold-audit:http://127.0.0.1:37949/valid\",\"durationMs\":270,\"notes\":\"violations=0 passes=16 rss=35.2MB\",\"url\":\"http://127.0.0.1:37949/valid\",\"summary\":{\"totalViolations\":0,\"criticalViolations\":0,\"seriousViolations\":0,\"moderateViolations\":0,\"minorViolations\":0,\"totalPasses\":16,\"incomplete\":1}},{\"name\":\"warm-audit:http://127.0.0.1:37949/violations\",\"durationMs\":141.4,\"notes\":\"violations=6 passes=19 rss=38.6MB\",\"url\":\"http://127.0.0.1:37949/violations\",\"summary\":{\"totalViolations\":6,\"criticalViolations\":3,\"seriousViolations\":3,\"moderateViolations\":0,\"minorViolations\":0,\"totalPasses\":19,\"incomplete\":0}},{\"name\":\"warm-audit:https://example.com\",\"durationMs\":153.3,\"notes\":\"violations=0 passes=8 rss=42.3MB\",\"url\":\"https://example.com\",\"summary\":{\"totalViolations\":0,\"criticalViolations\":0,\"seriousViolations\":0,\"moderateViolations\":0,\"minorViolations\":0,\"totalPasses\":8,\"incomplete\":0}},{\"name\":\"browser-close\",\"durationMs\":0.1,\"notes\":\"rss=42.9MB\"}]}\n",
+      "stderr": ""
+    },
+    "measurements": {
+      "engineHint": "axe-core-direct",
+      "finalRssMb": 45.5,
+      "steps": [
+        {
+          "name": "import-and-construct",
+          "durationMs": 8.8,
+          "notes": "rss=25.9MB"
+        },
+        {
+          "name": "browser-launch",
+          "durationMs": 1.1,
+          "notes": "rss=26.4MB"
+        },
+        {
+          "name": "cold-audit:http://127.0.0.1:37949/valid",
+          "durationMs": 270,
+          "notes": "violations=0 passes=16 rss=35.2MB",
+          "url": "http://127.0.0.1:37949/valid",
+          "summary": {
+            "totalViolations": 0,
+            "criticalViolations": 0,
+            "seriousViolations": 0,
+            "moderateViolations": 0,
+            "minorViolations": 0,
+            "totalPasses": 16,
+            "incomplete": 1
+          }
+        },
+        {
+          "name": "warm-audit:http://127.0.0.1:37949/violations",
+          "durationMs": 141.4,
+          "notes": "violations=6 passes=19 rss=38.6MB",
+          "url": "http://127.0.0.1:37949/violations",
+          "summary": {
+            "totalViolations": 6,
+            "criticalViolations": 3,
+            "seriousViolations": 3,
+            "moderateViolations": 0,
+            "minorViolations": 0,
+            "totalPasses": 19,
+            "incomplete": 0
+          }
+        },
+        {
+          "name": "warm-audit:https://example.com",
+          "durationMs": 153.3,
+          "notes": "violations=0 passes=8 rss=42.3MB",
+          "url": "https://example.com",
+          "summary": {
+            "totalViolations": 0,
+            "criticalViolations": 0,
+            "seriousViolations": 0,
+            "moderateViolations": 0,
+            "minorViolations": 0,
+            "totalPasses": 8,
+            "incomplete": 0
+          }
+        },
+        {
+          "name": "browser-close",
+          "durationMs": 0.1,
+          "notes": "rss=42.9MB"
+        }
+      ]
+    }
+  },
+  "localServer": {
+    "baseUrl": "http://127.0.0.1:37949"
+  },
+  "finishedAt": "2026-08-21T22:30:13.571Z"
+}

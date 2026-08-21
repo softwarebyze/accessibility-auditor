@@ -1,0 +1,17 @@
+[2026-08-21T22:30:15.690Z] Starting Reach benchmark (node-puppeteer)
+[2026-08-21T22:30:15.691Z] Collecting environment…
+[2026-08-21T22:30:15.759Z] Measuring disk usage…
+[2026-08-21T22:30:15.896Z] Skipping Playwright install (not installed or --skip-playwright-install)
+[2026-08-21T22:30:15.901Z] Fixture server at http://127.0.0.1:33695
+[2026-08-21T22:30:15.901Z] CLI: quick-example.com
+[2026-08-21T22:30:15.901Z] $ npm run dev -- quick https://example.com
+[2026-08-21T22:30:17.299Z] CLI: audit-example.com
+[2026-08-21T22:30:17.299Z] $ npm run dev -- audit https://example.com
+[2026-08-21T22:30:18.691Z] CLI: audit-example.com-json
+[2026-08-21T22:30:18.692Z] $ npm run dev -- audit https://example.com --output json
+[2026-08-21T22:30:20.067Z] CLI: audit-local-violations
+[2026-08-21T22:30:20.067Z] $ npm run dev -- audit http://127.0.0.1:33695/violations
+[2026-08-21T22:30:21.674Z] CLI: crawl-example.com-max-3
+[2026-08-21T22:30:21.674Z] $ npm run dev -- crawl https://example.com --max-pages 3
+[2026-08-21T22:30:23.164Z] In-process auditor: cold launch + warm reuse
+[2026-08-21T22:30:23.164Z] $ npx tsx /workspace/scripts/benchmark-auditor-runner.mjs --urls http://127.0.0.1:33695/valid,http://127.0.0.1:33695/violations,https://example.com

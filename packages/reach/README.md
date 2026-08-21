@@ -25,7 +25,7 @@ reach crawl https://example.com --max-pages 25
 reach history
 ```
 
-Requires Node.js 20+ (Bun 1.0+ is also supported).
+Requires Node.js 20+ (uses your installed Chrome). Bun 1.4+ uses built-in `Bun.WebView` instead. No Playwright browser download.
 
 **Names:** Product is **Reach**. npm package is **`reach-a11y`** (install / `npx`). CLI command is **`reach`**. Repo on GitHub is `accessibility-auditor`.
 
@@ -43,7 +43,7 @@ Requires Node.js 20+ (Bun 1.0+ is also supported).
 
 ## What Reach does
 
-- Opens your page in a real browser and checks it against common accessibility rules (WCAG 2.1 AA).
+- Opens your page in a real browser (`Bun.WebView` on Bun 1.4+, system Chrome on Node/npm) and checks it against common accessibility rules (WCAG 2.1 AA).
 - Tells you what failed and how bad it is (critical → minor).
 - Saves runs locally so you can track progress; can export JSON for reports or CI.
 

@@ -27,7 +27,7 @@ reach crawl https://example.com --max-pages 25
 reach history
 ```
 
-Requires Node.js 20+ (Bun 1.0+ is also supported).
+Requires Node.js 20+ (uses your installed Chrome). **Bun 1.4+** uses built-in `Bun.WebView` and skips the extra Chrome-driver dependency. No Playwright browser download.
 
 ### Names (if you're wondering)
 
@@ -45,18 +45,19 @@ The npm package isn't called `reach` because [that name is already taken](https:
 ```bash
 # From repo root
 npm install
+# or: bun install
 
-# Install browsers (one-time)
-npm run install-browsers
-
-# Run CLI from package
+# Run CLI from package (no Playwright browser download)
 npm run dev -- quick https://example.com
 npm run dev -- audit https://example.com
 npm run dev -- audit https://example.com --output json --file results.json
 npm run dev -- crawl https://example.com --max-pages 25
 npm run dev -- history
 npm run dev -- history --clear
+npm run dev -- doctor
 ```
+
+`bun run dev -- audit https://example.com` uses **Bun.WebView**. `npm run dev -- audit …` uses **system Chrome** via puppeteer-core so Node/npm users do not need Bun.
 
 ## 🤝 Working with Clients
 
@@ -114,9 +115,9 @@ reach history --clear
 
 ### The Testing Process
 
-1. **Browser Launch**: Uses Playwright to launch a headless Chromium browser
+1. **Browser**: On Bun 1.4+ this is `Bun.WebView`. On Node/npm it is your installed Chrome/Chromium/Edge via puppeteer-core. No Playwright browser download.
 2. **Page Loading**: Navigates to the target URL and waits for DOM content to load
-3. **Accessibility Analysis**: Runs axe-core engine with WCAG 2.1 AA ruleset
+3. **Accessibility Analysis**: Injects axe-core and runs the WCAG 2.1 AA ruleset
 4. **Result Processing**: Categorizes violations by severity and maps to WCAG criteria
 5. **Report Generation**: Produces detailed reports with actionable recommendations
 
@@ -158,10 +159,10 @@ The tool determines accessibility by running **automated checks** against establ
 
 When you run `reach audit <url>`, the [`AccessibilityAuditor`](./packages/reach/src/core/auditor.ts) class orchestrates the entire flow:
 
-1. **Chromium spin-up** – `chromium.launch` boots a headless browser (reused between audits for speed).
-2. **Isolated page context** – `browser.newContext()` + `context.newPage()` give each audit a clean tab with no leaks between tests.
-3. **Real DOM navigation** – `page.goto(url, { waitUntil: "domcontentloaded" })` loads the production site and executes its JavaScript just like a real user visit.
-4. **axe-core injection** – `new AxeBuilder({ page })` injects axe-core, which walks the rendered DOM, inspecting roles, ARIA attributes, semantics, styles, and relationships.
+1. **Engine pick** – Bun 1.4+ uses `Bun.WebView`. Node/npm uses puppeteer-core against a Chrome-family browser already on the machine (`REACH_CHROME_PATH` overrides the path).
+2. **Isolated page** – each audit opens a fresh tab/page so runs do not leak cookies or DOM state.
+3. **Real DOM navigation** – the engine loads the production URL (or injected HTML in tests) and executes page JavaScript.
+4. **axe-core injection** – the auditor evaluates `axe-core` in the page and runs WCAG 2.1 A/AA tags.
 5. **Result shaping** – `processViolations` converts axe’s JSON into our `Violation` shape, tagging each failing node with severity, WCAG mapping, helper URLs, and raw HTML snippets.
 6. **Summary math** – counts for `criticalViolations`, `seriousViolations`, etc. are derived from the processed list, while `passes` and `incomplete` come directly from axe.
 7. **Reporting** – the console and JSON reporters format the data: you get color-coded summaries, affected selectors, and the raw `axeResults` payload for downstream tooling.
@@ -428,7 +429,7 @@ Timestamp: 10/7/2025, 8:25:00 PM
    WCAG Level: WCAG 2.0 A
 
 � Coverage Summary:
-   🛠️ Engine: axe-core 4.x.x via @axe-core/playwright 4.x.x
+   🛠️ Engine: axe-core 4.x.x via bun.WebView (or puppeteer-core on Node)
    ✅ Verified Checks: 10/25
    � Estimated Coverage: 85%
    🎯 WCAG Level: WCAG 2.1 AA
@@ -449,8 +450,9 @@ To include the verified rule catalog in the output, rerun with `--show-checks`:
 
 ## 🛠️ Built With
 
-- **[Node.js](https://nodejs.org/)** and **[Bun](https://bun.sh/)** - Supported runtimes/package managers
-- **[Playwright](https://playwright.dev/)** - Browser automation and testing
+- **[Node.js](https://nodejs.org/)** and **[Bun](https://bun.sh/)** - Node/npm always works; Bun 1.4+ uses built-in `Bun.WebView`
+- **[Bun.WebView](https://bun.com/docs/runtime/webview)** - Headless browser on Bun 1.4+ (no Playwright install)
+- **[puppeteer-core](https://pptr.dev/)** - Node/npm fallback against system Chrome/Chromium/Edge
 - **[axe-core](https://github.com/dequelabs/axe-core)** - Industry-standard accessibility testing engine
 - **[Commander.js](https://github.com/tj/commander.js)** - CLI framework
 - **[Biome](https://biomejs.dev/)** - Fast linter and formatter

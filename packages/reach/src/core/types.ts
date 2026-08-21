@@ -1,3 +1,8 @@
+export interface AuditEngineInfo {
+  name: string;
+  detail?: string;
+}
+
 export interface AuditResult {
   url: string;
   timestamp: string;
@@ -5,6 +10,7 @@ export interface AuditResult {
   violations: Violation[];
   rawAxeResults?: AxeResults;
   manualChecks: ManualCheckResult[];
+  engine?: AuditEngineInfo;
 }
 
 export interface AxeResults {

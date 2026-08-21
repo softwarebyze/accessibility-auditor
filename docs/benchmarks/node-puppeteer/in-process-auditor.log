@@ -1,0 +1,8 @@
+import-and-construct: 10 ms (rss=88.3MB)
+browser-launch: 318.6 ms (rss=122.9MB)
+cold-audit:http://127.0.0.1:33695/valid: 154.5 ms (violations=0 passes=16 rss=131.1MB)
+warm-audit:http://127.0.0.1:33695/violations: 138.6 ms (violations=6 passes=19 rss=135.7MB)
+warm-audit:https://example.com: 148.7 ms (violations=0 passes=8 rss=133.5MB)
+browser-close: 44.8 ms (rss=133.9MB)
+BENCHMARK_JSON:{"engineHint":"axe-core-direct","finalRssMb":133.9,"steps":[{"name":"import-and-construct","durationMs":10,"notes":"rss=88.3MB"},{"name":"browser-launch","durationMs":318.6,"notes":"rss=122.9MB"},{"name":"cold-audit:http://127.0.0.1:33695/valid","durationMs":154.5,"notes":"violations=0 passes=16 rss=131.1MB","url":"http://127.0.0.1:33695/valid","summary":{"totalViolations":0,"criticalViolations":0,"seriousViolations":0,"moderateViolations":0,"minorViolations":0,"totalPasses":16,"incomplete":1}},{"name":"warm-audit:http://127.0.0.1:33695/violations","durationMs":138.6,"notes":"violations=6 passes=19 rss=135.7MB","url":"http://127.0.0.1:33695/violations","summary":{"totalViolations":6,"criticalViolations":3,"seriousViolations":3,"moderateViolations":0,"minorViolations":0,"totalPasses":19,"incomplete":0}},{"name":"warm-audit:https://example.com","durationMs":148.7,"notes":"violations=0 passes=8 rss=133.5MB","url":"https://example.com","summary":{"totalViolations":0,"criticalViolations":0,"seriousViolations":0,"moderateViolations":0,"minorViolations":0,"totalPasses":8,"incomplete":0}},{"name":"browser-close","durationMs":44.8,"notes":"rss=133.9MB"}]}
+

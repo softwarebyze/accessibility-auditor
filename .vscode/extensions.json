@@ -3,7 +3,6 @@
     "astro-build.astro-vscode",
     "biomejs.biome",
     "oven.bun-vscode",
-    "ms-playwright.playwright",
     "GitHub.vscode-github-actions",
     "redhat.vscode-yaml",
     "GitHub.vscode-pull-request-github"
